@@ -1,15 +1,20 @@
 #pragma once
 
-#include "Motor.h"
+#include <Motor.h>
+#include <ProximitySensorArray.h>
 
 class MotorControl
 {
-  public:
-    MotorControl(int r_pwm, int r_in_1, int r_in_2, int l_pwm, int l_in_1, int l_in_2)
-        : right(Motor(r_in_1, r_in_2, r_pwm)), left(l_in_1, l_in_2, l_pwm) {}
-    ~MotorControl();
+public:
+  MotorControl(Motor _right, Motor _left, ProximitySensorArray _sensors)
+      : left(_left), right(_right), sensors(_sensors) {}
+  MotorControl(const MotorControl &other) : MotorControl(other.right, other.left, other.sensors) {}
+  // MotorControl &operator=(const MotorControl &other);
+  ~MotorControl();
+  //Need to create functions to controll direction and speed of motors based on the sensor data
 
-  private:
-    const Motor left;
-    const Motor right;
+private:
+  const Motor left;
+  const Motor right;
+  const ProximitySensorArray sensors;
 };

@@ -1,6 +1,13 @@
 #include "Motor.h"
 #include <Arduino.h>
 
+Motor::Motor(int _in_1, int _in_2, int _pwm) : in_1(_in_1), in_2(_in_2), pwm(_pwm)
+{
+    pinMode(in_1, OUTPUT);
+    pinMode(in_2, OUTPUT);
+    pinMode(pwm, OUTPUT);
+}
+
 Motor::~Motor()
 {
 }
