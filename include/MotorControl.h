@@ -21,9 +21,14 @@ public:
   ~MotorControl();
   //Need to create functions to controll direction and speed of motors based on the sensor data
 
+  void AdjustSpeedAndDirection();
+  void SetSpeed(int spd);
+
 private:
-  const Motor *left;
-  const Motor *right;
+  Motor *left;
+  Motor *right;
   const ProximitySensorArray *sensors;
   Direction direction;
+  int speed, rightOffset, leftOffset;
+  int angle;
 };

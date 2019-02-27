@@ -7,7 +7,7 @@ public:
   ProximitySensorArray(int _echo, int lb, int lf, int rb, int rf, int f);
   ~ProximitySensorArray();
 
-  int *read();
+  // int *read();
 
 private:
   const int echo;

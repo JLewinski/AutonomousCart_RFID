@@ -9,7 +9,7 @@ enum MotorStatus
 class Motor
 {
 public:
-  Motor(int _in_1, int _in_2, int _pwm);
+  Motor(int _dir, int _pwm);
   ~Motor();
   void clockwise();
   void counterClockwise();
@@ -17,8 +17,7 @@ public:
   void brake();
 
 private:
-  const int in_1;
-  const int in_2;
+  const int dir;
   const int pwm;
   int speed = 0;
   MotorStatus status = Stop;

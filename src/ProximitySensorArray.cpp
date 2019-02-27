@@ -21,14 +21,14 @@ ProximitySensorArray::~ProximitySensorArray()
     delete[] frontValues;
 }
 
-int *ProximitySensorArray::read()
-{
-    shift(leftBackValues, leftBack);
-    shift(leftFrontValues, leftFront);
-    shift(rightBackValues, rightBack);
-    shift(rightFrontValues, rightFront);
-    shift(frontValues, front);
-}
+// int *ProximitySensorArray::read()
+// {
+//     shift(leftBackValues, leftBack);
+//     shift(leftFrontValues, leftFront);
+//     shift(rightBackValues, rightBack);
+//     shift(rightFrontValues, rightFront);
+//     shift(frontValues, front);
+// }
 
 const long ProximitySensorArray::read(int pin)
 {

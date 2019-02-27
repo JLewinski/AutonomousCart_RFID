@@ -1,14 +1,16 @@
 #include <Arduino.h>
 #include <MotorControl.h>
 
+
 MotorControl *control;
 
 void setup()
 {
-  Motor *right = new Motor(8, 9, 2);
-  Motor *left = new Motor(10, 11, 3);
-  ProximitySensorArray *sensors = new ProximitySensorArray(7, 12, 13, 14, 15, 16);
+  Motor *right = new Motor(22, 2);
+  Motor *left = new Motor(23, 3);
+  ProximitySensorArray *sensors = new ProximitySensorArray(28, 30, 31, 32, 33, 29);
   control = new MotorControl(right, left, sensors);
+  control->SetSpeed(130);
 }
 
 void loop()
