@@ -12,7 +12,14 @@ ProximitySensorArray::ProximitySensorArray(int _echo, int lb, int lf, int rb, in
     pinMode(_echo, INPUT);
 }
 
-ProximitySensorArray::~ProximitySensorArray() {}
+ProximitySensorArray::~ProximitySensorArray()
+{
+    delete[] leftBackValues;
+    delete[] leftFrontValues;
+    delete[] rightBackValues;
+    delete[] rightFrontValues;
+    delete[] frontValues;
+}
 
 int *ProximitySensorArray::read()
 {

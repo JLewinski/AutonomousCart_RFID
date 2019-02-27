@@ -2,4 +2,7 @@
 
 MotorControl::~MotorControl()
 {
+    delete right;
+    delete left;
+    delete sensors;
 }

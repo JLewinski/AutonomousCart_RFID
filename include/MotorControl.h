@@ -15,15 +15,15 @@ typedef enum Direction
 class MotorControl
 {
 public:
-  MotorControl(Motor _right, Motor _left, ProximitySensorArray _sensors)
+  MotorControl(Motor *_right, Motor *_left, ProximitySensorArray *_sensors)
       : left(_left), right(_right), sensors(_sensors) {}
-  MotorControl(const MotorControl &other) : MotorControl(other.right, other.left, other.sensors) {}
+  // MotorControl(const MotorControl &other) : MotorControl(new Motor(other.right), new Motor(other.left), new ProximitySensorArray(other.sensors) {}
   ~MotorControl();
   //Need to create functions to controll direction and speed of motors based on the sensor data
 
 private:
-  const Motor left;
-  const Motor right;
-  const ProximitySensorArray sensors;
+  const Motor *left;
+  const Motor *right;
+  const ProximitySensorArray *sensors;
   Direction direction;
 };
