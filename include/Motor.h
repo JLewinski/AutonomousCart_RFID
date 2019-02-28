@@ -1,4 +1,8 @@
 #pragma once
+
+#include <Encoder.h>
+#include <PID_v1.h>
+
 enum MotorStatus
 {
   Clockwise = 0,
@@ -9,16 +13,21 @@ enum MotorStatus
 class Motor
 {
 public:
-  Motor(int _dir, int _pwm);
+  Motor(int _dir, int _pwm, Encoder *_encoder);
   ~Motor();
   void clockwise();
   void counterClockwise();
   void setSpeed(int _speed);
   void brake();
+  void update();
 
 private:
-  const int dir;
-  const int pwm;
-  int speed = 0;
+  const int dir, pwm;
+  const Encoder *encoder;
+  double speed = 0;
+  double encoderOutput;
+  double pwmValue;
   MotorStatus status = Stop;
+  PID pid;
+  const double consKp = 1, consKi = 0.05, consKd = 0.25, aggKp = 4, aggKi = .2, aggKd = 1, maxGap = 10;
 };
