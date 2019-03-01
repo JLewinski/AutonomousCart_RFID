@@ -23,7 +23,7 @@ public:
 
 private:
   const int dir, pwm;
-  const Encoder *encoder;
+  Encoder *encoder;
   double speed = 0;
   double encoderOutput;
   double pwmValue;

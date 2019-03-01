@@ -37,6 +37,7 @@ void Motor::setSpeed(int _speed)
 
 void Motor::update()
 {
+    encoderOutput = encoder->getChanelA();
     if (speed - encoderOutput >= maxGap)
     {
         pid.SetTunings(aggKp, aggKi, aggKd);

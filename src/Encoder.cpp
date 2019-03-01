@@ -14,8 +14,3 @@ const long Encoder::getChanelB()
 {
     return pulseIn(pinB, HIGH);
 }
-
-void Encoder::update()
-{
-    currentValue = getChanelA();
-}

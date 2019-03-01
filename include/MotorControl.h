@@ -3,7 +3,7 @@
 #include <Motor.h>
 #include <ProximitySensorArray.h>
 
-typedef enum Direction
+enum Direction
 {
   Forward = 1,
   Backward = 0,

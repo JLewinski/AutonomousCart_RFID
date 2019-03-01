@@ -1,24 +1,19 @@
 #include <ProximitySensorArray.h>
 #include <Arduino.h>
 
-ProximitySensorArray::ProximitySensorArray(int _echo, int lb, int lf, int rb, int rf, int f)
-    : echo(_echo), leftBack(lb), leftFront(lf), rightBack(rb), rightFront(rf), front(f)
+ProximitySensorArray::ProximitySensorArray(int tlb, int elb, int trb, int erb, int tlf, int elf, int trf, int erf, int tf, int ef)
+    : leftBack(Ultrasonic(tlb, elb)), rightBack(Ultrasonic(trb, erb)), leftFront(Ultrasonic(tlf, elf)), rightFront(Ultrasonic(trf, erf)), front(Ultrasonic(tf, ef))
 {
-    pinMode(leftBack, OUTPUT);
-    pinMode(leftFront, OUTPUT);
-    pinMode(rightBack, OUTPUT);
-    pinMode(rightFront, OUTPUT);
-    pinMode(front, OUTPUT);
-    pinMode(_echo, INPUT);
 }
 
 ProximitySensorArray::~ProximitySensorArray()
 {
-    delete[] leftBackValues;
-    delete[] leftFrontValues;
-    delete[] rightBackValues;
-    delete[] rightFrontValues;
-    delete[] frontValues;
+    //Don't need to do this because they aren't dynamically allocated?
+    // delete[] leftBackValues;
+    // delete[] leftFrontValues;
+    // delete[] rightBackValues;
+    // delete[] rightFrontValues;
+    // delete[] frontValues;
 }
 
 // int *ProximitySensorArray::read()
@@ -30,19 +25,42 @@ ProximitySensorArray::~ProximitySensorArray()
 //     shift(frontValues, front);
 // }
 
-const long ProximitySensorArray::read(int pin)
+long ProximitySensorArray::read(UltrasonicSensor ultrasonicSensor)
 {
-    digitalWrite(pin, HIGH);
-    delayMicroseconds(10);
-    digitalWrite(pin, LOW);
-    return pulseIn(echo, HIGH);
+    long value;
+    long *valuesArray;
+    switch (ultrasonicSensor)
+    {
+    case Front:
+        value = front.Timing();
+        valuesArray = frontValues;
+        break;
+    case LeftFront:
+        value = leftFront.Timing();
+        valuesArray = leftFrontValues;
+        break;
+    case RightFront:
+        value = rightFront.Timing();
+        valuesArray = rightFrontValues;
+        break;
+    case LeftBack:
+        value = leftBack.Timing();
+        valuesArray = leftBackValues;
+        break;
+    case RightBack:
+        value = rightBack.Timing();
+        valuesArray = rightBackValues;
+        break;
+    }
+    shift(valuesArray);
+    valuesArray[0] = value;
+    return value;
 }
 
-void ProximitySensorArray::shift(long *values, int pin)
+void ProximitySensorArray::shift(long *values)
 {
     for (int i = 4; i >= 1; i--)
     {
         values[i] = values[i - 1];
     }
-    values[0] = read(pin);
 }
