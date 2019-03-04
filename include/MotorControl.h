@@ -23,6 +23,7 @@ public:
 
   void AdjustSpeedAndDirection();
   void SetSpeed(int spd);
+  void Update();
 
 private:
   Motor *left;

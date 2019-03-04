@@ -28,3 +28,9 @@ void MotorControl::SetSpeed(int spd)
         left->setSpeed(spd);
     }
 };
+
+void MotorControl::Update()
+{
+    right->update();
+    left->update();
+}
