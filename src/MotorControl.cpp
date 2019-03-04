@@ -32,5 +32,5 @@ void MotorControl::SetSpeed(int spd)
 void MotorControl::Update()
 {
     right->update();
-    left->update();
+    //left->update();
 }

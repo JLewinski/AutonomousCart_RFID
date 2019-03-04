@@ -2,11 +2,11 @@
 #include <Arduino.h>
 
 Motor::Motor(int _dir, int _pwm, Encoder *_encoder)
-    : dir(_dir), pwm(_pwm), encoder(_encoder), pid(PID(&pwmValue, &encoderOutput, &speed, consKp, consKi, consKd, REVERSE, P_ON_M))
+    : dir(_dir), pwm(_pwm), encoder(_encoder), pid(PID(&encoderOutput, &pwmValue, &speed, consKp, consKi, consKd, REVERSE))
 {
     pinMode(dir, OUTPUT);
     pinMode(pwm, OUTPUT);
-    pid.SetOutputLimits(0, 255);
+    // pid.SetOutputLimits(30, 255);
     pid.SetMode(AUTOMATIC);
 }
 
@@ -32,22 +32,28 @@ void Motor::setSpeed(int _speed)
     if (_speed > 0 && _speed <= 255)
     {
         speed = _speed;
+        // analogWrite(pwm, speed);
     }
 }
 
 void Motor::update()
 {
     encoderOutput = encoder->getChanelA();
-    if (speed - encoderOutput >= maxGap)
-    {
-        pid.SetTunings(aggKp, aggKi, aggKd);
+    if (encoderOutput == 0){
+        encoderOutput = 55;
     }
-    else
-    {
-        pid.SetTunings(consKp, consKi, consKd);
-    }
+    // if (speed - encoderOutput >= maxGap)
+    // {
+    //     pid.SetTunings(aggKp, aggKi, aggKd);
+    // }
+    // else
+    // {
+    //     pid.SetTunings(consKp, consKi, consKd);
+    // }
     if (pid.Compute())
     {
+        Serial.print("PWM: ");
+        Serial.println(pwmValue);
         analogWrite(pwm, pwmValue);
     }
 }
