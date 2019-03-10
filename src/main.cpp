@@ -25,7 +25,7 @@ boolean setupNano(long baudRate)
 
   if (nano.msg[0] == ERROR_WRONG_OPCODE_RESPONSE)
   {
-    //This happens if the baud rate is correct but the module is doing a ccontinuous read
+    //This happens if the baud rate is correct but the module is doing a continuous read
     nano.stopReading();
 
     Serial.println(F("Module continuously reading. Asking it to stop..."));
@@ -57,39 +57,7 @@ boolean setupNano(long baudRate)
   return (true); //We are ready to rock
 }
 
-void setup()
-{
-  Motor *right = new Motor(22, 2);
-  Motor *left = new Motor(23, 3);
-  ProximitySensorArray *sensors = new ProximitySensorArray(28, 30, 31, 32, 33, 29);
-  control = new MotorControl(right, left, sensors);
-  control->SetSpeed(130);
-
-  Serial.begin(115200);
-  while (!Serial)
-    ; //Wait for the serial port to come online
-
-  if (setupNano(38400) == false) //Configure nano to run at 38400bps
-  {
-    Serial.println(F("Module failed to respond. Please check wiring."));
-    while (1)
-      ; //Freeze!
-  }
-
-  nano.setRegion(REGION_NORTHAMERICA); //Set to North America
-
-  nano.setReadPower(500); //5.00 dBm. Higher values may caues USB port to brown out
-  //Max Read TX Power is 27.00 dBm and may cause temperature-limit throttling
-
-  Serial.println(F("Press a key to begin scanning for tags."));
-  while (!Serial.available())
-    ;            //Wait for user to send a character
-  Serial.read(); //Throw away the user's character
-
-  nano.startReading(); //Begin scanning for tags
-}
-
-void loop()
+void checkNano()
 {
   if (nano.check() == true) //Check to see if any new data has come in from module
   {
@@ -145,5 +113,39 @@ void loop()
       Serial.print("Unknown error");
     }
   }
+}
+
+void setup()
+{
+  control = new MotorControl(new Motor(22, 2), new Motor(23, 3), new ProximitySensorArray(28, 29, 30, 31, 32, 33, 24, 35, 36, 37));
+  control->SetSpeed(28);
+
+  Serial.begin(115200);
+  while (!Serial)
+    ; //Wait for the serial port to come online
+
+  if (setupNano(38400) == false) //Configure nano to run at 38400bps
+  {
+    Serial.println(F("Module failed to respond. Please check wiring."));
+    while (1)
+      ; //Freeze!
+  }
+
+  nano.setRegion(REGION_NORTHAMERICA); //Set to North America
+
+  nano.setReadPower(1500); //5.00 dBm. Higher values may caues USB port to brown out
+  //Max Read TX Power is 27.00 dBm and may cause temperature-limit throttling
+
+  //Dont wait for user input
+  // Serial.println(F("Press a key to begin scanning for tags."));
+  // while (!Serial.available())
+  //   ;            //Wait for user to send a character
+  // Serial.read(); //Throw away the user's character
+
+  nano.startReading(); //Begin scanning for tags
+}
+
+void loop()
+{
   // put your main code here, to run repeatedly:
 }
