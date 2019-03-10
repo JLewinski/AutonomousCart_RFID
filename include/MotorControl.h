@@ -29,7 +29,7 @@ public:
 private:
   Motor *left;
   Motor *right;
-  const ProximitySensorArray *sensors;
+  ProximitySensorArray *sensors;
   Direction direction;
   int speed, rightOffset, leftOffset;
   int angle;

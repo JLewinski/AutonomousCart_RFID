@@ -82,6 +82,9 @@ void checkNano()
     }
     else if (responseType == RESPONSE_IS_TAGFOUND)
     {
+      //This will stop the program if you uncomment it
+      //while(1);
+
       //If we have a full record we can pull out the fun bits
       int rssi = nano.getTagRSSI(); //Get the RSSI for this tag read
 
@@ -214,6 +217,7 @@ void loop()
       control->Update();
       delay(50);
     }
+    nano.stopReading();
   }
   // put your main code here, to run repeatedly:
 }
