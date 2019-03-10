@@ -16,6 +16,9 @@ int max = 35;
 int min = 9;
 int up = 1;
 int down = -1;
+boolean readRFID = (true);
+int kount = 0;
+int rfidDelay = 50;
 
 boolean setupNano(long baudRate)
 {
@@ -154,8 +157,10 @@ void setup()
   // while (!Serial.available())
   //   ;            //Wait for user to send a character
   // Serial.read(); //Throw away the user's character
-
-  nano.startReading(); //Begin scanning for tags
+  if (readRFID)
+  {
+    nano.startReading(); //Begin scanning for tags
+  }
 }
 
 //Slightly increments and decrements the speed to test encoder output for differnet speeds.
@@ -194,8 +199,21 @@ void test()
 
 void loop()
 {
+  for (int i = 0; i < 50; i++)
+  {
+    control->Update();
+    // test();
+    delay(50);
+  }
+  if (readRFID)
+  {
+    nano.startReading();
+    for (int i = 0; i < 50; i++)
+    {
+      checkNano();
+      control->Update();
+      delay(50);
+    }
+  }
   // put your main code here, to run repeatedly:
-  control->Update();
-
-  // test();
 }
