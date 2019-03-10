@@ -2,7 +2,9 @@
 #include <MotorControl.h>
 
 MotorControl *control;
-int speed = 25;
+
+//28 should be a decent walking speed.
+int speed = 28;
 int incriment = 1;
 int max = 35;
 int min = 9;
@@ -19,11 +21,10 @@ void setup()
   Serial.begin(9600);
 }
 
-void loop()
+//Slightly increments and decrements the speed to test encoder output for differnet speeds.
+//This may also be good to use to test different speeds for a optimum walking speed.
+void test()
 {
-  // put your main code here, to run repeatedly:
-  control->Update();
-
   speed += incriment;
 
   if (speed <= max && speed >= min)
@@ -45,4 +46,12 @@ void loop()
     control->Update();
     delay(50);
   }
+}
+
+void loop()
+{
+  // put your main code here, to run repeatedly:
+  control->Update();
+
+  // test();
 }

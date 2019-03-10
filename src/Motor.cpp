@@ -32,14 +32,14 @@ void Motor::setSpeed(int _speed)
     if (_speed > 0 && _speed <= 255)
     {
         speed = _speed;
-        // analogWrite(pwm, speed);
     }
 }
 
 void Motor::update()
 {
     encoderOutput = encoder->getChanelA();
-    if (encoderOutput == 0){
+    if (encoderOutput == 0)
+    {
         encoderOutput = 55;
     }
     // if (speed - encoderOutput >= maxGap)
@@ -52,8 +52,6 @@ void Motor::update()
     // }
     if (pid.Compute())
     {
-        Serial.print("PWM: ");
-        Serial.println(pwmValue);
         analogWrite(pwm, pwmValue);
     }
 }
@@ -61,6 +59,7 @@ void Motor::update()
 void Motor::brake()
 {
     speed = 0;
-    //analogWrite(pwm, speed);
+    pwmValue = 0;
+    analogWrite(pwm, 0);
     status = MotorStatus::Stop;
 }
