@@ -15,18 +15,23 @@ Motor::~Motor()
     delete encoder;
 }
 
+//Start moving clockwise at the same set speed.
+//It would be best to set the speed to 0 before doing this
 void Motor::clockwise()
 {
     digitalWrite(dir, HIGH);
     status = MotorStatus::Clockwise;
 }
 
+//Start moving counterclockwise at the same set speed.
+//It would be best to set the speed to 0 before doing this
 void Motor::counterClockwise()
 {
     digitalWrite(dir, LOW);
     status = MotorStatus::CounterClockwise;
 }
 
+//Set the desired encoder output
 void Motor::setSpeed(int _speed)
 {
     if (_speed > 0 && _speed <= 255)
@@ -35,6 +40,7 @@ void Motor::setSpeed(int _speed)
     }
 }
 
+//Gets the encoder output and updating the PWM value
 void Motor::update()
 {
     encoderOutput = encoder->getChanelA();
@@ -50,12 +56,17 @@ void Motor::update()
     // {
     //     pid.SetTunings(consKp, consKi, consKd);
     // }
+
+    //The pid object that does all the calculations.
+    //It will only update the value if a set amount of
+    //time was past.
     if (pid.Compute())
     {
         analogWrite(pwm, pwmValue);
     }
 }
 
+//Emergency Brake
 void Motor::brake()
 {
     speed = 0;

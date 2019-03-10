@@ -16,15 +16,6 @@ ProximitySensorArray::~ProximitySensorArray()
     // delete[] frontValues;
 }
 
-// int *ProximitySensorArray::read()
-// {
-//     shift(leftBackValues, leftBack);
-//     shift(leftFrontValues, leftFront);
-//     shift(rightBackValues, rightBack);
-//     shift(rightFrontValues, rightFront);
-//     shift(frontValues, front);
-// }
-
 long ProximitySensorArray::read(UltrasonicSensor ultrasonicSensor)
 {
     long value;

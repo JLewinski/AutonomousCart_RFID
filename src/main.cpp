@@ -5,6 +5,8 @@ MotorControl *control;
 
 //28 should be a decent walking speed.
 int speed = 28;
+
+//Testing Variables
 int incriment = 1;
 int max = 35;
 int min = 9;
@@ -27,20 +29,27 @@ void test()
 {
   speed += incriment;
 
+  //Make sure the speed only gets set within the parameters
   if (speed <= max && speed >= min)
   {
     control->SetSpeed(speed);
     Serial.print("Speed: ");
     Serial.println(speed);
   }
+
+  //Start decrementing if speed is above max
   if (speed > max)
   {
     incriment = down;
   }
+
+  //Start incrementing if speed is lower than min
   if (speed < min)
   {
     incriment = up;
   }
+
+  //Hold for a set amount of time
   for (int i = 0; i < 50; i++)
   {
     control->Update();

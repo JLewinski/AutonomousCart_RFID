@@ -3,6 +3,7 @@
 #include <Motor.h>
 #include <ProximitySensorArray.h>
 
+//This will need to change to a more robust direction
 enum Direction
 {
   Forward = 1,
