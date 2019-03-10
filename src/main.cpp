@@ -7,6 +7,16 @@ MotorControl *control;
 SoftwareSerial softSerial(11, 3); //RX, TX
 RFID nano;
 
+//28 should be a decent walking speed.
+int speed = 28;
+
+//Testing Variables
+int incriment = 1;
+int max = 35;
+int min = 9;
+int up = 1;
+int down = -1;
+
 boolean setupNano(long baudRate)
 {
   nano.begin(softSerial); //Tell the library to communicate over software serial port
@@ -117,8 +127,11 @@ void checkNano()
 
 void setup()
 {
-  control = new MotorControl(new Motor(22, 2), new Motor(23, 3), new ProximitySensorArray(28, 29, 30, 31, 32, 33, 24, 35, 36, 37));
-  control->SetSpeed(28);
+  Motor *right = new Motor(22, 5, new Encoder(24, 26));
+  Motor *left = new Motor(23, 6, new Encoder(25, 27));
+  ProximitySensorArray *sensors = new ProximitySensorArray(28, 29, 30, 31, 32, 33, 34, 35, 36, 37);
+  control = new MotorControl(right, left, sensors);
+  control->SetSpeed(speed);
 
   Serial.begin(115200);
   while (!Serial)
@@ -145,7 +158,44 @@ void setup()
   nano.startReading(); //Begin scanning for tags
 }
 
+//Slightly increments and decrements the speed to test encoder output for differnet speeds.
+//This may also be good to use to test different speeds for a optimum walking speed.
+void test()
+{
+  speed += incriment;
+
+  //Make sure the speed only gets set within the parameters
+  if (speed <= max && speed >= min)
+  {
+    control->SetSpeed(speed);
+    Serial.print("Speed: ");
+    Serial.println(speed);
+  }
+
+  //Start decrementing if speed is above max
+  if (speed > max)
+  {
+    incriment = down;
+  }
+
+  //Start incrementing if speed is lower than min
+  if (speed < min)
+  {
+    incriment = up;
+  }
+
+  //Hold for a set amount of time
+  for (int i = 0; i < 50; i++)
+  {
+    control->Update();
+    delay(50);
+  }
+}
+
 void loop()
 {
   // put your main code here, to run repeatedly:
+  control->Update();
+
+  // test();
 }

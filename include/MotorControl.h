@@ -3,7 +3,8 @@
 #include <Motor.h>
 #include <ProximitySensorArray.h>
 
-typedef enum Direction
+//This will need to change to a more robust direction
+enum Direction
 {
   Forward = 1,
   Backward = 0,
@@ -23,6 +24,7 @@ public:
 
   void AdjustSpeedAndDirection();
   void SetSpeed(int spd);
+  void Update();
 
 private:
   Motor *left;
