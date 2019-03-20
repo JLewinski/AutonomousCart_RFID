@@ -1,7 +1,7 @@
 #include "Motor.h"
 #include <Arduino.h>
 
-Motor::Motor(int _dir, int _pwm, Encoder *_encoder)
+Motor::Motor(int _dir, int _pwm, Encoder _encoder)
     : dir(_dir), pwm(_pwm), encoder(_encoder), pid(PID(&encoderOutput, &pwmValue, &speed, consKp, consKi, consKd, REVERSE))
 {
     pinMode(dir, OUTPUT);
@@ -12,7 +12,6 @@ Motor::Motor(int _dir, int _pwm, Encoder *_encoder)
 
 Motor::~Motor()
 {
-    delete encoder;
 }
 
 //Start moving clockwise at the same set speed.
@@ -43,7 +42,7 @@ void Motor::setSpeed(int _speed)
 //Gets the encoder output and updating the PWM value
 void Motor::update()
 {
-    encoderOutput = encoder->getChanelA();
+    encoderOutput = encoder.getChanelA();
     if (encoderOutput == 0)
     {
         encoderOutput = 55;

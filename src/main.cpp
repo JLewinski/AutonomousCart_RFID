@@ -3,7 +3,7 @@
 #include <SoftwareSerial.h> //Used for transmitting to the device
 #include <SparkFun_UHF_RFID_Reader.h>
 
-MotorControl *control;
+MotorControl control(Motor(22, 5, Encoder(24, 26)), Motor(23, 6, Encoder(25, 27)), ProximitySensorArray(28, 29, 30, 31, 32, 33, 34, 35, 36, 37));
 SoftwareSerial softSerial(11, 3); //RX, TX
 RFID nano;
 
@@ -133,11 +133,7 @@ void checkNano()
 
 void setup()
 {
-  Motor *right = new Motor(22, 5, new Encoder(24, 26));
-  Motor *left = new Motor(23, 6, new Encoder(25, 27));
-  ProximitySensorArray *sensors = new ProximitySensorArray(28, 29, 30, 31, 32, 33, 34, 35, 36, 37);
-  control = new MotorControl(right, left, sensors);
-  control->SetSpeed(speed);
+  control.SetSpeed(speed);
 
   Serial.begin(115200);
   while (!Serial)
@@ -175,7 +171,7 @@ void test()
   //Make sure the speed only gets set within the parameters
   if (speed <= max && speed >= min)
   {
-    control->SetSpeed(speed);
+    control.SetSpeed(speed);
     Serial.print("Speed: ");
     Serial.println(speed);
   }
@@ -195,7 +191,7 @@ void test()
   //Hold for a set amount of time
   for (int i = 0; i < 50; i++)
   {
-    control->Update();
+    control.Update();
     delay(50);
   }
 }
@@ -204,7 +200,7 @@ void loop()
 {
   for (int i = 0; i < 50; i++)
   {
-    control->Update();
+    control.Update();
     // test();
     delay(50);
   }
@@ -214,7 +210,7 @@ void loop()
     for (int i = 0; i < 50; i++)
     {
       checkNano();
-      control->Update();
+      control.Update();
       delay(50);
     }
     nano.stopReading();
