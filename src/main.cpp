@@ -1,3 +1,5 @@
+#define DEBUG
+//#define USE_RFID  //Uncommenet to use RFID
 #include <Arduino.h>
 #include <MotorControl.h>
 #include <SoftwareSerial.h> //Used for transmitting to the device
@@ -5,7 +7,9 @@
 
 MotorControl control(Motor(22, 5, Encoder(24, 26)), Motor(23, 6, Encoder(25, 27)), ProximitySensorArray(28, 29, 30, 31, 32, 33, 34, 35, 36, 37));
 SoftwareSerial softSerial(11, 3); //RX, TX
+#ifdef USE_RFID
 RFID nano;
+#endif
 
 //28 should be a decent walking speed.
 int speed = 28;
@@ -20,6 +24,7 @@ boolean readRFID = (true);
 int kount = 0;
 int rfidDelay = 50;
 
+#ifdef USE_RFID
 boolean setupNano(long baudRate)
 {
   nano.begin(softSerial); //Tell the library to communicate over software serial port
@@ -131,6 +136,8 @@ void checkNano()
   }
 }
 
+#endif
+
 void setup()
 {
   control.SetSpeed(speed);
@@ -139,6 +146,7 @@ void setup()
   while (!Serial)
     ; //Wait for the serial port to come online
 
+#ifdef USE_RFID
   if (setupNano(38400) == false) //Configure nano to run at 38400bps
   {
     Serial.println(F("Module failed to respond. Please check wiring."));
@@ -160,6 +168,7 @@ void setup()
   {
     nano.startReading(); //Begin scanning for tags
   }
+#endif
 }
 
 //Slightly increments and decrements the speed to test encoder output for differnet speeds.
@@ -204,6 +213,7 @@ void loop()
     // test();
     delay(50);
   }
+#ifdef USE_RFID
   if (readRFID)
   {
     nano.startReading();
@@ -215,5 +225,5 @@ void loop()
     }
     nano.stopReading();
   }
-  // put your main code here, to run repeatedly:
+#endif
 }

@@ -8,5 +8,6 @@ public:
   const long getChanelB();
 
 private:
-  const int pinA, pinB;
+  const long getChanel(int pin);
+  const int pinA, pinB, minVal = 90, timeout = 100;
 };

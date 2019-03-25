@@ -19,7 +19,7 @@ public:
   MotorControl(Motor _right, Motor _left, ProximitySensorArray _sensors)
       : left(_left), right(_right), sensors(_sensors) {}
   // MotorControl(const MotorControl &other) : MotorControl(new Motor(other.right), new Motor(other.left), new ProximitySensorArray(other.sensors) {}
-  ~MotorControl();
+  // ~MotorControl();
   //Need to create functions to controll direction and speed of motors based on the sensor data
 
   void AdjustSpeedAndDirection();
