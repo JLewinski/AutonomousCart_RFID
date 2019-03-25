@@ -1,9 +1,10 @@
 #include "Motor.h"
 #include <Arduino.h>
 
-Motor::Motor(int _dir, int _pwm, Encoder *_encoder)
-    : dir(_dir), pwm(_pwm), encoder(_encoder), pid(PID(&encoderOutput, &pwmValue, &speed, consKp, consKi, consKd, REVERSE))
+Motor::Motor(int _dir, int _pwm, Encoder _encoder)
+    : dir(_dir), pwm(_pwm), encoder(_encoder), pid(PID(&encoderOutput, &pwmValue, &speed, consKp, consKi, consKd, DIRECT))
 {
+    pwmValue = 0;
     pinMode(dir, OUTPUT);
     pinMode(pwm, OUTPUT);
     // pid.SetOutputLimits(30, 255);
@@ -12,7 +13,6 @@ Motor::Motor(int _dir, int _pwm, Encoder *_encoder)
 
 Motor::~Motor()
 {
-    delete encoder;
 }
 
 //Start moving clockwise at the same set speed.
@@ -34,20 +34,50 @@ void Motor::counterClockwise()
 //Set the desired encoder output
 void Motor::setSpeed(int _speed)
 {
-    if (_speed > 0 && _speed <= 255)
+    if (_speed < 0)
+    {
+        speed = 0;
+    }
+    else if (_speed > 55)
+    {
+        speed = 55;
+    }
+    else
     {
         speed = _speed;
     }
+#ifdef DEBUG
+    if (pwm == 5)
+    {
+        Serial.print("Right Speed: ");
+    }
+    else
+    {
+        Serial.print("Left Speed: ");
+    }
+    Serial.println(speed);
+#endif
 }
 
 //Gets the encoder output and updating the PWM value
 void Motor::update()
 {
-    encoderOutput = encoder->getChanelA();
-    if (encoderOutput == 0)
+    encoderOutput = encoder.getChanelA();
+#ifdef DEBUG
+    if (pwm == 5)
     {
-        encoderOutput = 55;
+        Serial.print("Right Encoder: ");
     }
+    else
+    {
+        Serial.print("Left Encoder: ");
+    }
+    Serial.println(encoderOutput);
+#endif
+    // if (encoderOutput == 0)
+    // {
+    //     encoderOutput = 90;
+    // }
     // if (speed - encoderOutput >= maxGap)
     // {
     //     pid.SetTunings(aggKp, aggKi, aggKd);
@@ -62,6 +92,23 @@ void Motor::update()
     //time was past.
     if (pid.Compute())
     {
+
+        if (speed > 9 && pwmValue == 0)
+        {
+            pwmValue = 80;
+        }
+#ifdef DEBUG
+        if (pwm == 5)
+        {
+            Serial.print("Right PWM: ");
+        }
+        else
+        {
+            Serial.print("Left PWM: ");
+        }
+
+        Serial.println(pwmValue);
+#endif
         analogWrite(pwm, pwmValue);
     }
 }

@@ -13,7 +13,7 @@ enum MotorStatus
 class Motor
 {
 public:
-  Motor(int _dir, int _pwm, Encoder *_encoder);
+  Motor(int _dir, int _pwm, Encoder _encoder);
   ~Motor();
   void clockwise();
   void counterClockwise();
@@ -23,7 +23,7 @@ public:
 
 private:
   const int dir, pwm;
-  Encoder *encoder;
+  Encoder encoder;
   double speed = 0;
   double encoderOutput;
   double pwmValue;
