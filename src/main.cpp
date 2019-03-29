@@ -5,14 +5,14 @@
 #include <SoftwareSerial.h> //Used for transmitting to the device
 #include <SparkFun_UHF_RFID_Reader.h>
 
-MotorControl control(Motor(22, 5, Encoder(24, 26)), Motor(23, 6, Encoder(25, 27)), ProximitySensorArray(28, 29, 30, 31, 32, 33, 34, 35, 36, 37));
+MotorControl control(Motor(22, 5, Encoder(24, 44)), Motor(23, 6, Encoder(25, 51)), ProximitySensorArray(28, 29, 30, 31, 32, 33, 34, 35, 36, 37));
 SoftwareSerial softSerial(11, 3); //RX, TX
 #ifdef USE_RFID
 RFID nano;
 #endif
 
 //28 should be a decent walking speed.
-int speed = 28;
+int speed = 25;
 
 //Testing Variables
 int incriment = 1;
@@ -207,12 +207,15 @@ void test()
 
 void loop()
 {
-  for (int i = 0; i < 50; i++)
-  {
-    control.Update();
-    // test();
-    delay(50);
-  }
+  // delay(10);
+  control.Update();
+  // test();
+  // for (int i = 0; i < 50; i++)
+  // {
+  //   control.Update();
+  //   // test();
+  //   delay(100);
+  // }
 #ifdef USE_RFID
   if (readRFID)
   {
