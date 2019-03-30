@@ -4,7 +4,7 @@
 #include <MotorControl.h>
 #include <SoftwareSerial.h> //Used for transmitting to the device
 #include <SparkFun_UHF_RFID_Reader.h>
-
+//                                                                                                     tlb elb trb erb tlf elf trf erf  tf  ef
 MotorControl control(Motor(22, 5, Encoder(24, 44)), Motor(23, 6, Encoder(25, 51)), ProximitySensorArray(28, 29, 30, 31, 32, 33, 34, 35, 36, 37));
 SoftwareSerial softSerial(11, 3); //RX, TX
 #ifdef USE_RFID

@@ -1,4 +1,3 @@
-#define DEBUG
 #include "Motor.h"
 #include <Arduino.h>
 
@@ -62,10 +61,12 @@ void Motor::setSpeed(double _speed)
 void Motor::update()
 {
     long enOut = encoder.getAvg();
+#ifdef DEBUG
     Serial.print("Encoder: ");
     Serial.print(enOut);
     Serial.print(" Previous PWM: ");
     Serial.print(*pwmValue);
+#endif
     if (enOut > 100)
     {
         *pwmValue = 80;
@@ -73,8 +74,10 @@ void Motor::update()
     else
     {
         double error = (enOut - *speed) / *speed;
+#ifdef DEBUG
         Serial.print(" Error: ");
         Serial.print(error);
+#endif
         double inc = *pwmValue * error / *speed;
         if (inc > 50)
         {
@@ -93,8 +96,10 @@ void Motor::update()
             *pwmValue = 10;
         }
     }
+#ifdef DEBUG
     Serial.print(" New PWM: ");
     Serial.println(*pwmValue);
+#endif
     analogWrite(pwm, *pwmValue);
 }
 
