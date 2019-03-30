@@ -2,7 +2,7 @@
 #include <Arduino.h>
 
 ProximitySensorArray::ProximitySensorArray(int tlb, int elb, int trb, int erb, int tlf, int elf, int trf, int erf, int tf, int ef)
-    : sensors({Ultrasonic(tf, ef), Ultrasonic(tlf, elf), Ultrasonic(trf, erf), Ultrasonic(tlb, elb), Ultrasonic(trb, erb)})
+    : sensors({Ultrasonic(tf, ef, 15000), Ultrasonic(tlf, elf, 15000), Ultrasonic(trf, erf, 15000), Ultrasonic(tlb, elb, 15000), Ultrasonic(trb, erb, 15000)})
 {
 }
 

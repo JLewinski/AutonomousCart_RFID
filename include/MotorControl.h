@@ -29,7 +29,9 @@ private:
   Motor right;
   ProximitySensorArray sensors;
   Direction direction;
+  void QuiteDif(int *tempDif);
   int speed, rightOffset, leftOffset;
+  bool toggle = (false);
   int count = 0;
-  const int minDif = 30, desiredDistance = 800, countMax = 10;
+  const int minDif = 30, maxDif = 1, desiredDistance = 3500, countMax = 10, offsetMax = 8;
 };

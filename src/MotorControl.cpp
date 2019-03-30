@@ -25,6 +25,22 @@ void MotorControl::SetSpeed(int spd)
     }
 };
 
+void MotorControl::QuiteDif(int *tempDif)
+{
+    if (*tempDif > minDif)
+    {
+        *tempDif -= minDif;
+    }
+    else if (*tempDif < 0 - minDif)
+    {
+        *tempDif += minDif;
+    }
+    else
+    {
+        *tempDif = 0;
+    }
+}
+
 //Update both motors for the desired speed
 void MotorControl::Update()
 {
@@ -33,50 +49,55 @@ void MotorControl::Update()
         uint32_t rf = sensors.read(RightFront);
         uint32_t rb = sensors.read(RightBack);
 #ifdef DEBUG
-        Serial.print("****RF: ");
-        Serial.println(rf);
-        Serial.print("RB: ");
-        Serial.println(rb);
+        // Serial.print("****RF: ");
+        // Serial.println(rf);
+        // Serial.print("RB: ");
+        // Serial.println(rb);
 #endif
 
-        int diff = rf - desiredDistance;
-
-        // diff -= rf - desiredDistance;
-
-        if (diff > minDif)
+        int diff = (rf - desiredDistance) / 50;
+        QuiteDif(&diff);
+        if (diff == 0)
         {
-            diff -= minDif;
-        }
-        else if (diff < 0 - minDif)
-        {
-            diff += minDif;
-        }
-        else
-        {
-            diff = 0;
+            diff = rf - rb;
+            // QuiteDif(&diff);
         }
 
-        if (diff > 5)
+        if (diff > maxDif)
         {
-            diff = 5;
+            diff = maxDif;
         }
-        else if (diff < -5)
+        else if (diff < -maxDif)
         {
-            diff = -5;
+            diff = -maxDif;
         }
 
-        if ((rightOffset > -5 && diff < 0) || (rightOffset < 5 && diff > 0))
+        if (toggle)
         {
-            rightOffset += diff;
+            if ((rightOffset > -offsetMax && diff < 0) || (rightOffset < offsetMax && diff > 0))
+            {
+                rightOffset += diff;
+                right.setSpeed(speed + rightOffset);
+                toggle = false;
+#ifdef DEBUG
+                Serial.print("RToff: ");
+                Serial.println(rightOffset);
+#endif
+            }
+        }
+        else if ((leftOffset < offsetMax && diff < 0) || (leftOffset > -offsetMax && diff > 0))
+        {
             leftOffset -= diff;
-            right.setSpeed(speed + rightOffset);
-            left.setSpeed(speed - rightOffset);
+            left.setSpeed(speed + leftOffset);
+            toggle = true;
+#ifdef DEBUG
+            Serial.print("LFoff: ");
+            Serial.println(leftOffset);
+#endif
         }
 #ifdef DEBUG
-        Serial.print("****DIFF: ");
-        Serial.println(diff);
-        Serial.print("RToff: ");
-        Serial.println(rightOffset);
+        // Serial.print("****DIFF: ");
+        // Serial.println(diff);
 #endif
         count = 0;
     }
