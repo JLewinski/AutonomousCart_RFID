@@ -73,13 +73,13 @@ void Motor::update()
     }
     else
     {
-        double error = (enOut - speed) / speed;
+        double error = enOut - speed;
 #ifdef DEBUG
         Serial.print(" Error: ");
         Serial.print(error);
 #endif
-        double inc = pwmValue * error / speed;
-        if (inc > 50)
+        double inc = error * 2;
+        if (inc > 25)
         {
             inc = 25;
         }
@@ -89,11 +89,18 @@ void Motor::update()
         {
             //Should probably stop
             pwmValue = 255;
+#ifdef DEBUG
+            Serial.print("Motor going at max (255)");
+#endif
         }
         else if (pwmValue <= 1 && speed > 0)
         {
             //just because
             pwmValue = 10;
+        }
+        else if (pwmValue <= 0)
+        {
+            pwmValue = 0;
         }
     }
 #ifdef DEBUG
