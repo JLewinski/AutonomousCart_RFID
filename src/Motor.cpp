@@ -34,15 +34,15 @@ void Motor::setSpeed(double _speed)
 {
     if (_speed < 0)
     {
-        *speed = 0;
+        speed = 0;
     }
     else if (_speed > 55)
     {
-        *speed = 55.0;
+        speed = 55.0;
     }
     else
     {
-        *speed = _speed;
+        speed = _speed;
     }
 #ifdef DEBUG
     if (pwm == 5)
@@ -69,38 +69,38 @@ void Motor::update()
 #endif
     if (enOut > 100)
     {
-        *pwmValue = 80;
+        pwmValue = 80;
     }
     else
     {
-        double error = (enOut - *speed) / *speed;
+        double error = (enOut - speed) / speed;
 #ifdef DEBUG
         Serial.print(" Error: ");
         Serial.print(error);
 #endif
-        double inc = *pwmValue * error / *speed;
+        double inc = pwmValue * error / speed;
         if (inc > 50)
         {
             inc = 25;
         }
-        *pwmValue += inc;
+        pwmValue += inc;
 
-        if (*pwmValue >= 255)
+        if (pwmValue >= 255)
         {
             //Should probably stop
-            *pwmValue = 255;
+            pwmValue = 255;
         }
-        else if (*pwmValue <= 1 && *speed > 0)
+        else if (pwmValue <= 1 && speed > 0)
         {
             //just because
-            *pwmValue = 10;
+            pwmValue = 10;
         }
     }
 #ifdef DEBUG
     Serial.print(" New PWM: ");
     Serial.println(*pwmValue);
 #endif
-    analogWrite(pwm, *pwmValue);
+    analogWrite(pwm, pwmValue);
 }
 
 //Emergency Brake
