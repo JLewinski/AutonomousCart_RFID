@@ -25,22 +25,6 @@ void MotorControl::SetSpeed(int spd)
     }
 };
 
-void MotorControl::QuiteDif(int *tempDif)
-{
-    if (*tempDif > minDif)
-    {
-        *tempDif -= minDif;
-    }
-    else if (*tempDif < 0 - minDif)
-    {
-        *tempDif += minDif;
-    }
-    else
-    {
-        *tempDif = 0;
-    }
-}
-
 //Update both motors for the desired speed
 void MotorControl::Update()
 {
