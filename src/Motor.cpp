@@ -1,5 +1,6 @@
 #include "Motor.h"
 #include <Arduino.h>
+#define DEBUG
 
 Motor::Motor(int _dir, int _pwm, Encoder _encoder)
     : dir(_dir), pwm(_pwm), encoder(_encoder)
@@ -30,19 +31,19 @@ void Motor::counterClockwise()
 }
 
 //Set the desired encoder output
-void Motor::setSpeed(double _speed)
+void Motor::setSpeed(int _speed)
 {
     if (_speed < 0)
     {
-        speed = 0;
+        desieredEncoderOutput = maxSpeed;
     }
-    else if (_speed > 55)
+    else if (_speed > maxSpeed)
     {
-        speed = 55.0;
+        desieredEncoderOutput = 0;
     }
     else
     {
-        speed = _speed;
+        desieredEncoderOutput = maxSpeed - _speed;
     }
 #ifdef DEBUG
     if (pwm == 5)
@@ -53,7 +54,7 @@ void Motor::setSpeed(double _speed)
     {
         Serial.print("Left Speed: ");
     }
-    Serial.println(*speed);
+    Serial.println(desieredEncoderOutput);
 #endif
 }
 
@@ -62,10 +63,13 @@ void Motor::update()
 {
     long enOut = encoder.getAvg();
 #ifdef DEBUG
-    Serial.print("Encoder: ");
-    Serial.print(enOut);
-    Serial.print(" Previous PWM: ");
-    Serial.print(*pwmValue);
+    if (pwm == 5)
+    {
+        Serial.print("Encoder: ");
+        Serial.print(enOut);
+        Serial.print(" Previous PWM: ");
+        Serial.print(pwmValue);
+    }
 #endif
     if (enOut > 100)
     {
@@ -73,16 +77,24 @@ void Motor::update()
     }
     else
     {
-        double error = enOut - speed;
+        double error = enOut - desieredEncoderOutput;
 #ifdef DEBUG
-        Serial.print(" Error: ");
-        Serial.print(error);
+        if (pwm == 5)
+        {
+            Serial.print(" Error: ");
+            Serial.print(error);
+        }
 #endif
         double inc = error * 2;
         if (inc > 25)
         {
             inc = 25;
         }
+        else if (inc < -25)
+        {
+            inc = -25;
+        }
+
         pwmValue += inc;
 
         if (pwmValue >= 255)
@@ -90,10 +102,13 @@ void Motor::update()
             //Should probably stop
             pwmValue = 255;
 #ifdef DEBUG
-            Serial.print("Motor going at max (255)");
+            if (pwm == 5)
+            {
+                Serial.print("Motor going at max (255)");
+            }
 #endif
         }
-        else if (pwmValue <= 1 && speed > 0)
+        else if (pwmValue <= 1 && desieredEncoderOutput > 0)
         {
             //just because
             pwmValue = 10;
@@ -104,8 +119,11 @@ void Motor::update()
         }
     }
 #ifdef DEBUG
-    Serial.print(" New PWM: ");
-    Serial.println(*pwmValue);
+    if (pwm == 5)
+    {
+        Serial.print(" New PWM: ");
+        Serial.println(pwmValue);
+    }
 #endif
     analogWrite(pwm, pwmValue);
 }
@@ -113,7 +131,7 @@ void Motor::update()
 //Emergency Brake
 void Motor::brake()
 {
-    speed = 0;
+    desieredEncoderOutput = 0;
     pwmValue = 0;
     analogWrite(pwm, 0);
     status = MotorStatus::Stop;

@@ -11,8 +11,8 @@ SoftwareSerial softSerial(11, 3); //RX, TX
 RFID nano;
 #endif
 
-//28 should be a decent walking speed.
-int speed = 25;
+//30 should be a decent walking speed.
+int speed = 30;
 
 //Testing Variables
 int incriment = 1;
@@ -207,8 +207,8 @@ void test()
 
 void loop()
 {
-  // delay(10);
   control.Update();
+  delay(20);
   // test();
   // for (int i = 0; i < 50; i++)
   // {

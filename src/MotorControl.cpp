@@ -32,16 +32,17 @@ void MotorControl::Update()
     {
         uint32_t rf = sensors.read(RightFront);
         uint32_t rb = sensors.read(RightBack);
-#ifdef DEBUG
-        // Serial.print("****RF: ");
-        // Serial.println(rf);
-        // Serial.print("RB: ");
-        // Serial.println(rb);
-#endif
-
         int diff = (rf - desiredDistance);
         int absDiff = abs(diff);
         int absPreviousDistance = abs(previousDistanceDiff);
+#ifdef DEBUG
+        Serial.print("****RF: ");
+        Serial.println(rf);
+        Serial.print("RB: ");
+        Serial.println(rb);
+        Serial.print("diff: ");
+        Serial.println(diff);
+#endif
 
         if (absDiff <= safeDistance)
         {
@@ -56,18 +57,30 @@ void MotorControl::Update()
 
             if (diff > 0)
             {
+#ifdef DEBUG
+                Serial.println("Decrease");
+#endif
                 rightOffset -= offsetInc;
             }
             else if (diff < 0)
             {
+#ifdef DEBUG
+                Serial.println("Increase");
+#endif
                 rightOffset += offsetInc;
             }
             else if (previousAngleDiff > 0)
             {
+#ifdef DEBUG
+                Serial.println("Increase");
+#endif
                 rightOffset += offsetInc;
             }
             else if (previousAngleDiff < 0)
             {
+#ifdef DEBUG
+                Serial.println("Decrease");
+#endif
                 rightOffset -= offsetInc;
             }
 
@@ -75,14 +88,23 @@ void MotorControl::Update()
         }
         else if (diff >= dangerDistance)
         {
+#ifdef DEBUG
+            Serial.println("-Max-");
+#endif
             rightOffset = -offsetMax;
         }
         else if (diff <= -dangerDistance)
         {
+#ifdef DEBUG
+            Serial.println("+Max+");
+#endif
             rightOffset = offsetMax;
         }
         else if ((diff > 0 && previousDistanceDiff < 0) || (diff < 0 && previousDistanceDiff > 0))
         {
+#ifdef DEBUG
+            Serial.println("-0.75");
+#endif
             rightOffset *= -0.75;
         }
         else if (absDiff < absPreviousDistance)
@@ -96,14 +118,32 @@ void MotorControl::Update()
         {
             if (diff > 0)
             {
+#ifdef DEBUG
+                Serial.println("Decrease");
+#endif
                 rightOffset--;
             }
             else
             {
+#ifdef DEBUG
+                Serial.println("Increase");
+#endif
                 rightOffset++;
             }
         }
 
+        if (rightOffset > offsetMax)
+        {
+            rightOffset = offsetMax;
+        }
+        else if (rightOffset < -offsetMax)
+        {
+            rightOffset = -offsetMax;
+        }
+#ifdef DEBUG
+        Serial.print("RIGHT OFFSET: ");
+        Serial.println(rightOffset);
+#endif
         right.setSpeed(speed + rightOffset);
         count = 0;
     }
