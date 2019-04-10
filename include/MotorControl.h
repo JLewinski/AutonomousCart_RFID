@@ -35,5 +35,5 @@ private:
   int count = 0;
   const int minDif = 30, maxDif = 1, desiredDistance = 2500, countMax = 10, offsetMax = 20;
   int previousDistanceDiff = 0, previousAngleDiff = 0;
-  const int dangerDistance = 1000, safeDistance = 100, dangerAngle = 50, safeAngle = 10;
+  const int dangerDistance = 1000, safeDistance = 100, dangerAngle = 50, safeAngle = 10, maxSpeed = 110;
 };

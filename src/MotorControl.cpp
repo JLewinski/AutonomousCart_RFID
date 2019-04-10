@@ -5,7 +5,7 @@
 //There will be another method for angle (direction)
 void MotorControl::SetSpeed(int spd)
 {
-    if (spd >= -255 && spd <= 255)
+    if (spd >= -maxSpeed && spd <= maxSpeed)
     {
         if (spd < 0)
         {

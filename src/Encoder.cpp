@@ -31,7 +31,7 @@ const long Encoder::getAvg()
         }
         return cha;
     }
-    return (cha + chb) / 2;
+    return (cha + chb);
 }
 
 //Gets encoder output for chanel A

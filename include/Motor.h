@@ -21,7 +21,7 @@ public:
   void update();
 
 private:
-  const int dir, pwm, maxSpeed = 55;
+  const int dir, pwm, maxSpeed = 110;
   int extreme = 0;
   Encoder encoder;
   int desieredEncoderOutput = 0;
