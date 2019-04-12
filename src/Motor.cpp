@@ -1,6 +1,6 @@
 #include "Motor.h"
 #include <Arduino.h>
-#define DEBUG
+// #define DEBUG
 
 Motor::Motor(int _dir, int _pwm, Encoder _encoder)
     : dir(_dir), pwm(_pwm), encoder(_encoder)

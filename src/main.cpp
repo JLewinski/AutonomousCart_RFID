@@ -12,7 +12,7 @@ RFID nano;
 #endif
 
 //30 should be a decent walking speed.
-int speed = 60;
+int speed = 80;
 
 //Testing Variables
 int incriment = 1;
@@ -142,6 +142,15 @@ void setup()
 {
   control.SetSpeed(speed);
 
+  pinMode(40, OUTPUT);
+  pinMode(41, OUTPUT);
+  pinMode(42, OUTPUT);
+  pinMode(43, OUTPUT);
+  pinMode(44, OUTPUT);
+  pinMode(51, INPUT);
+  pinMode(52, INPUT);
+  pinMode(53, INPUT);
+
   Serial.begin(115200);
   while (!Serial)
     ; //Wait for the serial port to come online
@@ -207,6 +216,20 @@ void test()
 
 void loop()
 {
+  int s1 = digitalRead(51);
+  int s2 = digitalRead(52);
+  int s3 = digitalRead(53);
+
+  digitalWrite(40, s1);
+  digitalWrite(41, s2);
+  digitalWrite(43, s3);
+
+  Serial.print(s1);
+  Serial.print("   ");
+  Serial.print(s2);
+  Serial.print("   ");
+  Serial.println(s3);
+
   control.Update();
   delay(20);
   // test();

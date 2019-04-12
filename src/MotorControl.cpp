@@ -1,11 +1,16 @@
-#define DEBUG
+// #define DEBUG
 #include "MotorControl.h"
 
 //Set the speed for both motors
 //There will be another method for angle (direction)
 void MotorControl::SetSpeed(int spd)
 {
-    if (spd >= -maxSpeed && spd <= maxSpeed)
+    if (spd == 0)
+    {
+        left.brake();
+        right.brake();
+    }
+    else if (spd >= -maxSpeed && spd <= maxSpeed)
     {
         if (spd < 0)
         {
@@ -30,116 +35,90 @@ void MotorControl::Update()
 {
     if (count++ > countMax)
     {
-        uint32_t rf = sensors.read(RightFront);
-        uint32_t rb = sensors.read(RightBack);
-        int diff = (rf - desiredDistance);
-        int absDiff = abs(diff);
-        int absPreviousDistance = abs(previousDistanceDiff);
+        sensors.readAll();
+        uint32_t rf = sensors.getRecent(RightFront);
+        uint32_t rb = sensors.getRecent(RightBack);
+        uint32_t lf = sensors.getRecent(LeftFront);
+        uint32_t lb = sensors.getRecent(LeftBack);
+        uint32_t f = sensors.getRecent(Front);
+
 #ifdef DEBUG
-        Serial.print("****RF: ");
-        Serial.println(rf);
-        Serial.print("RB: ");
-        Serial.println(rb);
-        Serial.print("diff: ");
-        Serial.println(diff);
+        Serial.print("rf: ");
+        Serial.print(rf);
+        Serial.print("   rb: ");
+        Serial.print(rb);
+        Serial.print("    lf: ");
+        Serial.print(lf);
+        Serial.print("    lb: ");
+        Serial.print(lb);
+        Serial.print("   front: ");
+        Serial.println(f);
 #endif
 
-        if (absDiff <= safeDistance)
+        if (f <= dangerFront)
         {
-            previousDistanceDiff = diff;
-            diff = rf - rb;
-            absDiff = abs(diff);
-            int offsetInc = 2;
-            if (absDiff <= safeAngle)
-            {
-                offsetInc = 1;
-            }
+            int tempSpeed = speed;
+            SetSpeed(0);
+            speed = tempSpeed;
+            direction = Stopped;
+            delay(999);
+            return;
+        }
 
-            if (diff > 0)
-            {
-#ifdef DEBUG
-                Serial.println("Decrease");
-#endif
-                rightOffset -= offsetInc;
-            }
-            else if (diff < 0)
-            {
-#ifdef DEBUG
-                Serial.println("Increase");
-#endif
-                rightOffset += offsetInc;
-            }
-            else if (previousAngleDiff > 0)
-            {
-#ifdef DEBUG
-                Serial.println("Increase");
-#endif
-                rightOffset += offsetInc;
-            }
-            else if (previousAngleDiff < 0)
-            {
-#ifdef DEBUG
-                Serial.println("Decrease");
-#endif
-                rightOffset -= offsetInc;
-            }
+        if (direction == Stopped)
+        {
+            direction = Forward;
+            SetSpeed(speed);
+        }
 
-            previousAngleDiff = diff;
-        }
-        else if (diff >= dangerDistance)
+        if (rf + lf > hallWidth + safeDistance)
         {
-#ifdef DEBUG
-            Serial.println("-Max-");
-#endif
-            rightOffset = -offsetMax;
-        }
-        else if (diff <= -dangerDistance)
-        {
-#ifdef DEBUG
-            Serial.println("+Max+");
-#endif
-            rightOffset = offsetMax;
-        }
-        else if ((diff > 0 && previousDistanceDiff < 0) || (diff < 0 && previousDistanceDiff > 0))
-        {
-#ifdef DEBUG
-            Serial.println("-0.75");
-#endif
-            rightOffset *= -0.75;
-        }
-        else if (absDiff < absPreviousDistance)
-        {
-            if (abs(rightOffset) == offsetMax)
+            if (frontSensor)
             {
-                rightOffset *= 0.7;
+                frontSensorChoice = sensors.diff(RightFront) > sensors.diff(LeftFront);
+                frontSensor = (false);
+            }
+            if (frontSensorChoice)
+            {
+                rf = hallWidth - lf;
             }
         }
         else
         {
-            if (diff > 0)
+            frontSensor = (true);
+        }
+
+        if (rb + lb > hallWidth + safeDistance)
+        {
+            if (backSensor)
             {
-#ifdef DEBUG
-                Serial.println("Decrease");
-#endif
-                rightOffset--;
+                backSensorChoice = sensors.diff(RightBack) > sensors.diff(LeftBack);
+                backSensor = (false);
             }
-            else
+
+            if (backSensorChoice)
             {
-#ifdef DEBUG
-                Serial.println("Increase");
-#endif
-                rightOffset++;
+                rb = hallWidth - lb;
             }
         }
 
-        if (rightOffset > offsetMax)
+        if (rf >= ProximitySensorArray::timeOut - safeDistance)
         {
-            rightOffset = offsetMax;
+            //If it wasn't already at an intersection
+            if (intersection)
+            {
+                rightOffset++;
+                intersection = (false);
+            }
         }
-        else if (rightOffset < -offsetMax)
+        else
         {
-            rightOffset = -offsetMax;
+            //not at an intersection
+            intersection = (true);
+
+            updateOffset(rf, rb);
         }
+
 #ifdef DEBUG
         Serial.print("RIGHT OFFSET: ");
         Serial.println(rightOffset);
@@ -150,4 +129,81 @@ void MotorControl::Update()
 
     right.update();
     left.update();
-}
+};
+
+void MotorControl::updateOffset(int rf, int rb)
+{
+    int diff = (rf - desiredDistance);
+    int absDiff = abs(diff);
+    int absPreviousDistance = abs(previousDistanceDiff);
+
+    if (absDiff <= safeDistance)
+    {
+        previousDistanceDiff = diff;
+        diff = rf - rb;
+        absDiff = abs(diff);
+        int offsetInc = 2;
+        if (absDiff <= safeAngle)
+        {
+            offsetInc = 1;
+        }
+
+        if (diff > 0)
+        {
+            rightOffset -= offsetInc;
+        }
+        else if (diff < 0)
+        {
+            rightOffset += offsetInc;
+        }
+        else if (previousAngleDiff > 0)
+        {
+            rightOffset += offsetInc;
+        }
+        else if (previousAngleDiff < 0)
+        {
+            rightOffset -= offsetInc;
+        }
+
+        previousAngleDiff = diff;
+    }
+    else if (diff >= dangerDistance)
+    {
+        rightOffset = -offsetMax;
+    }
+    else if (diff <= -dangerDistance)
+    {
+        rightOffset = offsetMax;
+    }
+    else if ((diff > 0 && previousDistanceDiff < 0) || (diff < 0 && previousDistanceDiff > 0))
+    {
+        rightOffset *= -0.75;
+    }
+    else if (absDiff < absPreviousDistance)
+    {
+        if (abs(rightOffset) == offsetMax)
+        {
+            rightOffset *= 0.7;
+        }
+    }
+    else
+    {
+        if (diff > 0)
+        {
+            rightOffset--;
+        }
+        else
+        {
+            rightOffset++;
+        }
+    }
+
+    if (rightOffset > offsetMax)
+    {
+        rightOffset = offsetMax;
+    }
+    else if (rightOffset < -offsetMax)
+    {
+        rightOffset = -offsetMax;
+    }
+};

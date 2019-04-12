@@ -30,10 +30,14 @@ private:
   ProximitySensorArray sensors;
   Direction direction;
   void QuiteDif(int *tempDif);
+  void updateOffset(int rf, int rb);
   int speed, rightOffset, leftOffset;
-  bool toggle = (false);
+  bool toggle = (false), frontSensor = (true), frontSensorChoice = (false), backSensor = (true), backSensorChoice = (false);
+  bool intersection = (true);
   int count = 0;
-  const int minDif = 30, maxDif = 1, desiredDistance = 2500, countMax = 10, offsetMax = 20;
+  const int minDif = 30, maxDif = 1, desiredDistance = 2500, countMax = 10, offsetMax = 30;
+  const int maxCompareHistory = 500, doorCompareHistory = 100;
   int previousDistanceDiff = 0, previousAngleDiff = 0;
-  const int dangerDistance = 1000, safeDistance = 100, dangerAngle = 50, safeAngle = 10, maxSpeed = 110;
+  const int dangerDistance = 1000, safeDistance = 100, dangerAngle = 50, safeAngle = 10, maxSpeed = 110, hallWidth = 9650;
+  const uint32_t dangerFront = 3000;
 };

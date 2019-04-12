@@ -10,5 +10,6 @@ public:
 
 private:
   const long getChanel(int pin);
-  const int pinA, pinB, timeout = 300;
+  const int pinA, pinB;
+  const static int timeout = 300;
 };
