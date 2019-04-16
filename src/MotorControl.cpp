@@ -30,19 +30,46 @@ void MotorControl::SetSpeed(int spd)
     }
 };
 
+int MotorControl::getDistance(UltrasonicSensor right, UltrasonicSensor left, bool &sensor, bool &choice)
+{
+    int r = sensors.getRecent(right);
+    int l = sensors.getRecent(left);
+    int diffR = sensors.diff(right);
+    int diffL = sensors.diff(left);
+    int width = r + l;
+
+    if (width > hallWidth + safeDistance || width < hallWidth - safeDistance)
+    {
+        if (sensor)
+        {
+            choice = sensors.diff(right) > sensors.diff(left);
+            sensor = (false);
+        }
+        if (choice)
+        {
+            return hallWidth - l;
+        }
+    }
+    else
+    {
+        sensor = (true);
+    }
+    return r;
+}
+
 //Update both motors for the desired speed
 void MotorControl::Update()
 {
     if (count++ > countMax)
     {
         sensors.readAll();
-        uint32_t rf = sensors.getRecent(RightFront);
-        uint32_t rb = sensors.getRecent(RightBack);
-        uint32_t lf = sensors.getRecent(LeftFront);
-        uint32_t lb = sensors.getRecent(LeftBack);
-        uint32_t f = sensors.getRecent(Front);
-
 #ifdef DEBUG
+        int rf = sensors.getRecent(RightFront);
+        int rb = sensors.getRecent(RightBack);
+        int lf = sensors.getRecent(LeftFront);
+        int lb = sensors.getRecent(LeftBack);
+        int f = sensors.getRecent(Front);
+
         Serial.print("rf: ");
         Serial.print(rf);
         Serial.print("   rb: ");
@@ -55,7 +82,7 @@ void MotorControl::Update()
         Serial.println(f);
 #endif
 
-        if (f <= dangerFront)
+        if (sensors.getRecent(Front) <= dangerFront)
         {
             int tempSpeed = speed;
             SetSpeed(0);
@@ -71,38 +98,8 @@ void MotorControl::Update()
             SetSpeed(speed);
         }
 
-        if (rf + lf > hallWidth + safeDistance)
-        {
-            if (frontSensor)
-            {
-                frontSensorChoice = sensors.diff(RightFront) > sensors.diff(LeftFront);
-                frontSensor = (false);
-            }
-            if (frontSensorChoice)
-            {
-                rf = hallWidth - lf;
-            }
-        }
-        else
-        {
-            frontSensor = (true);
-        }
-
-        if (rb + lb > hallWidth + safeDistance)
-        {
-            if (backSensor)
-            {
-                backSensorChoice = sensors.diff(RightBack) > sensors.diff(LeftBack);
-                backSensor = (false);
-            }
-
-            if (backSensorChoice)
-            {
-                rb = hallWidth - lb;
-            }
-        }
-
-        if (rf >= ProximitySensorArray::timeOut - safeDistance)
+        int frontDistance = getDistance(RightFront, LeftFront, frontSensor, frontSensorChoice);
+        if (frontDistance >= ProximitySensorArray::timeOut - safeDistance)
         {
             //If it wasn't already at an intersection
             if (intersection)
@@ -115,8 +112,9 @@ void MotorControl::Update()
         {
             //not at an intersection
             intersection = (true);
+            int backDistance = getDistance(RightBack, LeftBack, backSensor, backSensorChoice);
 
-            updateOffset(rf, rb);
+            updateOffset(frontDistance, backDistance);
         }
 
 #ifdef DEBUG

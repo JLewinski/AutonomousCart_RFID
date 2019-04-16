@@ -1,5 +1,5 @@
 #define DEBUG
-//#define USE_RFID  //Uncommenet to use RFID
+#define USE_RFID  //Uncommenet to use RFID
 #include <Arduino.h>
 #include <MotorControl.h>
 #include <SoftwareSerial.h> //Used for transmitting to the device
@@ -150,6 +150,8 @@ void setup()
   pinMode(51, INPUT);
   pinMode(52, INPUT);
   pinMode(53, INPUT);
+
+  
 
   Serial.begin(115200);
   while (!Serial)
