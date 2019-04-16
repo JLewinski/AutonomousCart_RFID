@@ -1,0 +1,3 @@
+LEDS: 40-44
+Switches: 51-53
+average hall width: 9648.973214

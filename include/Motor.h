@@ -1,7 +1,6 @@
 #pragma once
 
 #include <Encoder.h>
-#include <PID_v1.h>
 
 enum MotorStatus
 {
@@ -22,12 +21,11 @@ public:
   void update();
 
 private:
-  const int dir, pwm;
+  const int dir, pwm, maxSpeed = 110;
+  int extreme = 0;
   Encoder encoder;
-  double speed = 0;
-  double encoderOutput;
-  double pwmValue;
+  int desieredEncoderOutput = 0;
+  int encoderOutput = 0;
+  int pwmValue = 0;
   MotorStatus status = Stop;
-  PID pid;
-  const double consKp = 1, consKi = 0.05, consKd = 0.25, aggKp = 4, aggKi = .2, aggKd = 1, maxGap = 10;
 };

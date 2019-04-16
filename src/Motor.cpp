@@ -1,14 +1,13 @@
 #include "Motor.h"
 #include <Arduino.h>
+// #define DEBUG
 
 Motor::Motor(int _dir, int _pwm, Encoder _encoder)
-    : dir(_dir), pwm(_pwm), encoder(_encoder), pid(PID(&encoderOutput, &pwmValue, &speed, consKp, consKi, consKd, DIRECT))
+    : dir(_dir), pwm(_pwm), encoder(_encoder)
 {
-    pwmValue = 0;
+    // pwmValue = 0;
     pinMode(dir, OUTPUT);
     pinMode(pwm, OUTPUT);
-    // pid.SetOutputLimits(30, 255);
-    pid.SetMode(AUTOMATIC);
 }
 
 Motor::~Motor()
@@ -36,15 +35,15 @@ void Motor::setSpeed(int _speed)
 {
     if (_speed < 0)
     {
-        speed = 0;
+        desieredEncoderOutput = maxSpeed;
     }
-    else if (_speed > 55)
+    else if (_speed > maxSpeed)
     {
-        speed = 55;
+        desieredEncoderOutput = 0;
     }
     else
     {
-        speed = _speed;
+        desieredEncoderOutput = maxSpeed - _speed;
     }
 #ifdef DEBUG
     if (pwm == 5)
@@ -55,68 +54,84 @@ void Motor::setSpeed(int _speed)
     {
         Serial.print("Left Speed: ");
     }
-    Serial.println(speed);
+    Serial.println(desieredEncoderOutput);
 #endif
 }
 
 //Gets the encoder output and updating the PWM value
 void Motor::update()
 {
-    encoderOutput = encoder.getChanelA();
+    long enOut = encoder.getAvg();
 #ifdef DEBUG
     if (pwm == 5)
     {
-        Serial.print("Right Encoder: ");
+        Serial.print("Encoder: ");
+        Serial.print(enOut);
+        Serial.print(" Previous PWM: ");
+        Serial.print(pwmValue);
+    }
+#endif
+    if (enOut > 100)
+    {
+        pwmValue = 80;
     }
     else
     {
-        Serial.print("Left Encoder: ");
-    }
-    Serial.println(encoderOutput);
-#endif
-    // if (encoderOutput == 0)
-    // {
-    //     encoderOutput = 90;
-    // }
-    // if (speed - encoderOutput >= maxGap)
-    // {
-    //     pid.SetTunings(aggKp, aggKi, aggKd);
-    // }
-    // else
-    // {
-    //     pid.SetTunings(consKp, consKi, consKd);
-    // }
-
-    //The pid object that does all the calculations.
-    //It will only update the value if a set amount of
-    //time was past.
-    if (pid.Compute())
-    {
-
-        if (speed > 9 && pwmValue == 0)
-        {
-            pwmValue = 80;
-        }
+        double error = enOut - desieredEncoderOutput;
 #ifdef DEBUG
         if (pwm == 5)
         {
-            Serial.print("Right PWM: ");
+            Serial.print(" Error: ");
+            Serial.print(error);
         }
-        else
+#endif
+        double inc = error * 2;
+        if (inc > 25)
         {
-            Serial.print("Left PWM: ");
+            inc = 25;
+        }
+        else if (inc < -25)
+        {
+            inc = -25;
         }
 
-        Serial.println(pwmValue);
+        pwmValue += inc;
+
+        if (pwmValue >= 255)
+        {
+            //Should probably stop
+            pwmValue = 255;
+#ifdef DEBUG
+            if (pwm == 5)
+            {
+                Serial.print("Motor going at max (255)");
+            }
 #endif
-        analogWrite(pwm, pwmValue);
+        }
+        else if (pwmValue <= 1 && desieredEncoderOutput > 0)
+        {
+            //just because
+            pwmValue = 10;
+        }
+        else if (pwmValue <= 0)
+        {
+            pwmValue = 0;
+        }
     }
+#ifdef DEBUG
+    if (pwm == 5)
+    {
+        Serial.print(" New PWM: ");
+        Serial.println(pwmValue);
+    }
+#endif
+    analogWrite(pwm, pwmValue);
 }
 
 //Emergency Brake
 void Motor::brake()
 {
-    speed = 0;
+    desieredEncoderOutput = 0;
     pwmValue = 0;
     analogWrite(pwm, 0);
     status = MotorStatus::Stop;

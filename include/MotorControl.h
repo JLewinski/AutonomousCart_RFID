@@ -18,8 +18,6 @@ class MotorControl
 public:
   MotorControl(Motor _right, Motor _left, ProximitySensorArray _sensors)
       : left(_left), right(_right), sensors(_sensors) {}
-  // MotorControl(const MotorControl &other) : MotorControl(new Motor(other.right), new Motor(other.left), new ProximitySensorArray(other.sensors) {}
-  // ~MotorControl();
   //Need to create functions to controll direction and speed of motors based on the sensor data
 
   void AdjustSpeedAndDirection();
@@ -31,6 +29,15 @@ private:
   Motor right;
   ProximitySensorArray sensors;
   Direction direction;
-  int speed, rightOffset, leftOffset;
-  int angle;
+  void QuiteDif(int *tempDif);
+  void updateOffset(int rf, int rb);
+  int getDistance(UltrasonicSensor right, UltrasonicSensor left, bool &sensor, bool &choice);
+  int speed, rightOffset, leftOffset = -1;
+  bool toggle = (false), frontSensor = (true), frontSensorChoice = (false), backSensor = (true), backSensorChoice = (false);
+  bool intersection = (true);
+  int count = 0;
+  const int minDif = 30, maxDif = 1, desiredDistance = 2500, countMax = 10, offsetMax = 30;
+  const int maxCompareHistory = 500, doorCompareHistory = 100;
+  int previousDistanceDiff = 0, previousAngleDiff = 0;
+  const int dangerDistance = 1000, safeDistance = 100, dangerAngle = 50, dangerFront = 3000, safeAngle = 10, maxSpeed = 110, hallWidth = 9650;
 };

@@ -1,5 +1,3 @@
-#pragma onece
-
 #include <Ultrasonic.h>
 
 enum UltrasonicSensor
@@ -17,10 +15,16 @@ public:
   //PINS: Echo, left-back-trigger, left-front-trigger, right-back-trigger, right-front-trigger, front-trigger
   ProximitySensorArray(int tlb, int elb, int trb, int erb, int tlf, int elf, int trf, int erf, int tf, int ef);
   long read(UltrasonicSensor ultrasonicSensor);
+  void readAll();
+  long diff(UltrasonicSensor ultrasonicSensor);
+  long avg(UltrasonicSensor ultrasonicSensor);
+  long *getHistory(UltrasonicSensor ultrasonicSensor);
+  long getRecent(UltrasonicSensor ultrasonicSensor);
+  const static int historySize = 5;
+  const static int numSensors = 5;
+  const static long timeOut = 15000;
 
 private:
-  const int historySize = 5;
-  const int numSensors = 5;
   Ultrasonic sensors[5];
 
   //Front, LeftFront, RightFront, LeftBack, RightBack

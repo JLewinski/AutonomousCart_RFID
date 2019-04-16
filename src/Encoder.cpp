@@ -5,10 +5,44 @@ Encoder::Encoder(int _pinA, int _pinB) : pinA(_pinA), pinB(_pinB)
 {
 }
 
+const long Encoder::getAvg()
+{
+    long cha = getChanel(pinA);
+    long chb = getChanel(pinB);
+    if (cha == 0)
+    {
+        cha = chb;
+#ifdef DEBUG
+        Serial.println("Chanel A = 0");
+#endif
+    }
+    if (chb == 0)
+    {
+        chb = cha;
+#ifdef DEBUG
+        Serial.println("Chanel B = 0");
+#endif
+    }
+    if (cha == chb)
+    {
+        if (cha == 0)
+        {
+            return timeout;
+        }
+        return cha;
+    }
+    return (cha + chb);
+}
+
 //Gets encoder output for chanel A
 const long Encoder::getChanelA()
 {
-    return getChanel(pinA);
+    long val = getChanel(pinA);
+    if (val == 0)
+    {
+        return timeout;
+    }
+    return val;
 }
 
 //Gets encoder output for chanel B
@@ -21,9 +55,9 @@ const long Encoder::getChanelB()
 const long Encoder::getChanel(int pin)
 {
     long encoderOutput = pulseIn(pin, HIGH, timeout);
-    if (encoderOutput <= 0)
-    {
-        encoderOutput = minVal;
-    }
+    // if (encoderOutput <= 0)
+    // {
+    //     encoderOutput = minVal;
+    // }
     return encoderOutput;
 }
