@@ -12,12 +12,16 @@ const long Encoder::getAvg()
     if (cha == 0)
     {
         cha = chb;
+#ifdef DEBUG
         Serial.println("Chanel A = 0");
+#endif
     }
     if (chb == 0)
     {
-        Serial.println("Chanel B = 0");
         chb = cha;
+#ifdef DEBUG
+        Serial.println("Chanel B = 0");
+#endif
     }
     if (cha == chb)
     {
@@ -27,7 +31,7 @@ const long Encoder::getAvg()
         }
         return cha;
     }
-    return (cha + chb) / 2;
+    return (cha + chb);
 }
 
 //Gets encoder output for chanel A
