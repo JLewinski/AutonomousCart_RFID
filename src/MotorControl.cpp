@@ -1,4 +1,4 @@
-// #define DEBUG
+#define DEBUG
 #include "MotorControl.h"
 
 //Set the speed for both motors
@@ -40,6 +40,16 @@ int MotorControl::getDistance(UltrasonicSensor right, UltrasonicSensor left, boo
 
     if (width > hallWidth + safeDistance || width < hallWidth - safeDistance)
     {
+        digitalWrite(41, HIGH);
+        if (r <= dangerDistance)
+        {
+            return r;
+        }
+        else if (l <= dangerDistance)
+        {
+            return hallWidth - l;
+        }
+
         if (sensor)
         {
             choice = sensors.diff(right) > sensors.diff(left);
@@ -52,6 +62,7 @@ int MotorControl::getDistance(UltrasonicSensor right, UltrasonicSensor left, boo
     }
     else
     {
+        digitalWrite(41, LOW);
         sensor = (true);
     }
     return r;
@@ -106,10 +117,12 @@ void MotorControl::Update()
             {
                 rightOffset++;
                 intersection = (false);
+                digitalWrite(40, HIGH);
             }
         }
         else
         {
+            digitalWrite(40, LOW);
             //not at an intersection
             intersection = (true);
             int backDistance = getDistance(RightBack, LeftBack, backSensor, backSensorChoice);

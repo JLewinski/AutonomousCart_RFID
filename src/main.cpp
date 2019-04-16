@@ -1,5 +1,5 @@
 #define DEBUG
-#define USE_RFID  //Uncommenet to use RFID
+//#define USE_RFID  //Uncommenet to use RFID
 #include <Arduino.h>
 #include <MotorControl.h>
 #include <SoftwareSerial.h> //Used for transmitting to the device
@@ -151,8 +151,6 @@ void setup()
   pinMode(52, INPUT);
   pinMode(53, INPUT);
 
-  
-
   Serial.begin(115200);
   while (!Serial)
     ; //Wait for the serial port to come online
@@ -222,15 +220,9 @@ void loop()
   int s2 = digitalRead(52);
   int s3 = digitalRead(53);
 
-  digitalWrite(40, s1);
-  digitalWrite(41, s2);
-  digitalWrite(43, s3);
-
-  Serial.print(s1);
-  Serial.print("   ");
-  Serial.print(s2);
-  Serial.print("   ");
-  Serial.println(s3);
+  digitalWrite(42, s1);
+  digitalWrite(43, s2);
+  digitalWrite(44, s3);
 
   control.Update();
   delay(20);
