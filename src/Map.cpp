@@ -7,6 +7,7 @@ Map::Map(int _size) : size(_size)
     {
         mapNodes[i] = new MapNode(i);
     }
+    //HARD-CODE THE MAP HERE
 }
 
 Map::~Map()
@@ -47,16 +48,37 @@ void Map::setNode(int id1, int id2, int direction)
     }
 }
 
-PathNode *Map::getPath(int currentId, int destinationId, int direction)
+int Map::getDirection(int foundId)
 {
+    if (foundId == finalDestination->id)
+    {
+        return 5;
+    }
+
+    if (foundId == currentPath->id)
+    {
+        int direction = currentPath->direction;
+        currentPath = currentPath->getNext();
+        return direction;
+    }
+}
+
+void Map::setDestination(int currentId, int destinationId, int direction)
+{
+    if (currentPath != nullptr)
+    {
+        delete currentPath;
+    }
     if (destinationId >= size)
     {
         //destination does not exist
-        return nullptr;
+        currentPath = nullptr;
+        return;
     }
     else if (currentId == destinationId)
     {
-        return new PathNode(currentId, -1, nullptr, nullptr);
+        currentPath = new PathNode(currentId, -1, nullptr, nullptr);
+        return;
     }
 
     for (int i = 0; i < size; i++)
@@ -96,7 +118,8 @@ PathNode *Map::getPath(int currentId, int destinationId, int direction)
             if (next == nullptr)
             {
                 //ERROR!!!!
-                return nullptr;
+                currentPath = nullptr;
+                return;
             }
 
             //If there is already something in possibilities for this index delete it because we should be done with it by now
@@ -133,10 +156,10 @@ PathNode *Map::getPath(int currentId, int destinationId, int direction)
             delete possibilities[i];
         }
     }
+
     //save the solution
-    PathNode *path = possibilities[destinationIndex];
+    currentPath = possibilities[destinationIndex];
     //delete the buffer
     delete possibilities;
     //return the solution
-    return path;
 }

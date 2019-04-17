@@ -1,12 +1,14 @@
 #define DEBUG
-//#define USE_RFID  //Uncommenet to use RFID
+#define USE_RFID //Uncommenet to use RFID
 #include <Arduino.h>
 #include <MotorControl.h>
 #include <SoftwareSerial.h> //Used for transmitting to the device
 #include <SparkFun_UHF_RFID_Reader.h>
+#include <Map.h>
 //                                                                                                     tlb elb trb erb tlf elf trf erf  tf  ef
 MotorControl control(Motor(22, 5, Encoder(24, 26)), Motor(23, 6, Encoder(25, 27)), ProximitySensorArray(28, 29, 30, 31, 32, 33, 34, 35, 36, 37));
 SoftwareSerial softSerial(11, 3); //RX, TX
+const uint8_t ssisTrigger = 30;
 #ifdef USE_RFID
 RFID nano;
 #endif
@@ -23,6 +25,8 @@ int down = -1;
 boolean readRFID = (true);
 int kount = 0;
 int rfidDelay = 50;
+int previousId = -1;
+Map myMap(10);
 
 #ifdef USE_RFID
 boolean setupNano(long baudRate)
@@ -75,7 +79,7 @@ boolean setupNano(long baudRate)
   return (true); //We are ready to rock
 }
 
-void checkNano()
+int checkNano()
 {
   if (nano.check() == true) //Check to see if any new data has come in from module
   {
@@ -87,42 +91,21 @@ void checkNano()
     }
     else if (responseType == RESPONSE_IS_TAGFOUND)
     {
-      //This will stop the program if you uncomment it
-      //while(1);
-
-      //If we have a full record we can pull out the fun bits
-      int rssi = nano.getTagRSSI(); //Get the RSSI for this tag read
-
-      long freq = nano.getTagFreq(); //Get the frequency this tag was detected at
-
-      long timeStamp = nano.getTagTimestamp(); //Get the time this was read, (ms) since last keep-alive message
-
-      byte tagEPCBytes = nano.getTagEPCBytes(); //Get the number of bytes of EPC from response
-
-      Serial.print(F(" rssi["));
-      Serial.print(rssi);
-      Serial.print(F("]"));
-
-      Serial.print(F(" freq["));
-      Serial.print(freq);
-      Serial.print(F("]"));
-
-      Serial.print(F(" time["));
-      Serial.print(timeStamp);
-      Serial.print(F("]"));
-
-      //Print EPC bytes, this is a subsection of bytes from the response/msg array
-      Serial.print(F(" epc["));
-      for (byte x = 0; x < tagEPCBytes; x++)
+      if (nano.getTagRSSI())
       {
-        if (nano.msg[31 + x] < 0x10)
-          Serial.print(F("0")); //Pretty print
-        Serial.print(nano.msg[31 + x], HEX);
-        Serial.print(F(" "));
+#ifdef DEBUG
+        int id = nano.msg[31];
+        Serial.print("Tag ID: ");
+        Serial.println(id);
+        return id;
+#else
+        return nano.msg[31];
+#endif
       }
-      Serial.print(F("]"));
-
-      Serial.println();
+      else
+      {
+        Serial.println("Too far away");
+      }
     }
     else if (responseType == ERROR_CORRUPT_RESPONSE)
     {
@@ -134,6 +117,7 @@ void checkNano()
       Serial.print("Unknown error");
     }
   }
+  return -1;
 }
 
 #endif
@@ -141,7 +125,6 @@ void checkNano()
 void setup()
 {
   control.SetSpeed(speed);
-
   pinMode(40, OUTPUT);
   pinMode(41, OUTPUT);
   pinMode(42, OUTPUT);
@@ -239,7 +222,17 @@ void loop()
     nano.startReading();
     for (int i = 0; i < 50; i++)
     {
-      checkNano();
+      int id = checkNano();
+      if (id != previousId && id + 1)
+      {
+        //id = -1
+      }
+      else
+      {
+        previousId = id;
+        int direction = myMap.getDirection(id);
+        //TODO: do something with direction
+      }
       control.Update();
       delay(50);
     }

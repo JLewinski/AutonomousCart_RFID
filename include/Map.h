@@ -7,9 +7,13 @@ public:
   Map(int _size);
   ~Map();
   void setNode(int id1, int id2, int direction);
-  PathNode *getPath(int currentId, int destinationId, int direction);
+  int getDirection(int foundId);
+  void setDestination(int currentId, int destinationId, int direction);
   const int size;
 
 private:
   MapNode **mapNodes;
+  PathNode *currentPath;
+  PathNode *finalDestination;
+  PathNode *currentDestination;
 };
