@@ -1,5 +1,5 @@
-#define DEBUG
-#define USE_RFID //Uncommenet to use RFID
+//#define DEBUG
+//#define USE_RFID //Uncommenet to use RFID
 #include <Arduino.h>
 #include <MotorControl.h>
 #include <SoftwareSerial.h> //Used for transmitting to the device
@@ -160,7 +160,10 @@ void setup()
   // {
   //   nano.startReading(); //Begin scanning for tags
   // }
+
 #endif
+  control.SetInitialDirection(North);
+  control.setTurn(East);
 }
 
 //Slightly increments and decrements the speed to test encoder output for differnet speeds.
@@ -231,7 +234,8 @@ void loop()
       Serial.print("Found RFID: ");
       Serial.println(id);
       previousId = id;
-      control.setTurn(myMap.getDirection(id));
+      // control.setTurn(myMap.getDirection(id));
+      control.setTurn(East);
 
       //TODO: do something with direction (In motor control)
     }

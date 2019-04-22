@@ -10,8 +10,8 @@ public:
   MotorControl(Motor _right, Motor _left, ProximitySensorArray _sensors)
       : left(_left), right(_right), sensors(_sensors) {}
   //Need to create functions to controll direction and speed of motors based on the sensor data
-  void SetInitialDirection();
-  void SetNextTurn(Direction dir);
+  void SetInitialDirection(Direction d);
+  void SetNextTurn(Direction d);
   void SetSpeed(int spd);
   void Update();
   void initiateTurn();
@@ -40,12 +40,11 @@ private:
   int count = 0;
   const int countMax = 10;
 
-
-  const int minDif = 30, maxDif = 1, desiredDistance = 2500, offsetMax = 30;
+  const int minDif = 30, maxDif = 1, desiredDistance = 2500, offsetMax = 30, turnOffset = 50;
   const int maxCompareHistory = 500, doorCompareHistory = 100;
-  int previousDistanceDiff = 0, previousAngleDiff = 0;
+  int previousDistance = -1, previousDistanceDiff = -1, previousAngleDiff = -1;
   const int dangerDistance = 1000, safeDistance = 100, dangerAngle = 50, dangerFront = 3000, safeAngle = 10, maxSpeed = 110, defaultHallWidth = 9650;
-  int hallWidthHistory[40] = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
+  int hallWidthHistory[20] = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
   int hallIndex = 0;
-  const int hallHistoryLength = 40;
+  const int hallHistoryLength = 20;
 };
