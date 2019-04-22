@@ -5,10 +5,13 @@
 #include <SoftwareSerial.h> //Used for transmitting to the device
 #include <SparkFun_UHF_RFID_Reader.h>
 #include <Map.h>
-//                                                                                                     tlb elb trb erb tlf elf trf erf  tf  ef
-MotorControl control(Motor(22, 5, Encoder(24, 26)), Motor(23, 6, Encoder(25, 27)), ProximitySensorArray(28, 29, 30, 31, 32, 33, 34, 35, 36, 37));
-SoftwareSerial softSerial(11, 3); //RX, TX
-const uint8_t ssisTrigger = 30;
+#include <Pins.h>
+
+MotorControl control(Motor(rmDir, rmPWM, Encoder(reA, reB)), Motor(lmDir, lmPWM, Encoder(leA, leB)), ProximitySensorArray(tlb, elb, trb, erb, tlf, elf, trf, erf, tf, ef));
+SoftwareSerial softSerial(rfidRX, rfidTX);
+uint8_t rfidCount = 0, rfidToggleCount = 30, rfidToggleLength = 10, rfidToggleMax = 80;
+bool readingRFID = false;
+
 #ifdef USE_RFID
 RFID nano;
 #endif
@@ -91,6 +94,8 @@ int checkNano()
     }
     else if (responseType == RESPONSE_IS_TAGFOUND)
     {
+      //If the RSSI is in the valid range
+      //May also need to use this for telling it when to stop (when in stopping range)
       if (nano.getTagRSSI())
       {
 #ifdef DEBUG
@@ -125,14 +130,14 @@ int checkNano()
 void setup()
 {
   control.SetSpeed(speed);
-  pinMode(40, OUTPUT);
-  pinMode(41, OUTPUT);
-  pinMode(42, OUTPUT);
-  pinMode(43, OUTPUT);
-  pinMode(44, OUTPUT);
-  pinMode(51, INPUT);
-  pinMode(52, INPUT);
-  pinMode(53, INPUT);
+  pinMode(white, OUTPUT);
+  pinMode(blue, OUTPUT);
+  pinMode(green, OUTPUT);
+  pinMode(yellow, OUTPUT);
+  pinMode(red, OUTPUT);
+  pinMode(switch1, INPUT);
+  pinMode(switch2, INPUT);
+  pinMode(switch3, INPUT);
 
   Serial.begin(115200);
   while (!Serial)
@@ -150,16 +155,11 @@ void setup()
 
   nano.setReadPower(1500); //5.00 dBm. Higher values may caues USB port to brown out
   //Max Read TX Power is 27.00 dBm and may cause temperature-limit throttling
-
-  //Dont wait for user input
-  // Serial.println(F("Press a key to begin scanning for tags."));
-  // while (!Serial.available())
-  //   ;            //Wait for user to send a character
-  // Serial.read(); //Throw away the user's character
-  if (readRFID)
-  {
-    nano.startReading(); //Begin scanning for tags
-  }
+  nano.startReading();
+  // if (readRFID)
+  // {
+  //   nano.startReading(); //Begin scanning for tags
+  // }
 #endif
 }
 
@@ -199,44 +199,51 @@ void test()
 
 void loop()
 {
-  int s1 = digitalRead(51);
-  int s2 = digitalRead(52);
-  int s3 = digitalRead(53);
+  //Switches
+  // int s1 = digitalRead(51);
+  // int s2 = digitalRead(52);
+  // int s3 = digitalRead(53);
 
-  digitalWrite(42, s1);
-  digitalWrite(43, s2);
-  digitalWrite(44, s3);
+  //Map buttons as well so we can have an emergency stop button without reseting the destination
+  //Buttons could also be used as a "GO" button
 
   control.Update();
   delay(20);
-  // test();
-  // for (int i = 0; i < 50; i++)
-  // {
-  //   control.Update();
-  //   // test();
-  //   delay(100);
-  // }
+
 #ifdef USE_RFID
-  if (readRFID)
+
+  if (rfidCount++ >= rfidToggleCount)
   {
-    nano.startReading();
-    for (int i = 0; i < 50; i++)
+    //If it isn't reading then start reading
+    if (!readingRFID)
     {
-      int id = checkNano();
-      if (id != previousId && id + 1)
-      {
-        //id = -1
-      }
-      else
-      {
-        previousId = id;
-        int direction = myMap.getDirection(id);
-        //TODO: do something with direction
-      }
-      control.Update();
-      delay(50);
+      //nano.startReading();
+      // Serial.println("Reading RFIDs");
+      readingRFID = true;
     }
-    nano.stopReading();
+    int id = checkNano();
+    if (id != previousId || id == -1)
+    {
+      //id = -1
+    }
+    else
+    {
+      Serial.print("Found RFID: ");
+      Serial.println(id);
+      previousId = id;
+      control.setTurn(myMap.getDirection(id));
+
+      //TODO: do something with direction (In motor control)
+    }
+
+    if (rfidCount >= rfidToggleCount + rfidToggleLength)
+    {
+      rfidCount = 0;
+      //nano.stopReading();
+      // Serial.println("Stopped Reading RFIDs");
+      readingRFID = false;
+    }
   }
+
 #endif
 }

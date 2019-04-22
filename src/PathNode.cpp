@@ -1,6 +1,6 @@
 #include <PathNode.h>
 
-PathNode::PathNode(int id, int direction, PathNode *_next, PathNode *_previous) : id(id), direction(direction), next(_next), previous(_previous) {}
+PathNode::PathNode(int id, Direction direction, PathNode *_next, PathNode *_previous) : id(id), direction(direction), next(_next), previous(_previous) {}
 
 PathNode::~PathNode()
 {

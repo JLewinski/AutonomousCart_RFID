@@ -5,7 +5,7 @@ MapNode::~MapNode()
     delete[] nodes;
 }
 
-void MapNode::setNode(MapNode *node, int direction)
+void MapNode::setNode(MapNode *node, Direction direction)
 {
     if (direction >= 0 && direction <= 4 && node->id != id)
     {
@@ -17,7 +17,7 @@ void MapNode::setNode(MapNode *node, int direction)
     }
 }
 
-MapNode *MapNode::getNext(int direction)
+MapNode *MapNode::getNext(Direction direction)
 {
     if (direction >= 0 && direction <= 4)
     {
@@ -46,7 +46,7 @@ PathNode *MapNode::getNextPath()
         if (nodes[i] != nullptr && !nodes[i]->visited)
         {
             nodes[i]->visited = true;
-            return new PathNode(nodes[i]->id, i, nullptr, nullptr);
+            return new PathNode(nodes[i]->id, (Direction)i, nullptr, nullptr);
         }
     }
     return nullptr;

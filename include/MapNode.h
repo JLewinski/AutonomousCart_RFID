@@ -7,8 +7,8 @@ public:
   MapNode() : id(0) {}
   MapNode(int id) : id(id) {}
   ~MapNode();
-  void setNode(MapNode *node, int direction);
-  MapNode *getNext(int direction);
+  void setNode(MapNode *node, Direction direction);
+  MapNode *getNext(Direction direction);
   PathNode *getNextPath();
   int getCount();
   const int id;

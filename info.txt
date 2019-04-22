@@ -1,3 +1,24 @@
 LEDS: 40-44
+    40: White
+    41: Blue
+    42: Green
+    43: Yellow
+    44: Red
+
 Switches: 51-53
 average hall width: 9648.973214
+
+LEFT TURNS:
+North->West
+East->North
+South->East
+West->South
+
+RIGHT TURNS:
+North->East
+East->South
+South->West
+West->North
+
+STOP:
+Anything->Stopped

@@ -22,48 +22,48 @@ Map::~Map()
     delete mapNodes;
 }
 
-void Map::setNode(int id1, int id2, int direction)
+void Map::setNode(int id1, int id2, Direction direction)
 {
     if (id1 != id2 && direction >= 0 && direction <= 4)
     {
         mapNodes[id1]->setNode(mapNodes[id2], direction);
         switch (direction)
         {
-        case 0:
-            mapNodes[id2]->setNode(mapNodes[id1], 2);
+        case North:
+            mapNodes[id2]->setNode(mapNodes[id1], South);
             break;
-        case 1:
-            mapNodes[id2]->setNode(mapNodes[id1], 3);
+        case East:
+            mapNodes[id2]->setNode(mapNodes[id1], West);
             break;
-        case 2:
-            mapNodes[id2]->setNode(mapNodes[id1], 0);
+        case South:
+            mapNodes[id2]->setNode(mapNodes[id1], North);
             break;
-        case 3:
-            mapNodes[id2]->setNode(mapNodes[id1], 1);
+        case West:
+            mapNodes[id2]->setNode(mapNodes[id1], East);
             break;
         default:
-            mapNodes[id2]->setNode(mapNodes[id1], 4);
+            mapNodes[id2]->setNode(mapNodes[id1], Other);
             break;
         }
     }
 }
 
-int Map::getDirection(int foundId)
+Direction Map::getDirection(int foundId)
 {
     if (foundId == finalDestination->id)
     {
-        return 5;
+        return Stopped;
     }
 
     if (foundId == currentPath->id)
     {
-        int direction = currentPath->direction;
+        Direction direction = currentPath->direction;
         currentPath = currentPath->getNext();
         return direction;
     }
 }
 
-void Map::setDestination(int currentId, int destinationId, int direction)
+void Map::setDestination(int currentId, int destinationId, Direction direction)
 {
     if (currentPath != nullptr)
     {
@@ -77,7 +77,7 @@ void Map::setDestination(int currentId, int destinationId, int direction)
     }
     else if (currentId == destinationId)
     {
-        currentPath = new PathNode(currentId, -1, nullptr, nullptr);
+        currentPath = new PathNode(currentId, Other, nullptr, nullptr);
         return;
     }
 
@@ -90,8 +90,16 @@ void Map::setDestination(int currentId, int destinationId, int direction)
     //Hopefully the size won't be that big
     PathNode **possibilities = new PathNode *[size];
 
+    if (0)
+    {
+        //This is just used to fix the comments not showing up as comments.
+        //I'm not sure why, but if this if statement is taken out then vscode
+        //won't display comments as comments until it's in the while loop
+    }
+
     //Set first posibility to the current node
-    possibilities[0] = new PathNode(mapNodes[currentId]->id, -1, nullptr, nullptr);
+    possibilities[0] = new PathNode(mapNodes[currentId]->id, Other, nullptr, nullptr);
+    
     //Init variables
     int destinationIndex = -1;
     int currentIndex = 0;
@@ -107,9 +115,9 @@ void Map::setDestination(int currentId, int destinationId, int direction)
         }
 
         //Get the number of available nodes to search
-        int count = mapNodes[possibilities[currentIndex]->id]->getCount();
+        int nodeCount = mapNodes[possibilities[currentIndex]->id]->getCount();
 
-        while (count)
+        while (nodeCount)
         {
             //Get the first node to search from the current node
             PathNode *next = mapNodes[possibilities[currentIndex]->id]->getNextPath();
@@ -123,7 +131,7 @@ void Map::setDestination(int currentId, int destinationId, int direction)
             }
 
             //If there is already something in possibilities for this index delete it because we should be done with it by now
-            if (possibilities[nextIndex++] != nullptr)
+            if (possibilities[nextIndex] != nullptr)
             {
                 delete possibilities[nextIndex];
             }
@@ -135,7 +143,7 @@ void Map::setDestination(int currentId, int destinationId, int direction)
             if (possibilities[nextIndex - 1]->id == destinationId)
             {
                 destinationIndex = nextIndex - 1;
-                count = 0;
+                nodeCount = 0;
             }
 
             //Circulare buffer (it shoud be finished)
