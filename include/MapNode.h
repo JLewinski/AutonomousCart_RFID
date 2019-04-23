@@ -10,9 +10,10 @@ public:
   void setNode(MapNode *node, Direction direction);
   MapNode *getNext(Direction direction);
   PathNode *getNextPath();
+  void getPaths(int previousId, PathNode **arr);
   int getCount();
   const int id;
-  bool visited;
+  void print();
 
 private:
   //0: North, 1: East, 2: South, 3: West 4: other

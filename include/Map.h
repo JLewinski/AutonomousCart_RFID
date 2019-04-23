@@ -11,6 +11,10 @@ public:
   Direction getDirection(int foundId);
   void setDestination(int currentId, int destinationId, Direction direction);
   const int size;
+  bool hasDestination();
+  void endRoute();
+  void setup();
+  void print();
 
 private:
   MapNode **mapNodes;

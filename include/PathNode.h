@@ -12,8 +12,10 @@ public:
     Direction direction;
     PathNode *getPrevious();
     PathNode *getNext();
+    void print(bool fromElseWhere = true);
 
 private:
+    void setNextFromPrevious(PathNode *_next);
     PathNode *previous;
     PathNode *next;
 };

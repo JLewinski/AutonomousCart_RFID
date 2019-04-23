@@ -1,6 +1,13 @@
-#define DEBUG
+//#define DEBUG
 #include "MotorControl.h"
 #include "Pins.h"
+
+MotorControl::MotorControl(Motor _right, Motor _left, ProximitySensorArray _sensors) : left(_left), right(_right), sensors(_sensors)
+{
+    direction = Stopped;
+    turn = Stopped;
+    SetSpeed(0);
+}
 
 bool MotorControl::hasNextTurn()
 {
@@ -36,15 +43,10 @@ void MotorControl::SetSpeed(int spd)
     }
 };
 
-void MotorControl::SetInitialDirection(Direction d)
+void MotorControl::setTurn(Direction nextTurn, Direction currentDirection)
 {
-    direction = d;
-    turn = d;
-}
-
-void MotorControl::setTurn(Direction d)
-{
-    turn = d;
+    turn = nextTurn;
+    direction = currentDirection;
 }
 
 int MotorControl::getAverageHallWidth(int currentWidth = 0)
@@ -115,6 +117,10 @@ int MotorControl::getDistance(UltrasonicSensor right, UltrasonicSensor left)
 //Update both motors for the desired speed
 void MotorControl::Update()
 {
+    if (speed == 0)
+    {
+        return;
+    }
     if (count++ > countMax)
     {
         sensors.readAll();
@@ -257,8 +263,6 @@ void MotorControl::updateOffset(int rf, int rb)
 {
     int diff = (rf - desiredDistance);
     int absDiff = abs(diff);
-    
-    int absPreviousDistance = abs(previousDistanceDiff);
 
     //Front-right of cart within safe distance from wall
     if (absDiff <= safeDistance)
@@ -268,6 +272,7 @@ void MotorControl::updateOffset(int rf, int rb)
         diff = rf - rb;
         absDiff = abs(diff);
         int offsetInc = 5;
+
         if (absDiff <= safeAngle)
         {
             offsetInc = 1;
@@ -314,28 +319,25 @@ void MotorControl::updateOffset(int rf, int rb)
 #endif
             rightOffset *= -0.75;
         }
-        //getting closer to wall
-        else if (absDiff < absPreviousDistance)
+        //Left the danger zone or done with a turn
+        if (abs(rightOffset) >= offsetMax)
         {
-            if (abs(rightOffset) == offsetMax)
-            {
-                rightOffset *= 0.7;
-            }
+            rightOffset *= 0.6;
         }
-        //getting further from wall
-        else
+        //getting closer to wall and too close to wall
+        else if (rf < previousDistance && diff < 0)
         {
-            if (diff > 0)
-            {
-                rightOffset--;
-            }
-            else
-            {
-                rightOffset++;
-            }
+            rightOffset += 2;
+        }
+        //getting further from wall and too far from wall
+        else if (rf > previousDistance && diff > 0)
+        {
+            rightOffset -= 2;
         }
         previousDistanceDiff = diff;
     }
+
+    previousDistance = rf;
 
     //Make sure the offset isn't greater than the max
     if (rightOffset > offsetMax)
@@ -347,3 +349,8 @@ void MotorControl::updateOffset(int rf, int rb)
         rightOffset = -offsetMax;
     }
 };
+
+Direction MotorControl::checkStatus()
+{
+    return direction;
+}

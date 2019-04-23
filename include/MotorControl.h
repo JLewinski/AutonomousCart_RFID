@@ -7,16 +7,16 @@
 class MotorControl
 {
 public:
-  MotorControl(Motor _right, Motor _left, ProximitySensorArray _sensors)
-      : left(_left), right(_right), sensors(_sensors) {}
+  MotorControl(Motor _right, Motor _left, ProximitySensorArray _sensors);
+
   //Need to create functions to controll direction and speed of motors based on the sensor data
-  void SetInitialDirection(Direction d);
-  void SetNextTurn(Direction d);
   void SetSpeed(int spd);
   void Update();
-  void initiateTurn();
   bool hasNextTurn();
-  void setTurn(Direction d);
+  void setTurn(Direction nextTurn, Direction currentDirection);
+  void initiateTurn();
+
+  Direction checkStatus();
 
 private:
   //Motors and prox sensors

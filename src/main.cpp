@@ -129,7 +129,6 @@ int checkNano()
 
 void setup()
 {
-  control.SetSpeed(speed);
   pinMode(white, OUTPUT);
   pinMode(blue, OUTPUT);
   pinMode(green, OUTPUT);
@@ -162,42 +161,8 @@ void setup()
   // }
 
 #endif
-  control.SetInitialDirection(North);
-  control.setTurn(East);
-}
-
-//Slightly increments and decrements the speed to test encoder output for differnet speeds.
-//This may also be good to use to test different speeds for a optimum walking speed.
-void test()
-{
-  speed += incriment;
-
-  //Make sure the speed only gets set within the parameters
-  if (speed <= max && speed >= min)
-  {
-    control.SetSpeed(speed);
-    Serial.print("Speed: ");
-    Serial.println(speed);
-  }
-
-  //Start decrementing if speed is above max
-  if (speed > max)
-  {
-    incriment = down;
-  }
-
-  //Start incrementing if speed is lower than min
-  if (speed < min)
-  {
-    incriment = up;
-  }
-
-  //Hold for a set amount of time
-  for (int i = 0; i < 50; i++)
-  {
-    control.Update();
-    delay(50);
-  }
+  myMap.setup();
+  // myMap.print();
 }
 
 void loop()
@@ -209,45 +174,134 @@ void loop()
 
   //Map buttons as well so we can have an emergency stop button without reseting the destination
   //Buttons could also be used as a "GO" button
+  if (control.checkStatus() == Stopped)
+  {
+    Serial.print("Enter current location (##): ");
+    while (!Serial.available())
+      ;
+    String temp = Serial.readString();
+    int temp1 = temp.charAt(0) - '0';
+    int currentId = temp1;
+    if (temp.length() > 1 && temp.charAt(1) != '\n')
+    {
+      currentId = temp1 * 10 + temp.charAt(1) - '0';
+    }
+    Serial.println(currentId);
+    if (currentId >= 0 && currentId < myMap.size)
+    {
+      Serial.print("Enter current direction: ");
+      while (!Serial.available())
+        ;
+      String dir = Serial.readString();
+      dir.toUpperCase();
+      Direction currentDirection = Other;
+      if (dir == "NORTH" || dir == "N")
+      {
+        currentDirection = North;
+        Serial.println("NORTH");
+      }
+      else if (dir == "SOUTH" || dir == "S")
+      {
+        currentDirection = South;
+        Serial.println("SOUTH");
+      }
+      else if (dir == "EAST" || dir == "E")
+      {
+        currentDirection = East;
+        Serial.println("EAST");
+      }
+      else if (dir == "WEST" || dir == "W")
+      {
+        currentDirection = West;
+        Serial.println("WEST");
+      }
 
+      if (currentDirection != Other)
+      {
+        Serial.print("Enter a destination: ");
+        while (!Serial.available())
+          ;
+        temp = Serial.readString();
+        temp1 = temp.charAt(0) - '0';
+        int destId = temp1;
+        if (temp.length() > 1 && temp.charAt(1) != '\n')
+        {
+          destId = temp1 * 10 + temp.charAt(1) - '0';
+        }
+
+        Serial.println(destId);
+        if (destId > 0 && destId < myMap.size)
+        {
+          myMap.setDestination(currentId, destId, currentDirection);
+          Serial.print("MOVING");
+          control.SetSpeed(speed);
+          control.setTurn(myMap.getDirection(currentId), currentDirection);
+        }
+      }
+    }
+  }
   control.Update();
   delay(20);
 
 #ifdef USE_RFID
-
-  if (rfidCount++ >= rfidToggleCount)
+  int id = checkNano();
+  if (id != previousId || id == -1)
   {
-    //If it isn't reading then start reading
-    if (!readingRFID)
-    {
-      //nano.startReading();
-      // Serial.println("Reading RFIDs");
-      readingRFID = true;
-    }
-    int id = checkNano();
-    if (id != previousId || id == -1)
-    {
-      //id = -1
-    }
-    else
-    {
-      Serial.print("Found RFID: ");
-      Serial.println(id);
-      previousId = id;
-      // control.setTurn(myMap.getDirection(id));
-      control.setTurn(East);
-
-      //TODO: do something with direction (In motor control)
-    }
-
-    if (rfidCount >= rfidToggleCount + rfidToggleLength)
-    {
-      rfidCount = 0;
-      //nano.stopReading();
-      // Serial.println("Stopped Reading RFIDs");
-      readingRFID = false;
-    }
+    //id = -1
   }
+  else
+  {
+    Serial.print("Found RFID: ");
+    Serial.println(id);
+    Direction newDir = myMap.getDirection(id);
+    if (newDir == Stopped)
+    {
+      myMap.endRoute();
+    }
+    control.setTurn(myMap.getDirection(id), myMap.getDirection(previousId));
+    previousId = id;
 
+    // control.setTurn(East);
+
+    //TODO: do something with direction (In motor control)
+  }
 #endif
+
+  // #ifdef USE_RFID
+
+  //   if (rfidCount++ >= rfidToggleCount)
+  //   {
+  //     //If it isn't reading then start reading
+  //     if (!readingRFID)
+  //     {
+  //       //nano.startReading();
+  //       // Serial.println("Reading RFIDs");
+  //       readingRFID = true;
+  //     }
+  //     int id = checkNano();
+  //     if (id != previousId || id == -1)
+  //     {
+  //       //id = -1
+  //     }
+  //     else
+  //     {
+  //       Serial.print("Found RFID: ");
+  //       Serial.println(id);
+  //       previousId = id;
+  //       control.setTurn(myMap.getDirection(id), myMap.getDirection(previousId));
+  //       // control.setTurn(East);
+
+  //       //TODO: do something with direction (In motor control)
+  //     }
+
+  //     if (rfidCount >= rfidToggleCount + rfidToggleLength)
+  //     {
+  //       rfidCount = 0;
+  //       //nano.stopReading();
+  //       // Serial.println("Stopped Reading RFIDs");
+  //       readingRFID = false;
+  //     }
+  //   }
+
+  // #endif
 }
