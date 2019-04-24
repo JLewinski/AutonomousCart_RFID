@@ -48,6 +48,8 @@ enum Pins
     switch2 = 52,
     //Switch 3 (from left)
     switch3 = 53,
+    goButton = 50,
+    stopButton = 49,
     //LED: safe zone
     white = 40,
     //LED: abnormal hall width

@@ -1,5 +1,4 @@
 #pragma once
-#include <Arduino.h>
 
 enum Direction
 {
@@ -10,4 +9,3 @@ enum Direction
     Other,
     Stopped
 };
-

@@ -22,7 +22,6 @@ public:
 
 private:
   const int dir, pwm, maxSpeed = 110;
-  int extreme = 0;
   Encoder encoder;
   int desieredEncoderOutput = 0;
   int encoderOutput = 0;
