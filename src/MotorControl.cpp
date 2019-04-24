@@ -1,4 +1,4 @@
-#define DEBUG
+//#define DEBUG
 #include "MotorControl.h"
 #include "Pins.h"
 
@@ -73,7 +73,14 @@ int MotorControl::getAverageHallWidth(int currentWidth = 0)
         {
             sum += hallWidthHistory[i];
         }
+#ifdef DEBUG
+        int average = sum / hallHistoryLength;
+        Serial.print("Average Hall Width: ");
+        Serial.println(average);
+        return average;
+#else
         return sum / hallHistoryLength;
+#endif
     }
     return hallWidthHistory[0];
 }
@@ -90,19 +97,27 @@ int MotorControl::getDistance(UltrasonicSensor right, UltrasonicSensor left)
     {
         width = 0;
         digitalWrite(red, HIGH);
+        intersectionFlag++;
     }
     else
     {
         digitalWrite(red, LOW);
+        intersectionFlag = 0;
     }
 
     hallWidth = getAverageHallWidth(width);
 
     //possibly changed to percentage of hallWidth (within 5%)?
     //Just show when there is something of a discrepency
-    if (width > hallWidth + safeDistance || width < hallWidth - safeDistance)
+    if (width > hallWidth + safeDistance)
     {
         digitalWrite(blue, HIGH);
+        width -= safeDistance / 2;
+    }
+    else if (width < hallWidth - safeDistance)
+    {
+        digitalWrite(blue, HIGH);
+        width += safeDistance / 2;
     }
     else
     {
@@ -282,34 +297,43 @@ void MotorControl::updateOffset(int rf, int rb)
     //Front-right of cart within safe distance from wall
     if (absDiff <= safeDistance)
     {
+        if (diff < previousDistanceDiff)
+        {
+            rightOffset += 1;
+        }
+        //getting further from wall and too far from wall
+        else
+        {
+            rightOffset -= 1;
+        }
         previousDistanceDiff = diff;
-        diff = rf - rb;
-        absDiff = abs(diff);
-        int offsetInc = 5;
+        // diff = rf - rb;
+        // absDiff = abs(diff);
+        // int offsetInc = 5;
 
-        if (absDiff <= safeAngle)
-        {
-            offsetInc = 1;
-        }
+        // if (absDiff <= safeAngle)
+        // {
+        //     offsetInc = 1;
+        // }
 
-        if (diff > 0)
-        {
-            rightOffset -= offsetInc;
-        }
-        else if (diff < 0)
-        {
-            rightOffset += offsetInc;
-        }
-        else if (previousAngleDiff > 0)
-        {
-            rightOffset += offsetInc;
-        }
-        else if (previousAngleDiff < 0)
-        {
-            rightOffset -= offsetInc;
-        }
+        // if (diff > 0)
+        // {
+        //     rightOffset -= offsetInc;
+        // }
+        // else if (diff < 0)
+        // {
+        //     rightOffset += offsetInc;
+        // }
+        // else if (previousAngleDiff > 0)
+        // {
+        //     rightOffset += offsetInc;
+        // }
+        // else if (previousAngleDiff < 0)
+        // {
+        //     rightOffset -= offsetInc;
+        // }
 
-        previousAngleDiff = diff;
+        // previousAngleDiff = diff;
     }
     //Front-right not within safe distance of wall
     else
@@ -333,9 +357,9 @@ void MotorControl::updateOffset(int rf, int rb)
             rightOffset *= -0.75;
         }
         //Left the danger zone or done with a turn
-        if (abs(rightOffset) >= offsetMax)
+        else if (abs(rightOffset) >= offsetMax)
         {
-            rightOffset *= 0.6;
+            rightOffset *= -0.3;
         }
         //getting closer to wall and too close to wall
         else if (rf < previousDistance && diff < 0)
@@ -366,27 +390,28 @@ void MotorControl::updateOffset(int rf, int rb)
 Direction MotorControl::checkStatus()
 {
 #ifdef DEBUG
-    switch (direction)
-    {
-    case North:
-        Serial.print("North");
-        break;
-    case South:
-        Serial.print("South");
-        break;
-    case East:
-        Serial.print("East");
-        break;
-    case West:
-        Serial.print("West");
-        break;
-    case Stopped:
-        Serial.print("Stopped");
-        break;
-    default:
-        Serial.print("Other");
-        break;
-    }
+    // switch (direction)
+    // {
+    // case North:
+    //     Serial.print("North");
+    //     break;
+    // case South:
+    //     Serial.print("South");
+    //     break;
+    // case East:
+    //     Serial.print("East");
+    //     break;
+    // case West:
+    //     Serial.print("West");
+    //     break;
+    // case Stopped:
+    //     Serial.print("Stopped");
+    //     break;
+    // default:
+    //     Serial.print("Other");
+    //     break;
+    // }
+    // Serial.println();
 #endif
     return direction;
 }

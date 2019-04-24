@@ -1,4 +1,4 @@
-//#define DEBUG
+#define DEBUG
 #define USE_RFID //Uncommenet to use RFID
 #include <Arduino.h>
 #include <MotorControl.h>
@@ -86,18 +86,25 @@ int checkNano()
 {
   if (nano.check() == true) //Check to see if any new data has come in from module
   {
+#ifdef DEBUG
     Serial.println("Check NANO");
+#endif
     byte responseType = nano.parseResponse(); //Break response into tag ID, RSSI, frequency, and timestamp
 
     if (responseType == RESPONSE_IS_KEEPALIVE)
     {
       digitalWrite(yellow, LOW);
+#ifdef DEBUG
       Serial.println(F("Scanning"));
+#endif
     }
     else if (responseType == RESPONSE_IS_TAGFOUND)
     {
       digitalWrite(yellow, HIGH);
+
+#ifdef DEBUG
       Serial.println("FOUND RFID");
+#endif
       //If the RSSI is in the valid range
       //May also need to use this for telling it when to stop (when in stopping range)
       if (nano.getTagRSSI())
@@ -255,6 +262,12 @@ void loop()
             break;
           case West:
             Serial.print("West");
+            break;
+          case Stopped:
+            Serial.print("Stopped");
+            break;
+          default:
+            Serial.print("Other");
             break;
           }
           Serial.print(" Turning ");
