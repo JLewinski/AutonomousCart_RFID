@@ -244,6 +244,7 @@ void loop()
     digitalWrite(yellow, HIGH);
     digitalWrite(blue, HIGH);
     control.pause();
+    control.Update();
     if (digitalRead(stopButton))
     {
       delay(500);
