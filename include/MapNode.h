@@ -1,13 +1,20 @@
+#pragma once
+#include <PathNode.h>
+
 class MapNode
 {
 public:
-  MapNode(int id);
+  MapNode() : id(0) {}
+  MapNode(int id) : id(id) {}
   ~MapNode();
-  void AddNode(MapNode *node, int direction);
+  void setNode(MapNode *node, Direction direction);
+  MapNode *getNext(Direction direction);
+  PathNode *getNextPath();
+  void getPaths(int previousId, PathNode **arr);
+  int getCount();
   const int id;
+  void print();
 
 private:
-  //0: North, 1: East, 2: South, 3: West 4: other
-  MapNode *nodes[5];
-  bool visited;
-}
+  MapNode *nodes[5] = {nullptr, nullptr, nullptr, nullptr, nullptr};
+};

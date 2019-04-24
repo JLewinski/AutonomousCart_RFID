@@ -1,3 +1,24 @@
 LEDS: 40-44
+    40: White:  Within safe distance
+    41: Blue:   Width is significantly different than the average
+    42: Green:  Turning
+    43: Yellow: NA
+    44: Red:    Timeout on one of the prox sensors
+
 Switches: 51-53
 average hall width: 9648.973214
+
+LEFT TURNS:
+North->West
+East->North
+South->East
+West->South
+
+RIGHT TURNS:
+North->East
+East->South
+South->West
+West->North
+
+STOP:
+Anything->Stopped

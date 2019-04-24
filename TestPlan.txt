@@ -1,0 +1,3 @@
+Hang rfid tags at corners.
+Walk around while continuously scanning
+Then test while auto mode
