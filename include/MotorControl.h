@@ -43,7 +43,7 @@ private:
   const int minDif = 30, maxDif = 1, desiredDistance = 2500, offsetMax = 30, turnOffset = 50;
   const int maxCompareHistory = 500, doorCompareHistory = 100;
   int previousDistance = -1, previousDistanceDiff = -1, previousAngleDiff = -1, intersectionFlag = 0;
-  const int dangerDistance = 1250, warningDistance = 600, safeDistance = 250, dangerAngle = 50, dangerFront = 3000, safeAngle = 10, maxSpeed = 110, defaultHallWidth = 9400, maxIntersection = 10;
+  const int dangerDistance = 1250, warningDistance = 600, safeDistance = 250, dangerAngle = 50, dangerFront = 3000, safeAngle = 10, maxSpeed = 110, defaultHallWidth = 9400, maxIntersection = 5, intersectionFlagInit = 2;
   int hallWidthHistory[20] = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
   int hallIndex = 0;
   const int hallHistoryLength = 20;

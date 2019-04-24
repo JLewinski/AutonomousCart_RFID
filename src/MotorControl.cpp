@@ -1,4 +1,5 @@
-//#define DEBUG
+#define DEBUG
+#define DEBUG2
 #include "MotorControl.h"
 #include "Pins.h"
 
@@ -95,20 +96,28 @@ int MotorControl::getDistance(UltrasonicSensor right, UltrasonicSensor left, boo
 
     int width = r + l;
     int hallWidth = defaultHallWidth;
-    if (r == ProximitySensorArray::timeOut || l == ProximitySensorArray::timeOut)
+    if (update && (r == ProximitySensorArray::timeOut || l == ProximitySensorArray::timeOut))
     {
 #ifdef DEBUG
-        Serial.println("TIMEOUT");
+        Serial.print("TIMEOUT");
+        if (r == ProximitySensorArray::timeOut)
+            Serial.println(" RIGHT");
+        else
+            Serial.println(" LEFT");
 #endif
         width = 0;
         digitalWrite(red, HIGH);
         if (intersectionFlag < maxIntersection)
             intersectionFlag++;
+#ifdef DEBUG
+        Serial.print("Intersection Flag: ");
+        Serial.println(intersectionFlag);
+#endif
     }
-    else
+    else if (update)
     {
         digitalWrite(red, LOW);
-        if (intersectionFlag > 6)
+        if (intersectionFlag > intersectionFlagInit + 1)
         {
             intersectionFlag -= 2;
         }
@@ -116,6 +125,10 @@ int MotorControl::getDistance(UltrasonicSensor right, UltrasonicSensor left, boo
         {
             intersectionFlag--;
         }
+#ifdef DEBUG
+        Serial.print("Intersection Flag: ");
+        Serial.println(intersectionFlag);
+#endif
     }
 
     if (update)
@@ -208,17 +221,30 @@ void MotorControl::Update()
         }
 
         int frontDistance = getDistance(RightFront, LeftFront);
+
+#ifdef DEBUG2
+#ifndef DEBUG
         Serial.print("Front: ");
         Serial.print(frontDistance);
+#endif
+#endif
 #ifdef DEBUG
+        Serial.print("Front: ");
+        Serial.print(frontDistance);
 #endif
         int backDistance = getDistance(RightBack, LeftBack, false);
 
         updateOffset(frontDistance, backDistance);
 
+#ifdef DEBUG2
+#ifndef DEBUG
         Serial.print("   |   RIGHT OFFSET: ");
         Serial.println(rightOffset);
+#endif
+#endif
 #ifdef DEBUG
+        Serial.print("   |   RIGHT OFFSET: ");
+        Serial.println(rightOffset);
 #endif
         right.setSpeed(speed + rightOffset);
         left.setSpeed(speed + leftOffset);
@@ -253,7 +279,7 @@ void MotorControl::initiateTurn()
         else
         {
             rightOffset = turnOffset;
-            leftOffset = -turnOffset;
+            leftOffset = -offsetMax;
             digitalWrite(green, LOW);
             digitalWrite(white, HIGH);
         }
@@ -275,11 +301,17 @@ void MotorControl::updateOffset(int rf, int rb)
     int absDiff = abs(diff);
 
     //Dangerously close to wall
-    if (diff <= -dangerDistance)
+    if (diff <= -dangerDistance || diffBack <= -dangerDistance * 1.1)
     {
+#ifdef DEBUG2
+        if (diff > -dangerDistance)
+        {
+            Serial.println("Set to max bc of back sensors");
+        }
+#endif
         rightOffset = offsetMax;
     }
-    else if (intersectionFlag > 5)
+    else if (intersectionFlag > intersectionFlagInit)
     {
 #ifdef DEBUG
         Serial.print("INTERSECTION: ");
@@ -288,8 +320,9 @@ void MotorControl::updateOffset(int rf, int rb)
         if (turn == Stopped)
         {
             SetSpeed(0);
+            direction = Stopped;
         }
-        else if (intersectionFlag > 3)
+        else
         {
             initiateTurn();
         }
@@ -302,8 +335,14 @@ void MotorControl::updateOffset(int rf, int rb)
         leftOffset = 0;
 
         //Dangerously far from wall
-        if (diff >= dangerDistance || diffBack >= dangerDistance * 1.25)
+        if (diff >= dangerDistance) // || diffBack >= dangerDistance * 1.25)
         {
+#ifdef DEBUG2
+            if (diff < dangerDistance)
+            {
+                Serial.println("Set to max bc of back sensors");
+            }
+#endif
             rightOffset = -offsetMax;
         }
         //Front-right of cart within safe distance from wall
@@ -395,29 +434,5 @@ void MotorControl::updateOffset(int rf, int rb)
 
 Direction MotorControl::checkStatus()
 {
-#ifdef DEBUG
-    // switch (direction)
-    // {
-    // case North:
-    //     Serial.print("North");
-    //     break;
-    // case South:
-    //     Serial.print("South");
-    //     break;
-    // case East:
-    //     Serial.print("East");
-    //     break;
-    // case West:
-    //     Serial.print("West");
-    //     break;
-    // case Stopped:
-    //     Serial.print("Stopped");
-    //     break;
-    // default:
-    //     Serial.print("Other");
-    //     break;
-    // }
-    // Serial.println();
-#endif
     return direction;
 }

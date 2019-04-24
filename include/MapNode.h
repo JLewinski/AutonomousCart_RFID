@@ -16,6 +16,5 @@ public:
   void print();
 
 private:
-  //0: North, 1: East, 2: South, 3: West 4: other
   MapNode *nodes[5] = {nullptr, nullptr, nullptr, nullptr, nullptr};
 };
