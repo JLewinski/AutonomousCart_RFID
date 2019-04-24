@@ -1,5 +1,5 @@
 //#define DEBUG
-//#define USE_RFID //Uncommenet to use RFID
+#define USE_RFID //Uncommenet to use RFID
 #include <Arduino.h>
 #include <MotorControl.h>
 #include <SoftwareSerial.h> //Used for transmitting to the device
@@ -86,14 +86,18 @@ int checkNano()
 {
   if (nano.check() == true) //Check to see if any new data has come in from module
   {
+    Serial.println("Check NANO");
     byte responseType = nano.parseResponse(); //Break response into tag ID, RSSI, frequency, and timestamp
 
     if (responseType == RESPONSE_IS_KEEPALIVE)
     {
+      digitalWrite(yellow, LOW);
       Serial.println(F("Scanning"));
     }
     else if (responseType == RESPONSE_IS_TAGFOUND)
     {
+      digitalWrite(yellow, HIGH);
+      Serial.println("FOUND RFID");
       //If the RSSI is in the valid range
       //May also need to use this for telling it when to stop (when in stopping range)
       if (nano.getTagRSSI())
@@ -121,6 +125,10 @@ int checkNano()
       //Unknown response
       Serial.print("Unknown error");
     }
+  }
+  else
+  {
+    // Serial.println("NOT CHECKED NANO");
   }
   return -1;
 }
@@ -233,9 +241,51 @@ void loop()
         if (destId > 0 && destId < myMap.size)
         {
           myMap.setDestination(currentId, destId, currentDirection);
-          Serial.print("MOVING");
+          Serial.print("MOVING ");
+          switch (currentDirection)
+          {
+          case North:
+            Serial.print("North");
+            break;
+          case South:
+            Serial.print("South");
+            break;
+          case East:
+            Serial.print("East");
+            break;
+          case West:
+            Serial.print("West");
+            break;
+          }
+          Serial.print(" Turning ");
+
+          switch (myMap.getDirection(currentId))
+          {
+          case North:
+            Serial.print("North");
+            break;
+          case South:
+            Serial.print("South");
+            break;
+          case East:
+            Serial.print("East");
+            break;
+          case West:
+            Serial.print("West");
+            break;
+          case Stopped:
+            Serial.print("Stopped");
+            break;
+          default:
+            Serial.print("Other");
+            break;
+          }
+          Serial.println();
+          Serial.println("Setting turn");
+          control.setTurn(currentDirection, currentDirection);
+          Serial.println("Setting speed");
           control.SetSpeed(speed);
-          control.setTurn(myMap.getDirection(currentId), currentDirection);
+          Serial.println("Set Speeed");
         }
       }
     }

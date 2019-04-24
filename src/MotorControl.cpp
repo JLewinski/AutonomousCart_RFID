@@ -1,4 +1,4 @@
-//#define DEBUG
+#define DEBUG
 #include "MotorControl.h"
 #include "Pins.h"
 
@@ -45,6 +45,11 @@ void MotorControl::SetSpeed(int spd)
 
 void MotorControl::setTurn(Direction nextTurn, Direction currentDirection)
 {
+    Serial.println("This isn't working");
+    Serial.print("Turn: ");
+    Serial.print(turn);
+    Serial.print(" Direction: ");
+    Serial.print(currentDirection);
     turn = nextTurn;
     direction = currentDirection;
 }
@@ -180,13 +185,23 @@ void MotorControl::Update()
                 else
                 {
                     initiateTurn();
+                    if (leftOffset == 0)
+                    {
+                        digitalWrite(green, HIGH);
+                        digitalWrite(white, LOW);
+                    }
+                    else
+                    {
+                        digitalWrite(white, HIGH);
+                        digitalWrite(green, LOW);
+                    }
                 }
             }
-            digitalWrite(green, HIGH);
         }
         else
         {
             digitalWrite(green, LOW);
+            digitalWrite(white, LOW);
             //not at an intersection
             intersection = (true);
             int backDistance = getDistance(RightBack, LeftBack);
@@ -267,7 +282,6 @@ void MotorControl::updateOffset(int rf, int rb)
     //Front-right of cart within safe distance from wall
     if (absDiff <= safeDistance)
     {
-        digitalWrite(white, HIGH);
         previousDistanceDiff = diff;
         diff = rf - rb;
         absDiff = abs(diff);
@@ -300,7 +314,6 @@ void MotorControl::updateOffset(int rf, int rb)
     //Front-right not within safe distance of wall
     else
     {
-        digitalWrite(white, LOW);
         //Front-right of cart dangerously far from wall
         if (diff >= dangerDistance)
         {
@@ -352,5 +365,28 @@ void MotorControl::updateOffset(int rf, int rb)
 
 Direction MotorControl::checkStatus()
 {
+#ifdef DEBUG
+    switch (direction)
+    {
+    case North:
+        Serial.print("North");
+        break;
+    case South:
+        Serial.print("South");
+        break;
+    case East:
+        Serial.print("East");
+        break;
+    case West:
+        Serial.print("West");
+        break;
+    case Stopped:
+        Serial.print("Stopped");
+        break;
+    default:
+        Serial.print("Other");
+        break;
+    }
+#endif
     return direction;
 }

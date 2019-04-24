@@ -105,17 +105,38 @@ void Map::setDestination(int currentId, int destinationId, Direction direction)
     }
     if (destinationId >= size)
     {
-        //destination does not exist
+//destination does not exist
+#ifdef DEBUG
+        Serial.println("Greater than size");
+#endif
         currentPath = nullptr;
         return;
     }
     else if (currentId == destinationId)
     {
+#ifdef DEBUG
+        Serial.println("CurrentID == DestinationID");
+#endif
         currentPath = new PathNode(currentId, Other, nullptr, nullptr);
         return;
     }
     else if (direction == Stopped || direction == Other || mapNodes[currentId] == nullptr || mapNodes[currentId]->getNext(direction) == nullptr)
     {
+#ifdef DEBUG
+        Serial.print("Bad parameters:");
+        if (direction == Stopped){
+            Serial.print(" Direction == Stopped");
+        }
+if (direction == Stopped){
+            Serial.print(" Direction == Other");
+        }
+        if (mapNodes[currentId] == nullptr){
+            Serial.print(" No location");
+        }
+        if (direction == Stopped){
+            Serial.print(" Direction == Stopped");
+        }
+#endif
         return;
     }
 
@@ -246,6 +267,7 @@ void Map::setDestination(int currentId, int destinationId, Direction direction)
         currentIndex++;
     }
 #ifdef DEBUG
+    digitalWrite(40, HIGH);
     Serial.println("Done searching");
 #endif
 

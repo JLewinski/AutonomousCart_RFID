@@ -48,14 +48,14 @@ enum Pins
     switch2 = 52,
     //Switch 3 (from left)
     switch3 = 53,
-    //LED
+    //LED: safe zone
     white = 40,
-    //LED
+    //LED: abnormal hall width
     blue = 41,
-    //LED
+    //LED: Turning
     green = 42,
-    //LED
+    //LED: RFID Scanned
     yellow = 43,
-    //LED
+    //LED: TIMEOUT
     red = 44
 };

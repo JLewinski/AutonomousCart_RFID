@@ -1,1015 +1,171 @@
-16:22:06.143 -> rf: 1984   rb: 2185    lf: 7729    lb: 4874   front: 15000
-16:22:06.143 -> Avg hall width: 9713
-16:22:06.143 -> Front: 1984
-16:22:06.143 -> Avg hall width: 9713
-16:22:06.143 -> RIGHT OFFSET: 1
-16:22:06.410 -> rf: 1876   rb: 2201    lf: 7818    lb: 5147   front: 15000
-16:22:06.410 -> Avg hall width: 9713
-16:22:06.410 -> Front: 1876
-16:22:06.410 -> Avg hall width: 9713
-16:22:06.410 -> RIGHT OFFSET: 2
-16:22:06.713 -> rf: 1803   rb: 2158    lf: 7886    lb: 5043   front: 15000
-16:22:06.713 -> Avg hall width: 9713
-16:22:06.713 -> Front: 1803
-16:22:06.713 -> Avg hall width: 9713
-16:22:06.713 -> RIGHT OFFSET: 3
-16:22:06.977 -> rf: 2033   rb: 2129    lf: 7729    lb: 4870   front: 15000
-16:22:06.977 -> Avg hall width: 9713
-16:22:06.977 -> Front: 1984
-16:22:06.977 -> Avg hall width: 9713
-16:22:06.977 -> RIGHT OFFSET: 3
-16:22:07.260 -> rf: 2130   rb: 2132    lf: 7548    lb: 4811   front: 15000
-16:22:07.260 -> Avg hall width: 9713
-16:22:07.260 -> Front: 2130
-16:22:07.260 -> Avg hall width: 9713
-16:22:07.260 -> RIGHT OFFSET: 3
-16:22:07.525 -> rf: 2286   rb: 2129    lf: 7396    lb: 4661   front: 15000
-16:22:07.525 -> Avg hall width: 9713
-16:22:07.525 -> Front: 2286
-16:22:07.525 -> Avg hall width: 9713
-16:22:07.525 -> RIGHT OFFSET: 3
-16:22:07.829 -> rf: 2420   rb: 2179    lf: 7267    lb: 7514   front: 15000
-16:22:07.829 -> Avg hall width: 9713
-16:22:07.829 -> Front: 2420
-16:22:07.829 -> Avg hall width: 9713
-16:22:07.829 -> RIGHT OFFSET: -2
-16:22:08.111 -> rf: 2632   rb: 2246    lf: 7090    lb: 4286   front: 15000
-16:22:08.111 -> Avg hall width: 9713
-16:22:08.111 -> Front: 2623
-16:22:08.111 -> Avg hall width: 9713
-16:22:08.111 -> RIGHT OFFSET: 1
-16:22:08.394 -> rf: 2765   rb: 2354    lf: 7027    lb: 3972   front: 15000
-16:22:08.394 -> Avg hall width: 9713
-16:22:08.394 -> Front: 2686
-16:22:08.394 -> Avg hall width: 9713
-16:22:08.394 -> RIGHT OFFSET: 0
-16:22:08.661 -> rf: 2786   rb: 2429    lf: 6967    lb: 4028   front: 15000
-16:22:08.661 -> Avg hall width: 9713
-16:22:08.661 -> Front: 2746
-16:22:08.661 -> Avg hall width: 9713
-16:22:08.661 -> RIGHT OFFSET: -1
-16:22:08.978 -> rf: 2858   rb: 2568    lf: 6919    lb: 7254   front: 15000
-16:22:08.978 -> Avg hall width: 9713
-16:22:08.978 -> Front: 2794
-16:22:08.978 -> Avg hall width: 9713
-16:22:08.978 -> RIGHT OFFSET: -2
-16:22:09.229 -> rf: 3034   rb: 2537    lf: 6655    lb: 7175   front: 15000
-16:22:09.229 -> Avg hall width: 9713
-16:22:09.229 -> Front: 3034
-16:22:09.229 -> Avg hall width: 9713
-16:22:09.266 -> RIGHT OFFSET: -3
-16:22:09.544 -> rf: 3120   rb: 2634    lf: 6671    lb: 7096   front: 15000
-16:22:09.544 -> Avg hall width: 9713
-16:22:09.544 -> Front: 3042
-16:22:09.544 -> Avg hall width: 9713
-16:22:09.544 -> RIGHT OFFSET: -4
-16:22:09.813 -> rf: 3222   rb: 2716    lf: 6473    lb: 7044   front: 15000
-16:22:09.813 -> Avg hall width: 9713
-16:22:09.813 -> Front: 3222
-16:22:09.813 -> Avg hall width: 9713
-16:22:09.813 -> RIGHT OFFSET: -5
-16:22:10.093 -> rf: 3355   rb: 2821    lf: 6415    lb: 6937   front: 15000
-16:22:10.093 -> Avg hall width: 9713
-16:22:10.093 -> Front: 3298
-16:22:10.093 -> Avg hall width: 9713
-16:22:10.093 -> RIGHT OFFSET: -6
-16:22:10.371 -> rf: 3452   rb: 3250    lf: 6275    lb: 6848   front: 15000
-16:22:10.371 -> Avg hall width: 9713
-16:22:10.408 -> Front: 3438
-16:22:10.408 -> Avg hall width: 9713
-16:22:10.408 -> RIGHT OFFSET: -7
-16:22:10.658 -> rf: 3397   rb: 3081    lf: 6296    lb: 6781   front: 15000
-16:22:10.658 -> Avg hall width: 9713
-16:22:10.694 -> Front: 3397
-16:22:10.694 -> Avg hall width: 9713
-16:22:10.694 -> RIGHT OFFSET: -7
-16:22:10.958 -> rf: 3335   rb: 3427    lf: 6546    lb: 6668   front: 15000
-16:22:10.958 -> Avg hall width: 9713
-16:22:10.958 -> Front: 3167
-16:22:10.958 -> Avg hall width: 9713
-16:22:10.958 -> RIGHT OFFSET: -7
-16:22:11.268 -> rf: 3191   rb: 3111    lf: 6577    lb: 6619   front: 15000
-16:22:11.268 -> Avg hall width: 9713
-16:22:11.268 -> Front: 3136
-16:22:11.268 -> Avg hall width: 9713
-16:22:11.268 -> RIGHT OFFSET: -7
-16:22:11.526 -> rf: 3103   rb: 3074    lf: 6571    lb: 6636   front: 15000
-16:22:11.526 -> Avg hall width: 9713
-16:22:11.526 -> Front: 3103
-16:22:11.526 -> Avg hall width: 9106
-16:22:11.526 -> RIGHT OFFSET: -7
-16:22:11.808 -> rf: 3185   rb: 3125    lf: 6511    lb: 6641   front: 15000
-16:22:11.808 -> Avg hall width: 9106
-16:22:11.861 -> Front: 2595
-16:22:11.861 -> Avg hall width: 9173
-16:22:11.861 -> RIGHT OFFSET: -12
-16:22:12.094 -> rf: 3188   rb: 3103    lf: 6463    lb: 6531   front: 15000
-16:22:12.094 -> Avg hall width: 9172
-16:22:12.147 -> Front: 2709
-16:22:12.147 -> Avg hall width: 9229
-16:22:12.147 -> RIGHT OFFSET: -13
-16:22:12.418 -> rf: 3146   rb: 3187    lf: 6580    lb: 6569   front: 15000
-16:22:12.418 -> Avg hall width: 9230
-16:22:12.418 -> Front: 2650
-16:22:12.418 -> Avg hall width: 9294
-16:22:12.418 -> RIGHT OFFSET: -13
-16:22:12.701 -> rf: 2982   rb: 3162    lf: 6690    lb: 6610   front: 15000
-16:22:12.701 -> Avg hall width: 9292
-16:22:12.701 -> Front: 2602
-16:22:12.701 -> Avg hall width: 9361
-16:22:12.701 -> RIGHT OFFSET: -13
-16:22:12.982 -> rf: 2908   rb: 3101    lf: 6772    lb: 6649   front: 15000
-16:22:12.982 -> Avg hall width: 9361
-16:22:12.982 -> Front: 2589
-16:22:12.982 -> Avg hall width: 9431
-16:22:12.982 -> RIGHT OFFSET: -8
-16:22:13.269 -> rf: 2765   rb: 3096    lf: 6945    lb: 6712   front: 15000
-16:22:13.269 -> Avg hall width: 9432
-16:22:13.269 -> Front: 2487
-16:22:13.269 -> Avg hall width: 9508
-16:22:13.269 -> RIGHT OFFSET: -3
-16:22:13.527 -> rf: 2765   rb: 3036    lf: 6954    lb: 6674   front: 15000
-16:22:13.527 -> Avg hall width: 9508
-16:22:13.561 -> Front: 2554
-16:22:13.561 -> Avg hall width: 9509
-16:22:13.561 -> RIGHT OFFSET: 2
-16:22:13.843 -> rf: 2861   rb: 3038    lf: 6820    lb: 3402   front: 15000
-16:22:13.843 -> Avg hall width: 9508
-16:22:13.843 -> Front: 2688
-16:22:13.843 -> Avg hall width: 9506
-16:22:13.843 -> RIGHT OFFSET: 1
-16:22:14.128 -> rf: 2977   rb: 3015    lf: 6777    lb: 6687   front: 15000
-16:22:14.128 -> Avg hall width: 9505
-16:22:14.128 -> Front: 2728
-16:22:14.128 -> Avg hall width: 9589
-16:22:14.128 -> RIGHT OFFSET: 0
-16:22:14.377 -> rf: 3095   rb: 3030    lf: 6666    lb: 6643   front: 15000
-16:22:14.426 -> Avg hall width: 9589
-16:22:14.426 -> Front: 2923
-16:22:14.426 -> Avg hall width: 9670
-16:22:14.426 -> RIGHT OFFSET: -1
-16:22:14.711 -> rf: 3053   rb: 3065    lf: 6656    lb: 6660   front: 15000
-16:22:14.711 -> Avg hall width: 9668
-16:22:14.711 -> Front: 3012
-16:22:14.711 -> Avg hall width: 9665
-16:22:14.711 -> RIGHT OFFSET: -2
-16:22:14.952 -> rf: 3056   rb: 3049    lf: 6622    lb: 6634   front: 15000
-16:22:14.994 -> Avg hall width: 9665
-16:22:14.994 -> Front: 3043
-16:22:14.994 -> Avg hall width: 9664
-16:22:14.994 -> RIGHT OFFSET: -3
-16:22:15.251 -> rf: 3203   rb: 3075    lf: 6505    lb: 6606   front: 15000
-16:22:15.251 -> Avg hall width: 9662
-16:22:15.251 -> Front: 3157
-16:22:15.251 -> Avg hall width: 9661
-16:22:15.251 -> RIGHT OFFSET: -4
-16:22:15.563 -> rf: 3385   rb: 3175    lf: 6267    lb: 6619   front: 15000
-16:22:15.563 -> Avg hall width: 9660
-16:22:15.563 -> Front: 3385
-16:22:15.563 -> Avg hall width: 9661
-16:22:15.563 -> RIGHT OFFSET: -5
-16:22:15.813 -> rf: 3336   rb: 3190    lf: 6376    lb: 6549   front: 15000
-16:22:15.864 -> Avg hall width: 9659
-16:22:15.864 -> Front: 3283
-16:22:15.864 -> Avg hall width: 9659
-16:22:15.864 -> RIGHT OFFSET: -5
-16:22:16.096 -> rf: 3369   rb: 3217    lf: 6325    lb: 6590   front: 15000
-16:22:16.146 -> Avg hall width: 9658
-16:22:16.146 -> Front: 3333
-16:22:16.146 -> Avg hall width: 9651
-16:22:16.146 -> RIGHT OFFSET: -6
-16:22:16.380 -> rf: 3485   rb: 3696    lf: 6220    lb: 6508   front: 15000
-16:22:16.430 -> Avg hall width: 9651
-16:22:16.430 -> Front: 3431
-16:22:16.430 -> Avg hall width: 9660
-16:22:16.430 -> RIGHT OFFSET: -7
-16:22:16.712 -> rf: 3435   rb: 3243    lf: 6265    lb: 6451   front: 15000
-16:22:16.712 -> Avg hall width: 9655
-16:22:16.712 -> Front: 3390
-16:22:16.712 -> Avg hall width: 9645
-16:22:16.712 -> RIGHT OFFSET: -7
-16:22:16.961 -> rf: 3378   rb: 3271    lf: 6286    lb: 6420   front: 15000
-16:22:16.961 -> Avg hall width: 9643
-16:22:16.996 -> Front: 3357
-16:22:16.996 -> Avg hall width: 9642
-16:22:16.996 -> RIGHT OFFSET: -7
-16:22:17.245 -> rf: 3403   rb: 3309    lf: 6232    lb: 2776   front: 15000
-16:22:17.245 -> Avg hall width: 9641
-16:22:17.245 -> Front: 3403
-16:22:17.245 -> Avg hall width: 9550
-16:22:17.294 -> RIGHT OFFSET: -8
-16:22:17.530 -> rf: 3416   rb: 3314    lf: 6223    lb: 2522   front: 15000
-16:22:17.530 -> Avg hall width: 9549
-16:22:17.530 -> Front: 3326
-16:22:17.530 -> Avg hall width: 9450
-16:22:17.578 -> RIGHT OFFSET: -8
-16:22:17.814 -> rf: 3230   rb: 3344    lf: 6454    lb: 6378   front: 15000
-16:22:17.814 -> Avg hall width: 9451
-16:22:17.814 -> Front: 2997
-16:22:17.814 -> Avg hall width: 9453
-16:22:17.814 -> RIGHT OFFSET: -8
-16:22:18.118 -> rf: 3068   rb: 3324    lf: 6583    lb: 6423   front: 15000
-16:22:18.118 -> Avg hall width: 9452
-16:22:18.118 -> Front: 2869
-16:22:18.118 -> Avg hall width: 9451
-16:22:18.118 -> RIGHT OFFSET: -8
-16:22:18.397 -> rf: 3062   rb: 3330    lf: 6606    lb: 6394   front: 15000
-16:22:18.397 -> Avg hall width: 9451
-16:22:18.397 -> Front: 2845
-16:22:18.397 -> Avg hall width: 9450
-16:22:18.397 -> RIGHT OFFSET: -8
-16:22:18.676 -> rf: 3004   rb: 3304    lf: 6621    lb: 6406   front: 15000
-16:22:18.676 -> Avg hall width: 9449
-16:22:18.676 -> Front: 2828
-16:22:18.676 -> Avg hall width: 9448
-16:22:18.676 -> RIGHT OFFSET: -8
-16:22:18.997 -> rf: 2986   rb: 3285    lf: 6669    lb: 6424   front: 15000
-16:22:18.997 -> Avg hall width: 9446
-16:22:18.997 -> Front: 2777
-16:22:18.997 -> Avg hall width: 9444
-16:22:18.997 -> RIGHT OFFSET: -8
-16:22:19.247 -> rf: 3017   rb: 3255    lf: 6715    lb: 6442   front: 15000
-16:22:19.247 -> Avg hall width: 9444
-16:22:19.287 -> Front: 2729
-16:22:19.287 -> Avg hall width: 9444
-16:22:19.287 -> RIGHT OFFSET: -8
-16:22:19.526 -> rf: 2885   rb: 3224    lf: 6894    lb: 6450   front: 15000
-16:22:19.574 -> Avg hall width: 9446
-16:22:19.574 -> Front: 2552
-16:22:19.574 -> Avg hall width: 9527
-16:22:19.574 -> RIGHT OFFSET: -3
-16:22:19.847 -> rf: 2736   rb: 3173    lf: 6999    lb: 6549   front: 15000
-16:22:19.847 -> Avg hall width: 9527
-16:22:19.847 -> Front: 2528
-16:22:19.847 -> Avg hall width: 9527
-16:22:19.847 -> RIGHT OFFSET: 2
-16:22:20.112 -> rf: 2777   rb: 3102    lf: 6911    lb: 6614   front: 15000
-16:22:20.112 -> Avg hall width: 9525
-16:22:20.112 -> Front: 2614
-16:22:20.112 -> Avg hall width: 9526
-16:22:20.112 -> RIGHT OFFSET: 1
-16:22:20.429 -> rf: 2922   rb: 3071    lf: 6756    lb: 6579   front: 15000
-16:22:20.429 -> Avg hall width: 9526
-16:22:20.429 -> Front: 2770
-16:22:20.429 -> Avg hall width: 9524
-16:22:20.429 -> RIGHT OFFSET: 0
-16:22:20.711 -> rf: 3060   rb: 3099    lf: 6642    lb: 6629   front: 15000
-16:22:20.711 -> Avg hall width: 9524
-16:22:20.711 -> Front: 2882
-16:22:20.711 -> Avg hall width: 9525
-16:22:20.711 -> RIGHT OFFSET: -1
-16:22:20.961 -> rf: 3124   rb: 3089    lf: 6603    lb: 6616   front: 15000
-16:22:20.994 -> Avg hall width: 9526
-16:22:20.994 -> Front: 2923
-16:22:20.994 -> Avg hall width: 9526
-16:22:20.994 -> RIGHT OFFSET: -2
-16:22:21.244 -> rf: 3181   rb: 3155    lf: 6519    lb: 6597   front: 15000
-16:22:21.297 -> Avg hall width: 9528
-16:22:21.297 -> Front: 3009
-16:22:21.297 -> Avg hall width: 9527
-16:22:21.297 -> RIGHT OFFSET: -3
-16:22:21.544 -> rf: 3266   rb: 3186    lf: 6402    lb: 6570   front: 15000
-16:22:21.544 -> Avg hall width: 9526
-16:22:21.544 -> Front: 3124
-16:22:21.544 -> Avg hall width: 9526
-16:22:21.544 -> RIGHT OFFSET: -4
-16:22:21.852 -> rf: 3402   rb: 3169    lf: 6252    lb: 6537   front: 15000
-16:22:21.852 -> Avg hall width: 9525
-16:22:21.852 -> Front: 3273
-16:22:21.852 -> Avg hall width: 9522
-16:22:21.852 -> RIGHT OFFSET: -5
-16:22:22.125 -> rf: 3650   rb: 3262    lf: 6063    lb: 6450   front: 15000
-16:22:22.125 -> Avg hall width: 9523
-16:22:22.125 -> Front: 3460
-16:22:22.125 -> Avg hall width: 9510
-16:22:22.125 -> RIGHT OFFSET: -6
-16:22:22.393 -> rf: 3719   rb: 3294    lf: 5995    lb: 6398   front: 15000
-16:22:22.393 -> Avg hall width: 9511
-16:22:22.432 -> Front: 3516
-16:22:22.432 -> Avg hall width: 9511
-16:22:22.432 -> RIGHT OFFSET: -30
-16:22:22.679 -> rf: 3877   rb: 3345    lf: 6085    lb: 6343   front: 15000
-16:22:22.679 -> Avg hall width: 9518
-16:22:22.734 -> Front: 3433
-16:22:22.734 -> Avg hall width: 9518
-16:22:22.734 -> RIGHT OFFSET: -21
-16:22:22.961 -> rf: 3710   rb: 3409    lf: 6199    lb: 6313   front: 15000
-16:22:23.012 -> Avg hall width: 9525
-16:22:23.012 -> Front: 3326
-16:22:23.012 -> Avg hall width: 9616
-16:22:23.012 -> RIGHT OFFSET: -21
-16:22:23.287 -> rf: 3318   rb: 3395    lf: 6363    lb: 6317   front: 15000
-16:22:23.287 -> Avg hall width: 9617
-16:22:23.287 -> Front: 3254
-16:22:23.287 -> Avg hall width: 9714
-16:22:23.287 -> RIGHT OFFSET: -21
-16:22:23.564 -> rf: 3128   rb: 3378    lf: 6546    lb: 6304   front: 15000
-16:22:23.564 -> Avg hall width: 9713
-16:22:23.564 -> Front: 3128
-16:22:23.564 -> Avg hall width: 9712
-16:22:23.564 -> RIGHT OFFSET: -21
-16:22:23.845 -> rf: 2927   rb: 3353    lf: 6738    lb: 6369   front: 15000
-16:22:23.845 -> Avg hall width: 9713
-16:22:23.845 -> Front: 2927
-16:22:23.845 -> Avg hall width: 9712
-16:22:23.845 -> RIGHT OFFSET: -21
-16:22:24.129 -> rf: 2843   rb: 3311    lf: 6848    lb: 6393   front: 15000
-16:22:24.129 -> Avg hall width: 9713
-16:22:24.129 -> Front: 2843
-16:22:24.129 -> Avg hall width: 9712
-16:22:24.129 -> RIGHT OFFSET: -21
-16:22:24.428 -> rf: 2733   rb: 3265    lf: 7014    lb: 6469   front: 15000
-16:22:24.428 -> Avg hall width: 9715
-16:22:24.428 -> Front: 2701
-16:22:24.428 -> Avg hall width: 9716
-16:22:24.428 -> RIGHT OFFSET: -21
-16:22:24.694 -> rf: 2484   rb: 3204    lf: 7292    lb: 6601   front: 10847
-16:22:24.694 -> Avg hall width: 9719
-16:22:24.694 -> Front: 2427
-16:22:24.694 -> Avg hall width: 9721
-16:22:24.694 -> RIGHT OFFSET: -16
-16:22:24.997 -> rf: 2337   rb: 3266    lf: 7658    lb: 6737   front: 10042
-16:22:24.997 -> Avg hall width: 9728
-16:22:24.997 -> Front: 2070
-16:22:24.997 -> Avg hall width: 9736
-16:22:24.997 -> RIGHT OFFSET: -15
-16:22:25.253 -> rf: 1883   rb: 3156    lf: 7930    lb: 6835   front: 9507
-16:22:25.253 -> Avg hall width: 9736
-16:22:25.253 -> Front: 1806
-16:22:25.296 -> Avg hall width: 9744
-16:22:25.296 -> RIGHT OFFSET: -14
-16:22:25.551 -> rf: 1646   rb: 3190    lf: 8200    lb: 6993   front: 8960
-16:22:25.551 -> Avg hall width: 9747
-16:22:25.551 -> Front: 1547
-16:22:25.551 -> Avg hall width: 9759
-16:22:25.551 -> RIGHT OFFSET: -13
-16:22:25.834 -> rf: 1439   rb: 2971    lf: 8456    lb: 7152   front: 8868
-16:22:25.834 -> Avg hall width: 9764
-16:22:25.834 -> Front: 1308
-16:22:25.834 -> Avg hall width: 9774
-16:22:25.834 -> RIGHT OFFSET: 30
-16:22:26.098 -> rf: 1403   rb: 2642    lf: 8471    lb: 7311   front: 8121
-16:22:26.098 -> Avg hall width: 9779
-16:22:26.132 -> Front: 1308
-16:22:26.132 -> Avg hall width: 9786
-16:22:26.132 -> RIGHT OFFSET: 30
-16:22:26.381 -> rf: 1454   rb: 2419    lf: 8309    lb: 7472   front: 7172
-16:22:26.381 -> Avg hall width: 9788
-16:22:26.381 -> Front: 1454
-16:22:26.381 -> Avg hall width: 9792
-16:22:26.381 -> RIGHT OFFSET: 30
-16:22:26.648 -> rf: 1651   rb: 2284    lf: 8034    lb: 5072   front: 6734
-16:22:26.683 -> Avg hall width: 9791
-16:22:26.683 -> Front: 1651
-16:22:26.683 -> Avg hall width: 9732
-16:22:26.683 -> RIGHT OFFSET: 21
-16:22:26.949 -> rf: 2267   rb: 2186    lf: 7666    lb: 7506   front: 14141
-16:22:26.949 -> Avg hall width: 9738
-16:22:26.949 -> Front: 2072
-16:22:26.949 -> Avg hall width: 9737
-16:22:26.949 -> RIGHT OFFSET: 21
-16:22:27.256 -> rf: 15000   rb: 2201    lf: 7243    lb: 7478   front: 13581
-16:22:27.256 -> Avg hall width: 9737
-16:22:27.256 -> Front: 2494
-16:22:27.256 -> Avg hall width: 9737
-16:22:27.256 -> RIGHT OFFSET: 16
-16:22:27.548 -> rf: 5717   rb: 2350    lf: 6748    lb: 7402   front: 15000
-16:22:27.548 -> Avg hall width: 9805
-16:22:27.548 -> Front: 3057
-16:22:27.548 -> Avg hall width: 9807
-16:22:27.548 -> RIGHT OFFSET: -12
-16:22:27.838 -> rf: 4792   rb: 2566    lf: 6228    lb: 7274   front: 15000
-16:22:27.838 -> Avg hall width: 9840
-16:22:27.838 -> Front: 3612
-16:22:27.838 -> Avg hall width: 9843
-16:22:27.838 -> RIGHT OFFSET: -30
-16:22:28.099 -> rf: 4751   rb: 2657    lf: 6204    lb: 7192   front: 15000
-16:22:28.099 -> Avg hall width: 9874
-16:22:28.147 -> Front: 3670
-16:22:28.147 -> Avg hall width: 9878
-16:22:28.147 -> RIGHT OFFSET: -30
-16:22:28.399 -> rf: 4345   rb: 2733    lf: 6246    lb: 7035   front: 15000
-16:22:28.399 -> Avg hall width: 9900
-16:22:28.399 -> Front: 3654
-16:22:28.399 -> Avg hall width: 9895
-16:22:28.399 -> RIGHT OFFSET: -30
-16:22:28.718 -> rf: 3878   rb: 2945    lf: 6384    lb: 6922   front: 15000
-16:22:28.718 -> Avg hall width: 9910
-16:22:28.718 -> Front: 3526
-16:22:28.718 -> Avg hall width: 9908
-16:22:28.718 -> RIGHT OFFSET: -30
-16:22:28.967 -> rf: 3515   rb: 3085    lf: 6650    lb: 6873   front: 15000
-16:22:28.967 -> Avg hall width: 9920
-16:22:28.967 -> Front: 3270
-16:22:28.967 -> Avg hall width: 9926
-16:22:28.967 -> RIGHT OFFSET: -21
-16:22:29.249 -> rf: 3172   rb: 3344    lf: 6851    lb: 6828   front: 15000
-16:22:29.299 -> Avg hall width: 9934
-16:22:29.299 -> Front: 3083
-16:22:29.299 -> Avg hall width: 9947
-16:22:29.299 -> RIGHT OFFSET: -21
-16:22:29.551 -> rf: 2925   rb: 3334    lf: 7013    lb: 6848   front: 9887
-16:22:29.551 -> Avg hall width: 9953
-16:22:29.551 -> Front: 2925
-16:22:29.551 -> Avg hall width: 9966
-16:22:29.551 -> RIGHT OFFSET: -21
-16:22:29.817 -> rf: 2347   rb: 7706    lf: 7264    lb: 4020   front: 9273
-16:22:29.867 -> Avg hall width: 9963
-16:22:29.867 -> Front: 2347
-16:22:29.867 -> Avg hall width: 10014
-16:22:29.867 -> RIGHT OFFSET: 15
-16:22:30.118 -> rf: 2253   rb: 15000    lf: 7384    lb: 4193   front: 8667
-16:22:30.118 -> Avg hall width: 10012
-16:22:30.118 -> Front: 2253
-16:22:30.118 -> Avg hall width: 10012
-16:22:30.118 -> RIGHT OFFSET: 16
-16:22:30.431 -> rf: 2291   rb: 15000    lf: 7355    lb: 4707   front: 8145
-16:22:30.431 -> Avg hall width: 10010
-16:22:30.431 -> Front: 2291
-16:22:30.431 -> Avg hall width: 10010
-16:22:30.431 -> RIGHT OFFSET: 16
-16:22:30.713 -> rf: 2591   rb: 15000    lf: 7054    lb: 3901   front: 15000
-16:22:30.713 -> Avg hall width: 10008
-16:22:30.713 -> Front: 2591
-16:22:30.713 -> Avg hall width: 10008
-16:22:30.713 -> RIGHT OFFSET: 21
-16:22:30.981 -> rf: 3151   rb: 3388    lf: 6668    lb: 7030   front: 15000
-16:22:30.981 -> Avg hall width: 10009
-16:22:30.981 -> Front: 3151
-16:22:30.981 -> Avg hall width: 10024
-16:22:31.020 -> RIGHT OFFSET: 20
-16:22:31.297 -> rf: 4177   rb: 3054    lf: 6189    lb: 6940   front: 15000
-16:22:31.297 -> Avg hall width: 10033
-16:22:31.297 -> Front: 3844
-16:22:31.297 -> Avg hall width: 10033
-16:22:31.297 -> RIGHT OFFSET: -30
-16:22:31.547 -> rf: 4697   rb: 3034    lf: 5779    lb: 6762   front: 15000
-16:22:31.585 -> Avg hall width: 10050
-16:22:31.585 -> Front: 4271
-16:22:31.585 -> Avg hall width: 10045
-16:22:31.585 -> RIGHT OFFSET: -30
-16:22:31.879 -> rf: 4666   rb: 3144    lf: 5743    lb: 6621   front: 15000
-16:22:31.879 -> Avg hall width: 10059
-16:22:31.879 -> Front: 4316
-16:22:31.879 -> Avg hall width: 10048
-16:22:31.879 -> RIGHT OFFSET: -30
-16:22:32.146 -> rf: 4409   rb: 3201    lf: 5935    lb: 6556   front: 15000
-16:22:32.146 -> Avg hall width: 10060
-16:22:32.146 -> Front: 4125
-16:22:32.146 -> Avg hall width: 10051
-16:22:32.146 -> RIGHT OFFSET: -30
-16:22:32.413 -> rf: 4170   rb: 3246    lf: 6154    lb: 6508   front: 15000
-16:22:32.447 -> Avg hall width: 10062
-16:22:32.447 -> Front: 3908
-16:22:32.447 -> Avg hall width: 10057
-16:22:32.447 -> RIGHT OFFSET: -30
-16:22:32.731 -> rf: 4022   rb: 3293    lf: 6246    lb: 6431   front: 15000
-16:22:32.731 -> Avg hall width: 10069
-16:22:32.731 -> Front: 3823
-16:22:32.731 -> Avg hall width: 10065
-16:22:32.731 -> RIGHT OFFSET: -30
-16:22:33.009 -> rf: 3818   rb: 3255    lf: 6516    lb: 6412   front: 15000
-16:22:33.009 -> Avg hall width: 10082
-16:22:33.009 -> Front: 3566
-16:22:33.009 -> Avg hall width: 10139
-16:22:33.009 -> RIGHT OFFSET: -30
-16:22:33.278 -> rf: 3504   rb: 3208    lf: 6780    lb: 6481   front: 15000
-16:22:33.314 -> Avg hall width: 10148
-16:22:33.314 -> Front: 3368
-16:22:33.314 -> Avg hall width: 10148
-16:22:33.314 -> RIGHT OFFSET: -21
-16:22:33.580 -> rf: 3317   rb: 3419    lf: 6917    lb: 6500   front: 15000
-16:22:33.580 -> Avg hall width: 10162
-16:22:33.580 -> Front: 3245
-16:22:33.580 -> Avg hall width: 10098
-16:22:33.580 -> RIGHT OFFSET: -21
-16:22:33.864 -> rf: 3015   rb: 3541    lf: 7114    lb: 6565   front: 15000
-16:22:33.864 -> Avg hall width: 10108
-16:22:33.864 -> Front: 2994
-16:22:33.864 -> Avg hall width: 10085
-16:22:33.864 -> RIGHT OFFSET: -21
-16:22:34.167 -> rf: 2643   rb: 3551    lf: 7456    lb: 6643   front: 15000
-16:22:34.167 -> Avg hall width: 10091
-16:22:34.167 -> Front: 2635
-16:22:34.167 -> Avg hall width: 10072
-16:22:34.167 -> RIGHT OFFSET: -21
-16:22:34.453 -> rf: 2085   rb: 3716    lf: 7828    lb: 6800   front: 15000
-16:22:34.453 -> Avg hall width: 10074
-16:22:34.453 -> Front: 2085
-16:22:34.453 -> Avg hall width: 10072
-16:22:34.453 -> RIGHT OFFSET: 15
-16:22:34.750 -> rf: 1797   rb: 3519    lf: 8008    lb: 6941   front: 15000
-16:22:34.750 -> Avg hall width: 10073
-16:22:34.750 -> Front: 1797
-16:22:34.750 -> Avg hall width: 10078
-16:22:34.750 -> RIGHT OFFSET: 16
-16:22:35.021 -> rf: 1900   rb: 3403    lf: 8001    lb: 7063   front: 15000
-16:22:35.021 -> Avg hall width: 10079
-16:22:35.021 -> Front: 1900
-16:22:35.021 -> Avg hall width: 10086
-16:22:35.021 -> RIGHT OFFSET: 16
-16:22:35.304 -> rf: 2702   rb: 3220    lf: 7714    lb: 7137   front: 15000
-16:22:35.304 -> Avg hall width: 10098
-16:22:35.304 -> Front: 2384
-16:22:35.304 -> Avg hall width: 10106
-16:22:35.304 -> RIGHT OFFSET: 16
-16:22:35.610 -> rf: 2444   rb: 3170    lf: 7297    lb: 4149   front: 15000
-16:22:35.610 -> Avg hall width: 10095
-16:22:35.610 -> Front: 2444
-16:22:35.610 -> Avg hall width: 10030
-16:22:35.610 -> RIGHT OFFSET: 21
-16:22:35.877 -> rf: 2879   rb: 2878    lf: 6928    lb: 3675   front: 15000
-16:22:35.877 -> Avg hall width: 10020
-16:22:35.877 -> Front: 2879
-16:22:35.877 -> Avg hall width: 9944
-16:22:35.877 -> RIGHT OFFSET: -15
-16:22:36.159 -> rf: 3085   rb: 2620    lf: 6636    lb: 7042   front: 15000
-16:22:36.159 -> Avg hall width: 9894
-16:22:36.159 -> Front: 3085
-16:22:36.159 -> Avg hall width: 9894
-16:22:36.159 -> RIGHT OFFSET: -16
-16:22:36.470 -> rf: 3155   rb: 3060    lf: 6567    lb: 7006   front: 15000
-16:22:36.470 -> Avg hall width: 9896
-16:22:36.470 -> Front: 3155
-16:22:36.470 -> Avg hall width: 9907
-16:22:36.470 -> RIGHT OFFSET: -17
-16:22:36.752 -> rf: 2954   rb: 2777    lf: 6795    lb: 3966   front: 15000
-16:22:36.752 -> Avg hall width: 9905
-16:22:36.752 -> Front: 2954
-16:22:36.752 -> Avg hall width: 9813
-16:22:36.752 -> RIGHT OFFSET: -17
-16:22:37.020 -> rf: 2785   rb: 2817    lf: 6933    lb: 3580   front: 15000
-16:22:37.020 -> Avg hall width: 9797
-16:22:37.020 -> Front: 2785
-16:22:37.020 -> Avg hall width: 9707
-16:22:37.020 -> RIGHT OFFSET: -17
-16:22:37.285 -> rf: 2608   rb: 3001    lf: 7145    lb: 3786   front: 15000
-16:22:37.336 -> Avg hall width: 9689
-16:22:37.336 -> Front: 2544
-16:22:37.336 -> Avg hall width: 9614
-16:22:37.336 -> RIGHT OFFSET: -12
-16:22:37.586 -> rf: 2402   rb: 2850    lf: 7307    lb: 4063   front: 15000
-16:22:37.586 -> Avg hall width: 9596
-16:22:37.586 -> Front: 2289
-16:22:37.586 -> Avg hall width: 9525
-16:22:37.586 -> RIGHT OFFSET: 9
-16:22:37.869 -> rf: 2350   rb: 2729    lf: 7330    lb: 4055   front: 15000
-16:22:37.869 -> Avg hall width: 9508
-16:22:37.869 -> Front: 2178
-16:22:37.869 -> Avg hall width: 9434
-16:22:37.869 -> RIGHT OFFSET: 10
-16:22:38.152 -> rf: 2447   rb: 2691    lf: 7298    lb: 4095   front: 15000
-16:22:38.152 -> Avg hall width: 9420
-16:22:38.152 -> Front: 2122
-16:22:38.152 -> Avg hall width: 9345
-16:22:38.152 -> RIGHT OFFSET: 11
-16:22:38.450 -> rf: 2726   rb: 2649    lf: 6935    lb: 3825   front: 15000
-16:22:38.450 -> Avg hall width: 9330
-16:22:38.450 -> Front: 2395
-16:22:38.450 -> Avg hall width: 9249
-16:22:38.450 -> RIGHT OFFSET: 11
-16:22:38.720 -> rf: 3097   rb: 2866    lf: 6558    lb: 6973   front: 15000
-16:22:38.720 -> Avg hall width: 9232
-16:22:38.720 -> Front: 2674
-16:22:38.720 -> Avg hall width: 9236
-16:22:38.720 -> RIGHT OFFSET: -8
-16:22:39.005 -> rf: 3514   rb: 2955    lf: 6280    lb: 6925   front: 15000
-16:22:39.005 -> Avg hall width: 9224
-16:22:39.005 -> Front: 2944
-16:22:39.005 -> Avg hall width: 9229
-16:22:39.005 -> RIGHT OFFSET: -9
-16:22:39.319 -> rf: 3597   rb: 2963    lf: 6273    lb: 6808   front: 15000
-16:22:39.319 -> Avg hall width: 9220
-16:22:39.319 -> Front: 2947
-16:22:39.319 -> Avg hall width: 9216
-16:22:39.319 -> RIGHT OFFSET: -10
-16:22:39.604 -> rf: 3536   rb: 3037    lf: 6363    lb: 6765   front: 15000
-16:22:39.604 -> Avg hall width: 9210
-16:22:39.604 -> Front: 2847
-16:22:39.604 -> Avg hall width: 9203
-16:22:39.604 -> RIGHT OFFSET: -10
-16:22:39.852 -> rf: 3457   rb: 3072    lf: 6692    lb: 6636   front: 15000
-16:22:39.852 -> Avg hall width: 9204
-16:22:39.905 -> Front: 2512
-16:22:39.905 -> Avg hall width: 9192
-16:22:39.905 -> RIGHT OFFSET: -5
-16:22:40.156 -> rf: 3601   rb: 3138    lf: 6746    lb: 6542   front: 15000
-16:22:40.156 -> Avg hall width: 9203
-16:22:40.156 -> Front: 2457
-16:22:40.156 -> Avg hall width: 9182
-16:22:40.156 -> RIGHT OFFSET: 0
-16:22:40.450 -> rf: 3795   rb: 3233    lf: 15000    lb: 6463   front: 15000
-16:22:40.450 -> Avg hall width: 9182
-16:22:40.450 -> Front: -5818
-16:22:40.450 -> Avg hall width: 9179
-16:22:40.450 -> RIGHT OFFSET: 30
-16:22:40.752 -> rf: 4118   rb: 3390    lf: 15000    lb: 6349   front: 15000
-16:22:40.752 -> Avg hall width: 9179
-16:22:40.752 -> Front: -5821
-16:22:40.752 -> Avg hall width: 9161
-16:22:40.752 -> RIGHT OFFSET: 30
-16:22:41.033 -> rf: 4704   rb: 3586    lf: 15000    lb: 6279   front: 15000
-16:22:41.033 -> Avg hall width: 9161
-16:22:41.033 -> Front: -5839
-16:22:41.091 -> Avg hall width: 9160
-16:22:41.091 -> RIGHT OFFSET: 30
-16:22:41.317 -> rf: 5398   rb: 3995    lf: 6456    lb: 6219   front: 13517
-16:22:41.317 -> Avg hall width: 9195
-16:22:41.350 -> Front: 2739
-16:22:41.350 -> Avg hall width: 9190
-16:22:41.350 -> RIGHT OFFSET: -22
-16:22:41.636 -> rf: 5957   rb: 4493    lf: 6435    lb: 6005   front: 12848
-16:22:41.636 -> Avg hall width: 9241
-16:22:41.636 -> Front: 2806
-16:22:41.636 -> Avg hall width: 9260
-16:22:41.636 -> RIGHT OFFSET: -23
-16:22:41.900 -> rf: 5927   rb: 4463    lf: 15000    lb: 5901   front: 15000
-16:22:41.934 -> Avg hall width: 9260
-16:22:41.934 -> Front: -5740
-16:22:41.934 -> Avg hall width: 9336
-16:22:41.934 -> RIGHT OFFSET: 30
-16:22:42.217 -> rf: 5948   rb: 4635    lf: 15000    lb: 5922   front: 15000
-16:22:42.217 -> Avg hall width: 9336
-16:22:42.217 -> Front: -5664
-16:22:42.217 -> Avg hall width: 9354
-16:22:42.217 -> RIGHT OFFSET: 30
-16:22:42.516 -> rf: 6297   rb: 4931    lf: 15000    lb: 5968   front: 11075
-16:22:42.516 -> Avg hall width: 9354
-16:22:42.516 -> Front: -5646
-16:22:42.516 -> Avg hall width: 9463
-16:22:42.516 -> RIGHT OFFSET: 30
-16:22:42.788 -> rf: 6939   rb: 5825    lf: 15000    lb: 6090   front: 7045
-16:22:42.822 -> Avg hall width: 9463
-16:22:42.822 -> Front: -5537
-16:22:42.822 -> Avg hall width: 9518
-16:22:42.822 -> RIGHT OFFSET: 30
-16:22:43.083 -> rf: 7719   rb: 5914    lf: 15000    lb: 6155   front: 6067
-16:22:43.083 -> Avg hall width: 9518
-16:22:43.130 -> Front: -5482
-16:22:43.130 -> Avg hall width: 9578
-16:22:43.130 -> RIGHT OFFSET: 30
-16:22:43.388 -> rf: 8599   rb: 15000    lf: 15000    lb: 6219   front: 8769
-16:22:43.388 -> Avg hall width: 9578
-16:22:43.388 -> Front: -5422
-16:22:43.388 -> Avg hall width: 9578
-16:22:43.424 -> RIGHT OFFSET: 30
-16:22:43.733 -> rf: 15000   rb: 15000    lf: 15000    lb: 6492   front: 15000
-16:22:43.733 -> Avg hall width: 9578
-16:22:43.733 -> Front: -5422
-16:22:43.733 -> Avg hall width: 9578
-16:22:43.733 -> RIGHT OFFSET: 30
-16:22:44.052 -> rf: 15000   rb: 15000    lf: 15000    lb: 6449   front: 15000
-16:22:44.052 -> Avg hall width: 9578
-16:22:44.052 -> Front: -5422
-16:22:44.052 -> Avg hall width: 9578
-16:22:44.052 -> RIGHT OFFSET: 30
-16:22:44.334 -> rf: 15000   rb: 15000    lf: 8376    lb: 6649   front: 15000
-16:22:44.334 -> Avg hall width: 9578
-16:22:44.334 -> Front: 1202
-16:22:44.334 -> Avg hall width: 9578
-16:22:44.334 -> RIGHT OFFSET: 30
-16:22:44.651 -> rf: 15000   rb: 15000    lf: 8313    lb: 6671   front: 15000
-16:22:44.651 -> Avg hall width: 9578
-16:22:44.651 -> Front: 1265
-16:22:44.651 -> Avg hall width: 9578
-16:22:44.651 -> RIGHT OFFSET: 30
-16:22:44.953 -> rf: 1939   rb: 15000    lf: 8188    lb: 6771   front: 15000
-16:22:44.953 -> Avg hall width: 9588
-16:22:44.953 -> Front: 1400
-16:22:44.953 -> Avg hall width: 9588
-16:22:44.953 -> RIGHT OFFSET: 30
-16:22:45.252 -> rf: 1872   rb: 15000    lf: 8022    lb: 6809   front: 15000
-16:22:45.252 -> Avg hall width: 9584
-16:22:45.252 -> Front: 1562
-16:22:45.252 -> Avg hall width: 9584
-16:22:45.252 -> RIGHT OFFSET: 21
-16:22:45.539 -> rf: 2048   rb: 15000    lf: 7636    lb: 6735   front: 15000
-16:22:45.539 -> Avg hall width: 9582
-16:22:45.587 -> Front: 1946
-16:22:45.587 -> Avg hall width: 9582
-16:22:45.587 -> RIGHT OFFSET: 21
-16:22:45.827 -> rf: 2351   rb: 15000    lf: 7292    lb: 3868   front: 15000
-16:22:45.874 -> Avg hall width: 9655
-16:22:45.874 -> Front: 2351
-16:22:45.874 -> Avg hall width: 9655
-16:22:45.874 -> RIGHT OFFSET: 21
-16:22:46.151 -> rf: 2635   rb: 2854    lf: 6986    lb: 3597   front: 15000
-16:22:46.151 -> Avg hall width: 9652
-16:22:46.151 -> Front: 2635
-16:22:46.151 -> Avg hall width: 9654
-16:22:46.151 -> RIGHT OFFSET: -15
-16:22:46.420 -> rf: 2914   rb: 2854    lf: 6723    lb: 3317   front: 15000
-16:22:46.420 -> Avg hall width: 9651
-16:22:46.420 -> Front: 2914
-16:22:46.420 -> Avg hall width: 9635
-16:22:46.420 -> RIGHT OFFSET: -16
-16:22:46.689 -> rf: 2993   rb: 2878    lf: 6570    lb: 6689   front: 15000
-16:22:46.689 -> Avg hall width: 9632
-16:22:46.689 -> Front: 2993
-16:22:46.689 -> Avg hall width: 9698
-16:22:46.689 -> RIGHT OFFSET: -17
-16:22:46.985 -> rf: 2996   rb: 2872    lf: 6594    lb: 3206   front: 15000
-16:22:46.985 -> Avg hall width: 9696
-16:22:46.985 -> Front: 2996
-16:22:46.985 -> Avg hall width: 9678
-16:22:46.985 -> RIGHT OFFSET: -18
-16:22:47.270 -> rf: 2893   rb: 2905    lf: 6684    lb: 3913   front: 15000
-16:22:47.270 -> Avg hall width: 9674
-16:22:47.270 -> Front: 2893
-16:22:47.270 -> Avg hall width: 9675
-16:22:47.270 -> RIGHT OFFSET: -18
-16:22:47.554 -> rf: 2732   rb: 3152    lf: 6926    lb: 6732   front: 15000
-16:22:47.554 -> Avg hall width: 9675
-16:22:47.554 -> Front: 2732
-16:22:47.554 -> Avg hall width: 9760
-16:22:47.554 -> RIGHT OFFSET: -18
-16:22:47.854 -> rf: 2570   rb: 2998    lf: 7046    lb: 3603   front: 15000
-16:22:47.854 -> Avg hall width: 9759
-16:22:47.854 -> Front: 2570
-16:22:47.854 -> Avg hall width: 9678
-16:22:47.854 -> RIGHT OFFSET: -13
-16:22:48.124 -> rf: 2482   rb: 2910    lf: 7130    lb: 6784   front: 15000
-16:22:48.124 -> Avg hall width: 9674
-16:22:48.124 -> Front: 2482
-16:22:48.124 -> Avg hall width: 9669
-16:22:48.124 -> RIGHT OFFSET: -8
-16:22:48.405 -> rf: 2408   rb: 2798    lf: 7268    lb: 3793   front: 15000
-16:22:48.405 -> Avg hall width: 9664
-16:22:48.405 -> Front: 2396
-16:22:48.405 -> Avg hall width: 9585
-16:22:48.405 -> RIGHT OFFSET: -7
-16:22:48.673 -> rf: 2413   rb: 2804    lf: 7191    lb: 4620   front: 15000
-16:22:48.673 -> Avg hall width: 9577
-16:22:48.725 -> Front: 2386
-16:22:48.725 -> Avg hall width: 9518
-16:22:48.725 -> RIGHT OFFSET: -6
-16:22:48.970 -> rf: 2332   rb: 2717    lf: 7286    lb: 4467   front: 15000
-16:22:48.970 -> Avg hall width: 9504
-16:22:48.970 -> Front: 2218
-16:22:48.970 -> Avg hall width: 9441
-16:22:48.970 -> RIGHT OFFSET: -5
-16:22:49.270 -> rf: 2223   rb: 2691    lf: 7477    lb: 3948   front: 15000
-16:22:49.270 -> Avg hall width: 9425
-16:22:49.270 -> Front: 1948
-16:22:49.270 -> Avg hall width: 9349
-16:22:49.270 -> RIGHT OFFSET: -4
-16:22:49.554 -> rf: 2177   rb: 2643    lf: 7460    lb: 4205   front: 15000
-16:22:49.554 -> Avg hall width: 9348
-16:22:49.554 -> Front: 1888
-16:22:49.554 -> Avg hall width: 9275
-16:22:49.554 -> RIGHT OFFSET: -3
-16:22:49.824 -> rf: 2147   rb: 2593    lf: 7459    lb: 4388   front: 15000
-16:22:49.824 -> Avg hall width: 9269
-16:22:49.824 -> Front: 1810
-16:22:49.824 -> Avg hall width: 9147
-16:22:49.824 -> RIGHT OFFSET: -2
-16:22:50.121 -> rf: 2095   rb: 2518    lf: 7544    lb: 7118   front: 15000
-16:22:50.121 -> Avg hall width: 9133
-16:22:50.121 -> Front: 1589
-16:22:50.121 -> Avg hall width: 9064
-16:22:50.121 -> RIGHT OFFSET: -1
-16:22:50.376 -> rf: 2075   rb: 2496    lf: 7580    lb: 4763   front: 15000
-16:22:50.376 -> Avg hall width: 9043
-16:22:50.418 -> Front: 1463
-16:22:50.418 -> Avg hall width: 8965
-16:22:50.418 -> RIGHT OFFSET: 30
-16:22:50.702 -> rf: 2084   rb: 2421    lf: 7577    lb: 7219   front: 15000
-16:22:50.702 -> Avg hall width: 8943
-16:22:50.702 -> Front: 1366
-16:22:50.702 -> Avg hall width: 8911
-16:22:50.702 -> RIGHT OFFSET: 30
-16:22:50.968 -> rf: 2236   rb: 2408    lf: 7418    lb: 4616   front: 15000
-16:22:50.968 -> Avg hall width: 8855
-16:22:50.968 -> Front: 1437
-16:22:50.968 -> Avg hall width: 8729
-16:22:50.968 -> RIGHT OFFSET: 30
-16:22:51.256 -> rf: 2505   rb: 2422    lf: 7076    lb: 7222   front: 15000
-16:22:51.256 -> Avg hall width: 8715
-16:22:51.256 -> Front: 1639
-16:22:51.256 -> Avg hall width: 8709
-16:22:51.256 -> RIGHT OFFSET: 21
-16:22:51.520 -> rf: 2986   rb: 2534    lf: 6744    lb: 3504   front: 15000
-16:22:51.520 -> Avg hall width: 8710
-16:22:51.520 -> Front: 1966
-16:22:51.520 -> Avg hall width: 8620
-16:22:51.520 -> RIGHT OFFSET: 21
-16:22:51.801 -> rf: 3463   rb: 2714    lf: 6211    lb: 7060   front: 15000
-16:22:51.801 -> Avg hall width: 8621
-16:22:51.801 -> Front: 2410
-16:22:51.835 -> Avg hall width: 8704
-16:22:51.835 -> RIGHT OFFSET: 16
-16:22:52.107 -> rf: 4026   rb: 3023    lf: 5780    lb: 6860   front: 15000
-16:22:52.107 -> Avg hall width: 8708
-16:22:52.107 -> Front: 2928
-16:22:52.107 -> Avg hall width: 8801
-16:22:52.107 -> RIGHT OFFSET: -12
-16:22:52.408 -> rf: 4527   rb: 3320    lf: 5348    lb: 6682   front: 15000
-16:22:52.408 -> Avg hall width: 8809
-16:22:52.408 -> Front: 3461
-16:22:52.408 -> Avg hall width: 8820
-16:22:52.408 -> RIGHT OFFSET: -13
-16:22:52.670 -> rf: 4694   rb: 3305    lf: 5222    lb: 6537   front: 15000
-16:22:52.670 -> Avg hall width: 8828
-16:22:52.670 -> Front: 3606
-16:22:52.670 -> Avg hall width: 8922
-16:22:52.670 -> RIGHT OFFSET: -30
-16:22:52.969 -> rf: 4710   rb: 3455    lf: 5129    lb: 6358   front: 15000
-16:22:52.969 -> Avg hall width: 8929
-16:22:52.969 -> Front: 3800
-16:22:52.969 -> Avg hall width: 9003
-16:22:52.969 -> RIGHT OFFSET: -30
-16:22:53.251 -> rf: 4480   rb: 3559    lf: 5251    lb: 6202   front: 15000
-16:22:53.251 -> Avg hall width: 9005
-16:22:53.251 -> Front: 3754
-16:22:53.251 -> Avg hall width: 9002
-16:22:53.251 -> RIGHT OFFSET: -30
-16:22:53.518 -> rf: 4210   rb: 3635    lf: 5455    lb: 6048   front: 15000
-16:22:53.552 -> Avg hall width: 9003
-16:22:53.552 -> Front: 3548
-16:22:53.552 -> Avg hall width: 9080
-16:22:53.552 -> RIGHT OFFSET: -30
-16:22:53.825 -> rf: 4044   rb: 3652    lf: 5572    lb: 5993   front: 15000
-16:22:53.825 -> Avg hall width: 9081
-16:22:53.825 -> Front: 3509
-16:22:53.825 -> Avg hall width: 9079
-16:22:53.825 -> RIGHT OFFSET: -30
-16:22:54.120 -> rf: 3989   rb: 3720    lf: 5639    lb: 5967   front: 15000
-16:22:54.120 -> Avg hall width: 9078
-16:22:54.120 -> Front: 3439
-16:22:54.120 -> Avg hall width: 9156
-16:22:54.120 -> RIGHT OFFSET: -21
-16:22:54.388 -> rf: 3770   rb: 3685    lf: 5845    lb: 5961   front: 15000
-16:22:54.388 -> Avg hall width: 9156
-16:22:54.388 -> Front: 3311
-16:22:54.388 -> Avg hall width: 9211
-16:22:54.388 -> RIGHT OFFSET: -21
-16:22:54.703 -> rf: 3404   rb: 3651    lf: 6184    lb: 5934   front: 15000
-16:22:54.703 -> Avg hall width: 9211
-16:22:54.703 -> Front: 3027
-16:22:54.703 -> Avg hall width: 9271
-16:22:54.703 -> RIGHT OFFSET: -21
-16:22:54.954 -> rf: 3173   rb: 3644    lf: 6441    lb: 5969   front: 15000
-16:22:54.954 -> Avg hall width: 9269
-16:22:55.005 -> Front: 2828
-16:22:55.005 -> Avg hall width: 9343
-16:22:55.005 -> RIGHT OFFSET: -21
-16:22:55.273 -> rf: 2992   rb: 3617    lf: 6696    lb: 2396   front: 15000
-16:22:55.273 -> Avg hall width: 9344
-16:22:55.273 -> Front: 2648
-16:22:55.273 -> Avg hall width: 9323
-16:22:55.273 -> RIGHT OFFSET: -21
-16:22:55.540 -> rf: 2767   rb: 3550    lf: 6978    lb: 6178   front: 15000
-16:22:55.540 -> Avg hall width: 9327
-16:22:55.540 -> Front: 2349
-16:22:55.540 -> Avg hall width: 9395
-16:22:55.540 -> RIGHT OFFSET: 15
-16:22:55.840 -> rf: 2567   rb: 3432    lf: 7154    lb: 6310   front: 15000
-16:22:55.840 -> Avg hall width: 9397
-16:22:55.840 -> Front: 2243
-16:22:55.840 -> Avg hall width: 9400
-16:22:55.840 -> RIGHT OFFSET: 16
-16:22:56.105 -> rf: 2589   rb: 3304    lf: 7076    lb: 6401   front: 13750
-16:22:56.105 -> Avg hall width: 9400
-16:22:56.105 -> Front: 2324
-16:22:56.105 -> Avg hall width: 9462
-16:22:56.105 -> RIGHT OFFSET: 16
-16:22:56.397 -> rf: 2890   rb: 3229    lf: 6876    lb: 6410   front: 13172
-16:22:56.397 -> Avg hall width: 9464
-16:22:56.397 -> Front: 2588
-16:22:56.397 -> Avg hall width: 9464
-16:22:56.397 -> RIGHT OFFSET: 21
-16:22:56.657 -> rf: 3181   rb: 3213    lf: 6438    lb: 2860   front: 12600
-16:22:56.706 -> Avg hall width: 9463
-16:22:56.706 -> Front: 3025
-16:22:56.706 -> Avg hall width: 9439
-16:22:56.706 -> RIGHT OFFSET: 20
-16:22:56.977 -> rf: 3669   rb: 3375    lf: 6063    lb: 6365   front: 15000
-16:22:56.977 -> Avg hall width: 9443
-16:22:56.977 -> Front: 3380
-16:22:56.977 -> Avg hall width: 9446
-16:22:56.977 -> RIGHT OFFSET: 19
-16:22:57.264 -> rf: 4221   rb: 3408    lf: 5548    lb: 6269   front: 15000
-16:22:57.264 -> Avg hall width: 9447
-16:22:57.264 -> Front: 3899
-16:22:57.264 -> Avg hall width: 9538
-16:22:57.264 -> RIGHT OFFSET: -30
-16:22:57.525 -> rf: 4649   rb: 3639    lf: 5147    lb: 6138   front: 15000
-16:22:57.525 -> Avg hall width: 9541
-16:22:57.525 -> Front: 4394
-16:22:57.571 -> Avg hall width: 9541
-16:22:57.571 -> RIGHT OFFSET: -30
-16:22:57.825 -> rf: 4680   rb: 3776    lf: 5123    lb: 6019   front: 15000
-16:22:57.825 -> Avg hall width: 9541
-16:22:57.825 -> Front: 4418
-16:22:57.825 -> Avg hall width: 9538
-16:22:57.825 -> RIGHT OFFSET: -30
-16:22:58.114 -> rf: 4606   rb: 3854    lf: 5249    lb: 5871   front: 15000
-16:22:58.114 -> Avg hall width: 9538
-16:22:58.114 -> Front: 4289
-16:22:58.114 -> Avg hall width: 9531
-16:22:58.114 -> RIGHT OFFSET: -30
-16:22:58.409 -> rf: 4652   rb: 3932    lf: 5360    lb: 5785   front: 15000
-16:22:58.409 -> Avg hall width: 9533
-16:22:58.409 -> Front: 4173
-16:22:58.409 -> Avg hall width: 9530
-16:22:58.409 -> RIGHT OFFSET: -30
-16:22:58.692 -> rf: 4633   rb: 3954    lf: 5467    lb: 5789   front: 15000
-16:22:58.692 -> Avg hall width: 9537
-16:22:58.692 -> Front: 4070
-16:22:58.692 -> Avg hall width: 9535
-16:22:58.692 -> RIGHT OFFSET: -30
-16:22:58.974 -> rf: 4670   rb: 3986    lf: 5548    lb: 5727   front: 11825
-16:22:58.974 -> Avg hall width: 9547
-16:22:58.974 -> Front: 3999
-16:22:58.974 -> Avg hall width: 9546
-16:22:58.974 -> RIGHT OFFSET: -30
-16:22:59.257 -> rf: 4533   rb: 3920    lf: 5833    lb: 5725   front: 11329
-16:22:59.257 -> Avg hall width: 9564
-16:22:59.257 -> Front: 3731
-16:22:59.257 -> Avg hall width: 9563
-16:22:59.257 -> RIGHT OFFSET: -30
-16:22:59.523 -> rf: 4419   rb: 3965    lf: 6114    lb: 5747   front: 10057
-16:22:59.573 -> Avg hall width: 9586
-16:22:59.573 -> Front: 3472
-16:22:59.573 -> Avg hall width: 9587
-16:22:59.573 -> RIGHT OFFSET: -21
-16:22:59.823 -> rf: 4146   rb: 3867    lf: 6437    lb: 5901   front: 9626
-16:22:59.823 -> Avg hall width: 9611
-16:22:59.823 -> Front: 3174
-16:22:59.823 -> Avg hall width: 9613
-16:22:59.823 -> RIGHT OFFSET: -21
-16:23:00.109 -> rf: 4005   rb: 3775    lf: 6644    lb: 5951   front: 8957
-16:23:00.109 -> Avg hall width: 9639
-16:23:00.109 -> Front: 2995
-16:23:00.109 -> Avg hall width: 9641
-16:23:00.109 -> RIGHT OFFSET: -21
-16:23:00.370 -> rf: 3753   rb: 3743    lf: 6872    lb: 6050   front: 8368
-16:23:00.404 -> Avg hall width: 9667
-16:23:00.404 -> Front: 2795
-16:23:00.404 -> Avg hall width: 9672
-16:23:00.404 -> RIGHT OFFSET: -21
-16:23:00.675 -> rf: 3440   rb: 3672    lf: 7316    lb: 6224   front: 7752
-16:23:00.675 -> Avg hall width: 9701
-16:23:00.675 -> Front: 2385
-16:23:00.675 -> Avg hall width: 9708
-16:23:00.675 -> RIGHT OFFSET: 15
-16:23:00.956 -> rf: 3300   rb: 3581    lf: 6650    lb: 6394   front: 7201
-16:23:00.956 -> Avg hall width: 9714
-16:23:00.956 -> Front: 3064
-16:23:00.956 -> Avg hall width: 9813
-16:23:00.956 -> RIGHT OFFSET: -11
-16:23:01.254 -> rf: 2977   rb: 3625    lf: 6708    lb: 6531   front: 6757
-16:23:01.254 -> Avg hall width: 9812
-16:23:01.254 -> Front: 2977
-16:23:01.254 -> Avg hall width: 9823
-16:23:01.254 -> RIGHT OFFSET: -11
-16:23:01.510 -> rf: 2804   rb: 3674    lf: 8058    lb: 6746   front: 6177
-16:23:01.510 -> Avg hall width: 9851
-16:23:01.510 -> Front: 1793
-16:23:01.510 -> Avg hall width: 9868
-16:23:01.510 -> RIGHT OFFSET: 8
-16:23:01.770 -> rf: 2655   rb: 3771    lf: 8238    lb: 6861   front: 5514
-16:23:01.805 -> Avg hall width: 9899
-16:23:01.805 -> Front: 1661
-16:23:01.805 -> Avg hall width: 9922
-16:23:01.805 -> RIGHT OFFSET: 9
-16:23:02.073 -> rf: 2664   rb: 3723    lf: 8074    lb: 7010   front: 5151
-16:23:02.073 -> Avg hall width: 9946
-16:23:02.073 -> Front: 1872
-16:23:02.073 -> Avg hall width: 9974
-16:23:02.073 -> RIGHT OFFSET: 9
-16:23:02.355 -> rf: 2836   rb: 3553    lf: 7834    lb: 7095   front: 4525
-16:23:02.355 -> Avg hall width: 10000
-16:23:02.355 -> Front: 2166
-16:23:02.355 -> Avg hall width: 10114
-16:23:02.355 -> RIGHT OFFSET: 9
-16:23:02.655 -> rf: 2300   rb: 3687    lf: 7705    lb: 7167   front: 15000
-16:23:02.655 -> Avg hall width: 10121
-16:23:02.655 -> Front: 2300
-16:23:02.655 -> Avg hall width: 10149
-16:23:02.655 -> RIGHT OFFSET: 9
-16:23:02.921 -> rf: 2224   rb: 3449    lf: 7426    lb: 7177   front: 15000
-16:23:02.921 -> Avg hall width: 10146
-16:23:02.921 -> Front: 2224
-16:23:02.921 -> Avg hall width: 10170
-16:23:02.921 -> RIGHT OFFSET: 10
-16:23:03.187 -> rf: 2408   rb: 3442    lf: 7265    lb: 4343   front: 15000
-16:23:03.187 -> Avg hall width: 10167
-16:23:03.229 -> Front: 2408
-16:23:03.229 -> Avg hall width: 10117
-16:23:03.229 -> RIGHT OFFSET: 15
-16:23:03.487 -> rf: 2596   rb: 3435    lf: 7036    lb: 7152   front: 15000
-16:23:03.487 -> Avg hall width: 10112
-16:23:03.487 -> Front: 2596
-16:23:03.487 -> Avg hall width: 10132
-16:23:03.487 -> RIGHT OFFSET: 20
-16:23:03.772 -> rf: 1754   rb: 3129    lf: 6642    lb: 4779   front: 15000
-16:23:03.772 -> Avg hall width: 10096
-16:23:03.772 -> Front: 1754
-16:23:03.772 -> Avg hall width: 10050
-16:23:03.772 -> RIGHT OFFSET: -15
-16:23:04.056 -> rf: 1813   rb: 3028    lf: 6403    lb: 6994   front: 15000
-16:23:04.056 -> Avg hall width: 10005
-16:23:04.056 -> Front: 1813
-16:23:04.056 -> Avg hall width: 10013
-16:23:04.056 -> RIGHT OFFSET: -15
+16:41:22.550 -> Enter current location (##): 0
+16:41:25.591 -> Enter current direction: WEST
+16:41:28.336 -> Enter a destination: 1
+16:41:34.196 -> MOVING WestTurning Scanning
+16:41:34.229 -> Scanning
+16:41:34.269 -> Scanning
+16:41:34.302 -> Scanning
+16:41:34.302 -> Scanning
+16:41:34.336 -> Scanning
+16:41:34.336 -> Scanning
+16:41:34.369 -> Scanning
+16:41:34.404 -> Scanning
+16:41:34.472 -> rf: 2058   rb: 2634    lf: 7518    lb: 4968   front: 15000
+16:41:34.472 -> Front: 2058
+16:41:34.472 -> RIGHT OFFSET: 0
+16:41:34.575 -> Scanning
+16:41:34.750 -> rf: 1891   rb: 2645    lf: 7652    lb: 7599   front: 15000
+16:41:34.750 -> Front: 1891
+16:41:34.750 -> RIGHT OFFSET: 2
+16:41:35.029 -> rf: 1670   rb: 2635    lf: 7940    lb: 5237   front: 15000
+16:41:35.029 -> Front: 1636
+16:41:35.029 -> RIGHT OFFSET: 4
+16:41:35.312 -> rf: 1598   rb: 2567    lf: 8018    lb: 5328   front: 15000
+16:41:35.312 -> Front: 1558
+16:41:35.312 -> RIGHT OFFSET: 6
+16:41:35.593 -> rf: 1712   rb: 2528    lf: 7920    lb: 5249   front: 15000
+16:41:35.593 -> Front: 1656
+16:41:35.593 -> RIGHT OFFSET: 6
+16:41:35.629 -> Scanning
+16:41:35.881 -> rf: 2017   rb: 2402    lf: 7784    lb: 5018   front: 15000
+16:41:35.881 -> Front: 1792
+16:41:35.881 -> RIGHT OFFSET: 6
+16:41:36.159 -> rf: 1973   rb: 1937    lf: 7635    lb: 5000   front: 15000
+16:41:36.159 -> Front: 1941
+16:41:36.159 -> RIGHT OFFSET: 6
+16:41:36.442 -> rf: 2224   rb: 1955    lf: 7515    lb: 4756   front: 15000
+16:41:36.442 -> Front: 2061
+16:41:36.442 -> RIGHT OFFSET: 6
+16:41:36.580 -> Scanning
+16:41:36.716 -> rf: 2457   rb: 2107    lf: 7242    lb: 4798   front: 15000
+16:41:36.716 -> Front: 2334
+16:41:36.716 -> RIGHT OFFSET: 6
+16:41:37.013 -> rf: 2766   rb: 2198    lf: 6930    lb: 7469   front: 15000
+16:41:37.013 -> Front: 2646
+16:41:37.013 -> RightOffset *= -75%
+16:41:37.013 -> RIGHT OFFSET: -6
+16:41:37.298 -> rf: 3021   rb: 2340    lf: 6595    lb: 7363   front: 15000
+16:41:37.298 -> Front: 2184
+16:41:37.298 -> RightOffset *= -75%
+16:41:37.298 -> RIGHT OFFSET: 6
+16:41:37.583 -> rf: 3502   rb: 2113    lf: 6449    lb: 7314   front: 15000
+16:41:37.583 -> Front: 2455
+16:41:37.583 -> RIGHT OFFSET: 1
+16:41:37.583 -> Scanning
+16:41:37.869 -> rf: 3767   rb: 2618    lf: 6260    lb: 7107   front: 15000
+16:41:37.869 -> Front: 2624
+16:41:37.869 -> RightOffset *= -75%
+16:41:37.869 -> RIGHT OFFSET: -2
+16:41:38.155 -> rf: 3876   rb: 2817    lf: 6386    lb: 6939   front: 15000
+16:41:38.155 -> Front: 2623
+16:41:38.155 -> RIGHT OFFSET: -2
+16:41:38.438 -> rf: 4040   rb: 3060    lf: 6373    lb: 6877   front: 15000
+16:41:38.438 -> Front: 2769
+16:41:38.438 -> RIGHT OFFSET: -4
+16:41:38.579 -> Scanning
+16:41:38.718 -> rf: 4116   rb: 3127    lf: 6343    lb: 6735   front: 15000
+16:41:38.718 -> Front: 2939
+16:41:38.718 -> RIGHT OFFSET: -6
+16:41:38.984 -> rf: 4069   rb: 3215    lf: 6267    lb: 6483   front: 15000
+16:41:38.984 -> Front: 3174
+16:41:38.984 -> RIGHT OFFSET: -8
+16:41:39.269 -> rf: 4159   rb: 3331    lf: 6137    lb: 6362   front: 15000
+16:41:39.269 -> Front: 3470
+16:41:39.269 -> RIGHT OFFSET: -10
+16:41:39.550 -> rf: 4321   rb: 3600    lf: 5751    lb: 6266   front: 15000
+16:41:39.550 -> Front: 4024
+16:41:39.550 -> RIGHT OFFSET: -18
+16:41:39.588 -> Scanning
+16:41:39.836 -> rf: 4428   rb: 3712    lf: 5434    lb: 6266   front: 15000
+16:41:39.836 -> Front: 4428
+16:41:39.836 -> RIGHT OFFSET: -18
+16:41:40.126 -> rf: 4348   rb: 3811    lf: 5295    lb: 6533   front: 15000
+16:41:40.126 -> Front: 4348
+16:41:40.126 -> RIGHT OFFSET: -18
+16:41:40.414 -> rf: 4266   rb: 3700    lf: 5427    lb: 6494   front: 15000
+16:41:40.414 -> Front: 4266
+16:41:40.414 -> RIGHT OFFSET: -18
+16:41:40.591 -> Scanning
+16:41:40.697 -> rf: 4112   rb: 3785    lf: 5556    lb: 6601   front: 15000
+16:41:40.697 -> Front: 4112
+16:41:40.697 -> RIGHT OFFSET: -18
+16:41:40.980 -> rf: 3814   rb: 3783    lf: 5784    lb: 6396   front: 13858
+16:41:40.980 -> Front: 3814
+16:41:40.980 -> RIGHT OFFSET: -18
+16:41:41.263 -> rf: 3564   rb: 3754    lf: 6044    lb: 6070   front: 13344
+16:41:41.263 -> Front: 3564
+16:41:41.263 -> RIGHT OFFSET: -18
+16:41:41.551 -> rf: 3436   rb: 3753    lf: 6242    lb: 6006   front: 12831
+16:41:41.551 -> Front: 3436
+16:41:41.551 -> RIGHT OFFSET: -18
+16:41:41.585 -> Scanning
+16:41:41.828 -> rf: 3689   rb: 3700    lf: 6551    lb: 5912   front: 12384
+16:41:41.828 -> Front: 3362
+16:41:41.828 -> RIGHT OFFSET: -18
+16:41:42.111 -> rf: 8000   rb: 3656    lf: 7009    lb: 5928   front: 11848
+16:41:42.111 -> Front: 3136
+16:41:42.111 -> RIGHT OFFSET: -18
+16:41:42.400 -> rf: 7931   rb: 3601    lf: 15000    lb: 6081   front: 11430
+16:41:42.400 -> Front: 7931
+16:41:42.400 -> RIGHT OFFSET: -18
+16:41:42.580 -> Scanning
+16:41:42.687 -> rf: 7601   rb: 3565    lf: 15000    lb: 6198   front: 10894
+16:41:42.687 -> Front: 7601
+16:41:42.687 -> RIGHT OFFSET: -18
+16:41:43.000 -> rf: 15000   rb: 3408    lf: 15000    lb: 6332   front: 10437
+16:41:43.000 -> Front: 15000
+16:41:43.000 -> RIGHT OFFSET: -18
+16:41:43.285 -> rf: 15000   rb: 3298    lf: 15000    lb: 6565   front: 10000
+16:41:43.285 -> Front: 15000
+16:41:43.285 -> RIGHT OFFSET: 50
+16:41:43.604 -> rf: 15000   rb: 3135    lf: 15000    lb: 6799   front: 9523
+16:41:43.604 -> Front: 15000
+16:41:43.604 -> RIGHT OFFSET: 50
+16:41:43.604 -> Scanning
+16:41:43.889 -> rf: 15000   rb: 2876    lf: 15000    lb: 7048   front: 8638
+16:41:43.889 -> Front: 15000
+16:41:43.889 -> RIGHT OFFSET: 50
+16:41:44.204 -> rf: 15000   rb: 15000    lf: 15000    lb: 7111   front: 7853
+16:41:44.204 -> Front: 15000
+16:41:44.204 -> RIGHT OFFSET: 50
+16:41:44.489 -> rf: 15000   rb: 15000    lf: 15000    lb: 7087   front: 7204
+16:41:44.525 -> Front: 15000
+16:41:44.525 -> RIGHT OFFSET: 50
+16:41:44.558 -> Scanning
+16:41:44.810 -> rf: 15000   rb: 15000    lf: 15000    lb: 7132   front: 6726
+16:41:44.810 -> Front: 15000
+16:41:44.810 -> RIGHT OFFSET: 50
+16:41:45.134 -> rf: 11373   rb: 15000    lf: 15000    lb: 7594   front: 6564
+16:41:45.134 -> Front: 11373
+16:41:45.134 -> RIGHT OFFSET: -18
+16:41:45.414 -> rf: 12017   rb: 15000    lf: 15000    lb: 8363   front: 6555
+16:41:45.414 -> Front: 12017
+16:41:45.414 -> RIGHT OFFSET: -18
+16:41:45.553 -> Scanning
+16:41:45.730 -> rf: 15000   rb: 15000    lf: 15000    lb: 8330   front: 15000
+16:41:45.730 -> Front: 15000
+16:41:45.730 -> RIGHT OFFSET: -18
+16:41:46.060 -> rf: 12284   rb: 15000    lf: 15000    lb: 8305   front: 7542
+16:41:46.060 -> Front: 12284
+16:41:46.060 -> RIGHT OFFSET: -18
+16:41:46.342 -> rf: 12104   rb: 15000    lf: 15000    lb: 6645   front: 5245
+16:41:46.342 -> Front: 12104
+16:41:46.342 -> RIGHT OFFSET: -18
+16:41:46.585 -> Scanning
+16:41:46.654 -> rf: 15000   rb: 15000    lf: 15000    lb: 7037   front: 4579
+16:41:46.654 -> Front: 15000
+16:41:46.654 -> RIGHT OFFSET: -18
+16:41:46.971 -> rf: 11894   rb: 15000    lf: 15000    lb: 15000   front: 4009
+16:41:46.971 -> Front: 11894
+16:41:46.971 -> RIGHT OFFSET: -18
+16:41:47.259 -> rf: 15000   rb: 15000    lf: 15000    lb: 15000   front: 3976
+16:41:47.293 -> Front: 15000
+16:41:47.293 -> RIGHT OFFSET: -18
+16:41:47.575 -> rf: 15000   rb: 15000    lf: 15000    lb: 15000   front: 2647
+16:41:48.604 -> Scanning
+16:41:48.676 -> rf: 15000   rb: 15000    lf: 15000    lb: 15000   front: 1981
+16:41:49.691 -> Scanning
+16:41:49.761 -> rf: 15000   rb: 15000    lf: 15000    lb: 15000   front: 2007
+16:41:50.782 -> Scanning
+16:41:50.852 -> rf: 15000   rb: 15000    lf: 15000    lb: 15000   front: 2004
+16:41:56.535 -> Module failed to respond. Please check wiring.
