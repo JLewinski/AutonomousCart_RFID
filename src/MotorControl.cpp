@@ -45,11 +45,13 @@ void MotorControl::SetSpeed(int spd)
 
 void MotorControl::setTurn(Direction nextTurn, Direction currentDirection)
 {
-    Serial.println("This isn't working");
+// Serial.println("This isn't working");
+#ifdef DEBUG
     Serial.print("Turn: ");
     Serial.print(turn);
     Serial.print(" Direction: ");
-    Serial.print(currentDirection);
+    Serial.println(currentDirection);
+#endif
     turn = nextTurn;
     direction = currentDirection;
 }
@@ -85,7 +87,7 @@ int MotorControl::getAverageHallWidth(int currentWidth = 0)
     return hallWidthHistory[0];
 }
 
-int MotorControl::getDistance(UltrasonicSensor right, UltrasonicSensor left)
+int MotorControl::getDistance(UltrasonicSensor right, UltrasonicSensor left, bool update = true)
 {
     int r = sensors.getRecent(right);
     int l = sensors.getRecent(left);
@@ -95,50 +97,76 @@ int MotorControl::getDistance(UltrasonicSensor right, UltrasonicSensor left)
     int hallWidth = defaultHallWidth;
     if (r == ProximitySensorArray::timeOut || l == ProximitySensorArray::timeOut)
     {
+#ifdef DEBUG
+        Serial.println("TIMEOUT");
+#endif
         width = 0;
         digitalWrite(red, HIGH);
-        intersectionFlag++;
+        if (intersectionFlag < maxIntersection)
+            intersectionFlag++;
     }
     else
     {
         digitalWrite(red, LOW);
-        intersectionFlag = 0;
+        if (intersectionFlag > 6)
+        {
+            intersectionFlag -= 2;
+        }
+        else if (intersectionFlag > 0)
+        {
+            intersectionFlag--;
+        }
     }
 
-    hallWidth = getAverageHallWidth(width);
+    if (update)
+    {
+        hallWidth = getAverageHallWidth(width);
+    }
+    else
+    {
+        hallWidth = getAverageHallWidth();
+    }
 
+#ifdef DEBUG
     //possibly changed to percentage of hallWidth (within 5%)?
     //Just show when there is something of a discrepency
     if (width > hallWidth + safeDistance)
     {
         digitalWrite(blue, HIGH);
-        width -= safeDistance / 2;
     }
     else if (width < hallWidth - safeDistance)
     {
         digitalWrite(blue, HIGH);
-        width += safeDistance / 2;
     }
     else
     {
         digitalWrite(blue, LOW);
     }
+#endif
 
-    if (l != ProximitySensorArray::timeOut && (l <= dangerDistance || (hallWidth - l) < r))
+    int distanceFromL = hallWidth - l;
+
+    if (l != ProximitySensorArray::timeOut && r != ProximitySensorArray::timeOut)
     {
-        return hallWidth - l;
+        return (distanceFromL + r) / 2;
+    }
+    else if (l == ProximitySensorArray::timeOut)
+    {
+        return r;
     }
     else
     {
-        return r;
+        return distanceFromL;
     }
 }
 
 //Update both motors for the desired speed
 void MotorControl::Update()
 {
-    if (speed == 0)
+    if (speed == 0 || direction == Stopped)
     {
+        right.brake();
+        left.brake();
         return;
     }
     if (count++ > countMax)
@@ -180,54 +208,17 @@ void MotorControl::Update()
         }
 
         int frontDistance = getDistance(RightFront, LeftFront);
-#ifdef DEBUG
         Serial.print("Front: ");
-        Serial.println(frontDistance);
-#endif
-        if (frontDistance >= ProximitySensorArray::timeOut - safeDistance)
-        {
-            //If it wasn't already at an intersection
-            if (intersection && turn != direction)
-            {
-                intersection = (false);
-            }
-            else
-            {
-                if (turn == Stopped)
-                {
-                    SetSpeed(0);
-                }
-                else
-                {
-                    initiateTurn();
-                    if (leftOffset == 0)
-                    {
-                        digitalWrite(green, HIGH);
-                        digitalWrite(white, LOW);
-                    }
-                    else
-                    {
-                        digitalWrite(white, HIGH);
-                        digitalWrite(green, LOW);
-                    }
-                }
-            }
-        }
-        else
-        {
-            digitalWrite(green, LOW);
-            digitalWrite(white, LOW);
-            //not at an intersection
-            intersection = (true);
-            int backDistance = getDistance(RightBack, LeftBack);
-
-            updateOffset(frontDistance, backDistance);
-            leftOffset = 0;
-        }
-
+        Serial.print(frontDistance);
 #ifdef DEBUG
-        Serial.print("RIGHT OFFSET: ");
+#endif
+        int backDistance = getDistance(RightBack, LeftBack, false);
+
+        updateOffset(frontDistance, backDistance);
+
+        Serial.print("   |   RIGHT OFFSET: ");
         Serial.println(rightOffset);
+#ifdef DEBUG
 #endif
         right.setSpeed(speed + rightOffset);
         left.setSpeed(speed + leftOffset);
@@ -242,113 +233,109 @@ void MotorControl::initiateTurn()
 {
     if (direction != turn)
     {
-        int origOffset = rightOffset;
-        rightOffset = turnOffset;
-        leftOffset = -turnOffset;
-        switch (direction)
+        if (turn == Stopped)
         {
-        case North:
-            if (turn == East)
-            {
-                leftOffset = 0;
-                rightOffset = -turnOffset;
-            }
-            break;
-        case East:
-            if (turn == South)
-            {
-                leftOffset = 0;
-                rightOffset = -turnOffset;
-            }
-            break;
-        case South:
-            if (turn == West)
-            {
-                leftOffset = 0;
-                rightOffset = -turnOffset;
-            }
-            break;
-        case West:
-            if (turn == North)
-            {
-                leftOffset = 0;
-                rightOffset = -turnOffset;
-            }
-            break;
-        case Stopped:
-            SetSpeed(0);
-            leftOffset = 0;
-            rightOffset = 0;
-            break;
-        case Other:
-        default:
-            leftOffset = 0;
-            rightOffset = origOffset;
-            break;
+            direction = Stopped;
+#ifdef DEBUG
+            Serial.println("----STOPPED-----");
+#endif
         }
+        else if ((direction == North && turn == East) ||
+                 (direction == East && turn == South) ||
+                 (direction == South && turn == West) ||
+                 (direction == West && turn == North))
+        {
+            leftOffset = offsetMax;
+            rightOffset = -turnOffset;
+            digitalWrite(green, HIGH);
+            digitalWrite(white, LOW);
+        }
+        else
+        {
+            rightOffset = turnOffset;
+            leftOffset = -turnOffset;
+            digitalWrite(green, LOW);
+            digitalWrite(white, HIGH);
+        }
+    }
+    if (direction == Stopped)
+    {
+        leftOffset = 0;
+        rightOffset = 0;
+        SetSpeed(0);
+        digitalWrite(green, LOW);
+        digitalWrite(white, LOW);
     }
 }
 
 void MotorControl::updateOffset(int rf, int rb)
 {
     int diff = (rf - desiredDistance);
+    int diffBack = (rb - desiredDistance);
     int absDiff = abs(diff);
 
-    //Front-right of cart within safe distance from wall
-    if (absDiff <= safeDistance)
+    //Dangerously close to wall
+    if (diff <= -dangerDistance)
     {
-        if (diff < previousDistanceDiff)
-        {
-            rightOffset += 1;
-        }
-        //getting further from wall and too far from wall
-        else
-        {
-            rightOffset -= 1;
-        }
-        previousDistanceDiff = diff;
-        // diff = rf - rb;
-        // absDiff = abs(diff);
-        // int offsetInc = 5;
-
-        // if (absDiff <= safeAngle)
-        // {
-        //     offsetInc = 1;
-        // }
-
-        // if (diff > 0)
-        // {
-        //     rightOffset -= offsetInc;
-        // }
-        // else if (diff < 0)
-        // {
-        //     rightOffset += offsetInc;
-        // }
-        // else if (previousAngleDiff > 0)
-        // {
-        //     rightOffset += offsetInc;
-        // }
-        // else if (previousAngleDiff < 0)
-        // {
-        //     rightOffset -= offsetInc;
-        // }
-
-        // previousAngleDiff = diff;
+        rightOffset = offsetMax;
     }
-    //Front-right not within safe distance of wall
+    else if (intersectionFlag > 5)
+    {
+#ifdef DEBUG
+        Serial.print("INTERSECTION: ");
+        Serial.println(intersectionFlag);
+#endif
+        if (turn == Stopped)
+        {
+            SetSpeed(0);
+        }
+        else if (intersectionFlag > 3)
+        {
+            initiateTurn();
+        }
+    }
+    //not at an intersection
     else
     {
-        //Front-right of cart dangerously far from wall
-        if (diff >= dangerDistance)
+        digitalWrite(green, LOW);
+        digitalWrite(white, LOW);
+        leftOffset = 0;
+
+        //Dangerously far from wall
+        if (diff >= dangerDistance || diffBack >= dangerDistance * 1.25)
         {
             rightOffset = -offsetMax;
         }
-        //Front-right of cart dangerously close to wall
-        else if (diff <= -dangerDistance)
+        //Front-right of cart within safe distance from wall
+        else if (absDiff <= safeDistance)
         {
-            rightOffset = offsetMax;
+            int angleDiff = rf - rb;
+            int diffWithPrevious = diff - previousDistanceDiff;
+            int changeValue = 1;
+            //safe distance is 2750-2250
+            if (abs(diff - previousDistanceDiff) > safeDistance)
+            {
+                changeValue = 3;
+            }
+            if (diff < previousDistanceDiff)
+            {
+                rightOffset += changeValue;
+            }
+            //getting further from wall and too far from wall
+            else
+            {
+                rightOffset -= changeValue;
+            }
+            if (rightOffset > offsetMax / 3)
+            {
+                rightOffset = offsetMax / 3;
+            }
+            else if (rightOffset < -offsetMax / 3)
+            {
+                rightOffset = -offsetMax / 3;
+            }
         }
-        //It was too far one way and now is too far the other way (I doubt it ever gets here)
+        //Changed between close and far
         else if ((diff > 0 && previousDistanceDiff < 0) || (diff < 0 && previousDistanceDiff > 0))
         {
 #ifdef DEBUG
@@ -356,24 +343,43 @@ void MotorControl::updateOffset(int rf, int rb)
 #endif
             rightOffset *= -0.75;
         }
-        //Left the danger zone or done with a turn
+        //Just out of the danger zone or done with a turn
         else if (abs(rightOffset) >= offsetMax)
         {
-            rightOffset *= -0.3;
+            rightOffset *= 0.3;
         }
         //getting closer to wall and too close to wall
         else if (rf < previousDistance && diff < 0)
         {
-            rightOffset += 2;
+            if (diff < -warningDistance)
+            {
+                rightOffset += 4;
+            }
+            else
+            {
+                rightOffset += 2;
+            }
         }
+
         //getting further from wall and too far from wall
         else if (rf > previousDistance && diff > 0)
         {
-            rightOffset -= 2;
+            if (diff > warningDistance)
+            {
+                rightOffset -= 4;
+            }
+            else
+            {
+                rightOffset -= 2;
+            }
         }
-        previousDistanceDiff = diff;
+        //Prevent over correction
+        else if (abs(previousDistance - rf) > safeDistance)
+        {
+            rightOffset *= -.3;
+        }
     }
-
+    previousDistanceDiff = diff;
     previousDistance = rf;
 
     //Make sure the offset isn't greater than the max

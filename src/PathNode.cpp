@@ -1,4 +1,4 @@
-//#define DEBUG
+#define DEBUG
 #include <PathNode.h>
 #ifdef DEBUG
 #include <Arduino.h>

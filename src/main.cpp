@@ -1,4 +1,4 @@
-#define DEBUG
+//#define DEBUG
 #define USE_RFID //Uncommenet to use RFID
 #include <Arduino.h>
 #include <MotorControl.h>
@@ -30,6 +30,37 @@ int kount = 0;
 int rfidDelay = 50;
 int previousId = -1;
 Map myMap(10);
+
+void printDirection(Direction dir)
+{
+  switch (dir)
+  {
+  case North:
+    Serial.print("North");
+    break;
+  case South:
+    Serial.print("South");
+    break;
+  case East:
+    Serial.print("East");
+    break;
+  case West:
+    Serial.print("West");
+    break;
+  case Stopped:
+    Serial.print("Stopped");
+    break;
+  default:
+    Serial.print("Other");
+    break;
+  }
+}
+
+void printlnDirection(Direction dir)
+{
+  printDirection(dir);
+  Serial.println();
+}
 
 #ifdef USE_RFID
 boolean setupNano(long baudRate)
@@ -191,6 +222,8 @@ void loop()
   //Buttons could also be used as a "GO" button
   if (control.checkStatus() == Stopped)
   {
+    control.SetSpeed(0);
+    myMap.endRoute();
     Serial.print("Enter current location (##): ");
     while (!Serial.available())
       ;
@@ -249,56 +282,16 @@ void loop()
         {
           myMap.setDestination(currentId, destId, currentDirection);
           Serial.print("MOVING ");
-          switch (currentDirection)
-          {
-          case North:
-            Serial.print("North");
-            break;
-          case South:
-            Serial.print("South");
-            break;
-          case East:
-            Serial.print("East");
-            break;
-          case West:
-            Serial.print("West");
-            break;
-          case Stopped:
-            Serial.print("Stopped");
-            break;
-          default:
-            Serial.print("Other");
-            break;
-          }
+          printDirection(currentDirection);
           Serial.print(" Turning ");
+          printlnDirection(myMap.getDirection(currentId));
 
-          switch (myMap.getDirection(currentId))
-          {
-          case North:
-            Serial.print("North");
-            break;
-          case South:
-            Serial.print("South");
-            break;
-          case East:
-            Serial.print("East");
-            break;
-          case West:
-            Serial.print("West");
-            break;
-          case Stopped:
-            Serial.print("Stopped");
-            break;
-          default:
-            Serial.print("Other");
-            break;
-          }
-          Serial.println();
           Serial.println("Setting turn");
           control.setTurn(currentDirection, currentDirection);
           Serial.println("Setting speed");
           control.SetSpeed(speed);
           Serial.println("Set Speeed");
+          previousId = currentId;
         }
       }
     }
@@ -307,26 +300,58 @@ void loop()
   delay(20);
 
 #ifdef USE_RFID
-  int id = checkNano();
-  if (id != previousId || id == -1)
+  if (myMap.hasDestination())
   {
-    //id = -1
+    int id = checkNano();
+    if (id != previousId && id > -1)
+    {
+#ifdef DEBUG
+      Serial.println("Starting Tag Logic");
+      Serial.print("Previous ID: ");
+      Serial.println(previousId);
+#endif
+
+      Direction cur = myMap.getDirection(previousId);
+      Direction turn = myMap.getDirection(id);
+#ifdef DEBUG
+      Serial.print("Found RFID: ");
+      Serial.print(id);
+      Serial.print(" ");
+      printlnDirection(turn);
+
+      Serial.print("Change turn: ");
+      printDirection(turn);
+      Serial.print(" direction: ");
+      printlnDirection(cur);
+#endif
+      control.setTurn(turn, cur);
+      if (turn == Stopped)
+      {
+        myMap.endRoute();
+      }
+      previousId = id;
+    }
+#ifdef DEBUG
+    else
+    {
+      if (id == previousId)
+      {
+        Serial.print("Same ID: ");
+        Serial.println(id);
+      }
+      else
+      {
+        Serial.println("ID = -1");
+      }
+    }
+#endif
   }
   else
   {
-    Serial.print("Found RFID: ");
-    Serial.println(id);
-    Direction newDir = myMap.getDirection(id);
-    if (newDir == Stopped)
-    {
-      myMap.endRoute();
-    }
-    control.setTurn(myMap.getDirection(id), myMap.getDirection(previousId));
-    previousId = id;
-
-    // control.setTurn(East);
-
-    //TODO: do something with direction (In motor control)
+    digitalWrite(yellow, LOW);
+    Serial.println("No Map Destination");
+#ifdef DEBUG
+#endif
   }
 #endif
 

@@ -1,6 +1,9 @@
 #include <Map.h>
-//#define DEBUG
+//#define DEBUG2
 #ifdef DEBUG
+#include <Arduino.h>
+#endif
+#ifdef DEBUG2
 #include <Arduino.h>
 #endif
 
@@ -75,20 +78,30 @@ void Map::setNode(int id1, int id2, Direction direction)
 
 Direction Map::getDirection(int foundId)
 {
+
     if (foundId == finalDestination->id)
     {
         return Stopped;
     }
-
     PathNode *cp = currentPath;
+#ifdef DEBUG2
+    Serial.print("Searching for id: ");
+    Serial.println(foundId);
+    currentPath->print();
+    cp->print();
+#endif
     while (cp != nullptr)
     {
+#ifdef DEBUG2
+        Serial.println(cp->id);
+#endif
         if (cp->id == foundId)
         {
             Direction direction = cp->direction;
-            currentPath = cp->getNext();
+            // currentPath = cp->getNext();
             return direction;
         }
+        cp = cp->getNext();
     }
     return Other;
 }
@@ -124,16 +137,20 @@ void Map::setDestination(int currentId, int destinationId, Direction direction)
     {
 #ifdef DEBUG
         Serial.print("Bad parameters:");
-        if (direction == Stopped){
+        if (direction == Stopped)
+        {
             Serial.print(" Direction == Stopped");
         }
-if (direction == Stopped){
+        if (direction == Stopped)
+        {
             Serial.print(" Direction == Other");
         }
-        if (mapNodes[currentId] == nullptr){
+        if (mapNodes[currentId] == nullptr)
+        {
             Serial.print(" No location");
         }
-        if (direction == Stopped){
+        if (direction == Stopped)
+        {
             Serial.print(" Direction == Stopped");
         }
 #endif
@@ -317,15 +334,24 @@ if (direction == Stopped){
 
 bool Map::hasDestination()
 {
-    return finalDestination != nullptr;
+    return currentPath != nullptr;
 }
 
 void Map::endRoute()
 {
     if (finalDestination != nullptr)
+    {
         delete finalDestination;
+        finalDestination = nullptr;
+    }
     if (currentDestination != nullptr)
+    {
         delete currentDestination;
+        currentDestination = nullptr;
+    }
     if (currentPath != nullptr)
+    {
         delete currentPath;
+        currentPath = nullptr;
+    }
 }
