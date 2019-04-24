@@ -204,7 +204,7 @@ void MotorControl::Update()
         Serial.println(f);
 #endif
 
-        if (sensors.getRecent(Front) <= dangerFront)
+        if (paused || sensors.getRecent(Front) <= dangerFront)
         {
             int tempSpeed = speed;
             SetSpeed(0);

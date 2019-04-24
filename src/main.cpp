@@ -10,7 +10,7 @@
 MotorControl control(Motor(rmDir, rmPWM, Encoder(reA, reB)), Motor(lmDir, lmPWM, Encoder(leA, leB)), ProximitySensorArray(tlb, elb, trb, erb, tlf, elf, trf, erf, tf, ef));
 SoftwareSerial softSerial(rfidRX, rfidTX);
 uint8_t rfidCount = 0, rfidToggleCount = 30, rfidToggleLength = 10, rfidToggleMax = 80;
-bool readingRFID = false, running = false;
+bool readingRFID = false, running = false, paused = false;
 
 #ifdef USE_RFID
 RFID nano;
@@ -193,21 +193,23 @@ void setup()
     Serial.println(F("Module failed to respond. Please check wiring."));
 #endif
     //Freeze!
-    while (1)
+    while (!digitalRead(stopButton))
     {
       digitalWrite(red, HIGH);
       digitalWrite(white, HIGH);
       digitalWrite(green, HIGH);
       digitalWrite(yellow, HIGH);
       digitalWrite(blue, HIGH);
-      delay(100);
+      delay(300);
       digitalWrite(red, LOW);
       digitalWrite(white, LOW);
       digitalWrite(green, LOW);
       digitalWrite(yellow, LOW);
       digitalWrite(blue, LOW);
-      delay(100);
+      delay(300);
     }
+    while (1)
+      ;
   }
 
   nano.setRegion(REGION_NORTHAMERICA); //Set to North America
@@ -234,9 +236,34 @@ void loop()
 
   //Map buttons as well so we can have an emergency stop button without reseting the destination
   //Buttons could also be used as a "GO" button
-  if (control.checkStatus() == Stopped)
+  if (paused)
   {
-    if (running)
+    digitalWrite(red, HIGH);
+    digitalWrite(white, HIGH);
+    digitalWrite(green, LOW);
+    digitalWrite(yellow, HIGH);
+    digitalWrite(blue, HIGH);
+    control.pause();
+    if (digitalRead(stopButton))
+    {
+      delay(500);
+      if (digitalRead(stopButton))
+      {
+        control.SetSpeed(0);
+        control.setTurn(Stopped, Stopped);
+        paused = false;
+        running = true;
+      }
+    }
+    if (digitalRead(goButton))
+    {
+      paused = false;
+      control.resume();
+    }
+  }
+  else if (control.checkStatus() == Stopped)
+  {
+    if (running || digitalRead(stopButton))
     {
       running = false;
       currentId = -1;
@@ -256,8 +283,8 @@ void loop()
 
       if (digitalRead(goButton))
       {
-        currentId = digitalRead(51) << 2 + digitalRead(52) << 1 + digitalRead(53);
-        delay(40);
+        currentId = (digitalRead(51) << 2) + (digitalRead(52) << 1) + digitalRead(53);
+        delay(100);
       }
     }
     else if (currentDirection == Stopped)
@@ -273,7 +300,7 @@ void loop()
         if (tempDirection < 4)
         {
           currentDirection = (Direction)tempDirection;
-          delay(40);
+          delay(100);
         }
       }
     }
@@ -286,11 +313,16 @@ void loop()
       digitalWrite(white, HIGH);
       if (digitalRead(goButton))
       {
-        currentId = digitalRead(51) << 2 + digitalRead(52) << 1 + digitalRead(53);
+        currentDestination = digitalRead(51) << 2 + digitalRead(52) << 1 + digitalRead(53);
       }
     }
     else
     {
+      digitalWrite(red, LOW);
+      digitalWrite(yellow, LOW);
+      digitalWrite(blue, LOW);
+      digitalWrite(green, HIGH);
+      digitalWrite(white, LOW);
       myMap.setDestination(currentId, currentDestination, currentDirection);
       control.setTurn(currentDirection, currentDirection);
       control.SetSpeed(speed);
@@ -367,6 +399,10 @@ void loop()
       }
     }
 #endif
+  }
+  else if (digitalRead(stopButton))
+  {
+    paused = true;
   }
   control.Update();
   delay(20);

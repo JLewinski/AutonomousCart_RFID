@@ -15,6 +15,8 @@ public:
   bool hasNextTurn();
   void setTurn(Direction nextTurn, Direction currentDirection);
   void initiateTurn();
+  void pause() { paused = true; }
+  void resume() { paused = false; }
 
   Direction checkStatus();
 
@@ -34,7 +36,7 @@ private:
   int speed;
 
   int rightOffset, leftOffset = -1;
-  bool intersection = (true), blocked = (false);
+  bool intersection = (true), blocked = (false), paused = false;
 
   //get sensor data when count > countMax -> reset count to 0
   int count = 0;
