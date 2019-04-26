@@ -3,16 +3,13 @@ This is a Spring 2019 Senior Design Project at Auburn University
 
 ## Getting started:
 
-Download and install [VS Code](https://code.visualstudio.com/).
-Install the [PlatformIO IDE](https://docs.platformio.org/en/latest/ide/vscode.html) extension for VS Code
-You may need to start a free trial with PlatformIO.
+1. Download and install [VS Code](https://code.visualstudio.com/).
+2. Install the [PlatformIO IDE](https://docs.platformio.org/en/latest/ide/vscode.html) extension for VS Code
 
-Clone this repo into VS Code (easily done with [Github Desktop](https://desktop.github.com/))
+3. You will need to add 2 libraries to PlatformIO:
+  1. [Ultrasonic-HC-SR04 by Bruno Peixoto](https://github.com/brunolnetto/Ultrasonic-HC-SR04?utm_source=platformio&utm_medium=piohome)
+  2. [SparkFun Simultaneous RFID Tag Reader Library by SparkFun Electronics](https://github.com/sparkfun/SparkFun_Simultaneous_RFID_Tag_Reader_Library?utm_source=platformio&utm_medium=piohome)
 
-If you want to commit directly to the repo you will have to get a Github account and I will have to set you up and show you how I want you to do it.
+4. Clone this repo into VS Code
 
-## To send the code to the arduino:
-
-1. Connect arduino to USB
-2. Click on the alien on the left hand side
-3. Click upload under project tasks
+NOTE: If you want to commit directly to the repo you will have to get a Github account and I will have to set you up and show you how I want you to do it.
