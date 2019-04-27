@@ -1,6 +1,8 @@
 # AutonomousCart_RFID
 This is a Spring 2019 Senior Design Project at Auburn University
 
+[YouTube](https://youtu.be/HWZXSQpu3wU)
+
 ## Getting started:
 
 1. Download and install [VS Code](https://code.visualstudio.com/).
