@@ -1,5 +1,10 @@
 #pragma once
 
+/** File: Direction.h
+ * Author: Jacob Lewinski (jdlewinski)
+ * Description: Contains a reference to all pins. To make
+ * it easy to change pin numbers for specific wire scheme
+ */
 enum Pins
 {
     //Right Motor Dir

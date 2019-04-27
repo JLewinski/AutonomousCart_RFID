@@ -4,20 +4,32 @@
 #include <ProximitySensorArray.h>
 #include <Direction.h>
 
+/**
+   * Controls the motors based on sensor data
+   */
 class MotorControl
 {
 public:
+  //Initializes the controller with two motors and an array of proximity sensors
   MotorControl(Motor _right, Motor _left, ProximitySensorArray _sensors);
 
-  //Need to create functions to controll direction and speed of motors based on the sensor data
+  //Need to create functions to controll direction and speed of
+  //motors based on the sensor data
   void SetSpeed(int spd);
+  //Updates the offsets sent to the motors to turn or correct angle of approach
   void Update();
+  //If it has a direction to turn to
   bool hasNextTurn();
+  //Sets the current direction and the direction it needs to go at the next intersection
   void setTurn(Direction nextTurn, Direction currentDirection);
+  //Initiates the tuning algorithm. This is currently only called from the update
+  //function but has potential to be called in the system head.
   void initiateTurn();
+  //Sets the motors to speed 0 in the next update loop by setting the status to paused
   void pause() { paused = true; }
+  //Removes the paused status to allow the control to resume
   void resume() { paused = false; }
-
+  //Gets the current direction of the cart based on what the motor controller knows
   Direction checkStatus();
 
 private:

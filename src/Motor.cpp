@@ -10,10 +10,6 @@ Motor::Motor(int _dir, int _pwm, Encoder _encoder)
     pinMode(pwm, OUTPUT);
 }
 
-Motor::~Motor()
-{
-}
-
 //Start moving clockwise at the same set speed.
 //It would be best to set the speed to 0 before doing this
 void Motor::clockwise()
@@ -35,15 +31,15 @@ void Motor::setSpeed(int _speed)
 {
     if (_speed < 0)
     {
-        desieredEncoderOutput = maxSpeed;
+        desiredEncoderOutput = maxSpeed;
     }
     else if (_speed > maxSpeed)
     {
-        desieredEncoderOutput = 0;
+        desiredEncoderOutput = 0;
     }
     else
     {
-        desieredEncoderOutput = maxSpeed - _speed;
+        desiredEncoderOutput = maxSpeed - _speed;
     }
 #ifdef DEBUG
     if (pwm == 5)
@@ -77,7 +73,7 @@ void Motor::update()
     }
     else
     {
-        double error = enOut - desieredEncoderOutput;
+        double error = enOut - desiredEncoderOutput;
 #ifdef DEBUG
         if (pwm == 5)
         {
@@ -108,7 +104,7 @@ void Motor::update()
             }
 #endif
         }
-        else if (pwmValue <= 1 && desieredEncoderOutput > 0)
+        else if (pwmValue <= 1 && desiredEncoderOutput > 0)
         {
             //just because
             pwmValue = 10;
@@ -131,7 +127,7 @@ void Motor::update()
 //Emergency Brake
 void Motor::brake()
 {
-    desieredEncoderOutput = 0;
+    desiredEncoderOutput = 0;
     pwmValue = 0;
     analogWrite(pwm, 0);
     status = MotorStatus::Stop;

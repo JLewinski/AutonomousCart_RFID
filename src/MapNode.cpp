@@ -4,11 +4,6 @@
 #include <Arduino.h>
 #endif
 
-MapNode::~MapNode()
-{
-    delete[] nodes;
-}
-
 void MapNode::print()
 {
 #ifdef DEBUG
@@ -129,31 +124,6 @@ MapNode *MapNode::getNext(Direction direction)
     if (direction >= 0 && direction <= 4)
     {
         return nodes[direction];
-    }
-    return nullptr;
-}
-
-int MapNode::getCount()
-{
-    int count = 0;
-    for (int i = 0; i < 5; i++)
-    {
-        if (nodes[i] != nullptr)
-        {
-            count++;
-        }
-    }
-    return count;
-}
-
-PathNode *MapNode::getNextPath()
-{
-    for (int i = 0; i < 5; i++)
-    {
-        if (nodes[i] != nullptr)
-        {
-            return new PathNode(nodes[i]->id, (Direction)i, nullptr, nullptr);
-        }
     }
     return nullptr;
 }
